@@ -2,12 +2,14 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 import { AppComponent, environment } from './app/';
 import { FIREBASE_PROVIDERS, defaultFirebase } from 'angularfire2';
+import { APP_ROUTE_PROVIDER } from './app/app.routes';
 
 if (environment.production) {
   enableProdMode();
 }
 
 bootstrap(AppComponent, [
+  APP_ROUTE_PROVIDER,
   FIREBASE_PROVIDERS,
   // Initialize Firebase app  
   defaultFirebase({
