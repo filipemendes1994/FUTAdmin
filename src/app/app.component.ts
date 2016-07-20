@@ -11,8 +11,11 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 })
 export class AppComponent {
   title = 'app works!';
-  constructor(af: AngularFire) {
+  items : FirebaseListObservable<any[]>;
 
+  constructor(af: AngularFire) {
+    this.items = af.database.list('alunos');
+    console.log(this.items);
   }
   
 }
