@@ -8,7 +8,8 @@
 /** Map relative paths to URLs. */
 const map: any = {
   'firebase': 'vendor/firebase/firebase.js',
-  'angularfire2': 'vendor/angularfire2'
+  'angularfire2': 'vendor/angularfire2',
+  '@angular2-material': 'vendor/@angular2-material'
 };
 
 /** User packages configuration. */
@@ -18,6 +19,21 @@ const packages: any = {
     main: 'angularfire2.js'
   }
 };
+
+const materialPkgs:string[] = [
+  'core',
+  'button',
+  'card',
+  'input',
+  'checkbox',
+  'toolbar',
+  'list',
+  'icon'
+];
+
+materialPkgs.forEach((pkg) => {
+  packages[`@angular2-material/${pkg}`] = {main: `${pkg}.js`};
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -42,7 +58,9 @@ const barrels: string[] = [
   'app/shared',
   'app/home',
   'app/alunos',
+  'app/add-alunos',
   /** @cli-barrel */
+  
 ];
 
 const cliSystemConfigPackages: any = {};
