@@ -8,7 +8,7 @@ export const routes: RouterConfig = [
   { path: 'home', component: HomeComponent },
   { path: 'alunos', component: AlunosComponent },
   { path: 'add-alunos', component: AddAlunosComponent },
-  { path: '', component: HomeComponent }
+  { path: '', redirectTo: '/home' }
 ];
 
 export const APP_ROUTE_PROVIDER = provideRouter(routes);

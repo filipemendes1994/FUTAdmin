@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Component, OnInit } from '@angular/core';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import {MD_ICON_DIRECTIVES, MdIconRegistry} from '@angular2-material/icon';
 
@@ -11,13 +11,22 @@ import {MD_ICON_DIRECTIVES, MdIconRegistry} from '@angular2-material/icon';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app works!';
-  items : FirebaseListObservable<any[]>;
+  items: FirebaseListObservable<any[]>;
 
-  constructor(af: AngularFire) {
-    this.items = af.database.list('alunos');
+  constructor(public af: AngularFire) { }
+
+  ngOnInit() {
+    this.items = this.af.database.list('alunos');
     console.log(this.items);
+
+    this.af.auth.login({
+      email: 'danielgek@gmail.com',
+      password: 'daniel'
+    }).then(function (error: any) {
+      console.log(error);
+    });
   }
-  
 }
+
