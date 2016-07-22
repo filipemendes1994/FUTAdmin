@@ -2,6 +2,11 @@
   flex: 1 1 auto;
 }
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 md-sidenav {
-  width: 200px;
+    min-width: 15%;
 }

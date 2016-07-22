@@ -28,7 +28,8 @@ const materialPkgs:string[] = [
   'checkbox',
   'toolbar',
   'list',
-  'icon'
+  'icon',
+  'sidenav'
 ];
 
 materialPkgs.forEach((pkg) => {

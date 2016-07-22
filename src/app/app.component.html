@@ -1,23 +1,31 @@
 <md-toolbar style="background:#F44336">
-    <button md-icon-button style="width: 60px; height: 60px">
-      <md-icon style="width: 60px; height: 60px" svgSrc="/assets/logo.svg"></md-icon>
-    </button>
+  <button #mybutton md-icon-button style="width: 60px; height: 60px" (click)="start.toggle()">
+    <md-icon style="width: 60px; height: 60px" svgSrc="/assets/logo.svg"></md-icon>
+  </button>
+  <div class="demo-toolbar">
     <span style="margin-left: 10px">FUTAdmin</span>
     <span class="example-fill-remaining-space"></span>
     <span>Copyright @ 2016</span>
+  </div>
 </md-toolbar>
 
-<div>
-  <!--<ul>
-    <li *ngFor="let item of items | async">
-      {{ item.nome }}
-    </li>
-  </ul> -->
-  <div>
-    <a [routerLink]="['/home']">Home</a>
-    <a [routerLink]="['/alunos']">Alunos</a>
-    <a [routerLink]="['/add-alunos']">Add Alunos</a>
-  </div>
-  <router-outlet></router-outlet>
+<md-sidenav-layout class="left-navigation">
+  <md-sidenav #start opened="true" (open)="mybutton.focus()">
+    <md-nav-list>
+      <a md-list-item [routerLink]="['/home']">Home</a>
+      <a md-list-item [routerLink]="['/alunos']">Alunos</a>
+      <a md-list-item [routerLink]="['/add-alunos']">Add Alunos</a>
+    </md-nav-list>
+  </md-sidenav>
+</md-sidenav-layout> 
 
-</div>
+<!--
+<md-sidenav-layout>
+  <md-sidenav #start (open)="mybutton.focus()">
+    Start Sidenav.
+    <br>
+  </md-sidenav>
+  My regular content. This will be moved into the proper DOM at runtime.
+</md-sidenav-layout> 
+-->
+<router-outlet></router-outlet>
