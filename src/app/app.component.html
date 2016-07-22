@@ -1,23 +1,25 @@
-<md-toolbar style="background:#F44336">
-    <button md-icon-button style="width: 60px; height: 60px">
-      <md-icon style="width: 60px; height: 60px" svgSrc="/assets/logo.svg"></md-icon>
-    </button>
-    <span style="margin-left: 10px">FUTAdmin</span>
-    <span class="example-fill-remaining-space"></span>
-    <span>Copyright @ 2016</span>
-</md-toolbar>
-
-<div>
-  <!--<ul>
-    <li *ngFor="let item of items | async">
-      {{ item.nome }}
-    </li>
-  </ul> -->
+<md-sidenav-layout class="demo-sidenav-layout">
+  <md-sidenav #sidenav  opened="true" mode="side">
+    <md-nav-list>
+      <a md-list-item [routerLink]="['/home']">Home</a>
+      <a md-list-item [routerLink]="['/alunos']">Alunos</a>
+      <a md-list-item [routerLink]="['/add-alunos']">Add Alunos</a>
+    </md-nav-list>
+  </md-sidenav>
   <div>
-    <a [routerLink]="['/home']">Home</a>
-    <a [routerLink]="['/alunos']">Alunos</a>
-    <a [routerLink]="['/add-alunos']">Add Alunos</a>
-  </div>
-  <router-outlet></router-outlet>
+    <md-toolbar color="primary">
+      <button md-icon-button>
+        <md-icon  svgSrc="/assets/logo.svg" class="md-24"></md-icon>
+      </button>
+      <span style="margin-left: 10px">FUTAdmin</span>
+      <span class="fill-remaining-space"></span>
+      <span>Copyright @ 2016</span>
+    </md-toolbar>
 
-</div>
+
+    <router-outlet></router-outlet>
+  </div>
+
+
+
+</md-sidenav-layout>
