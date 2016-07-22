@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import {MD_ICON_DIRECTIVES, MdIconRegistry} from '@angular2-material/icon';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
-
+import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 
 @Component({
   moduleId: module.id,
