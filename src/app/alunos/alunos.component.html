@@ -1,3 +1,8 @@
-<p>
-  alunos works!
-</p>
+<div class="content">
+  <md-list>
+    <md-list-item *ngFor="let aluno of alunos | async">
+      <p md-line>{{ aluno.firstName }} {{ aluno.lasttName }}</p>
+      
+    </md-list-item>
+  </md-list>
+</div>

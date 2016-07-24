@@ -2,7 +2,7 @@ import {provideRouter, RouterConfig} from '@angular/router';
 
 import { HomeComponent } from './home';
 import { AlunosComponent } from './alunos';
-import { AddAlunosComponent } from './add-alunos';
+import { AddAlunosComponent } from './alunos/add';
 import { LoginComponent } from './login';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service';

@@ -8,7 +8,8 @@ import {MD_CHECKBOX_DIRECTIVES} from '@angular2-material/checkbox';
 import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
-import {Aluno} from './aluno';
+import {Aluno} from '../aluno';
+import { AlunosService } from '../alunos.service';
 
 let max = 5;
 
@@ -27,15 +28,16 @@ let max = 5;
     MD_GRID_LIST_DIRECTIVES,
     FORM_DIRECTIVES,
     NgFor,
-  ]
+  ],
+  providers: [AlunosService]
 })
 export class AddAlunosComponent implements OnInit {
-  
+  constructor(private as:AlunosService){}
   aluno: Aluno;
 
   submit()
   {
-    console.log(this.aluno);
+    this.as.addAluno(this.aluno);
   }
 
   ngOnInit()
