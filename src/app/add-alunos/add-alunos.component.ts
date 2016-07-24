@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgFor} from '@angular/common';
 import {FORM_DIRECTIVES} from '@angular/forms';
 import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
@@ -8,6 +8,7 @@ import {MD_CHECKBOX_DIRECTIVES} from '@angular2-material/checkbox';
 import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
+import {Aluno} from './aluno';
 
 let max = 5;
 
@@ -28,24 +29,17 @@ let max = 5;
     NgFor,
   ]
 })
-export class AddAlunosComponent {
-  dividerColor: boolean;
-  requiredField: boolean;
-  floatingLabel: boolean;
-  name: string;
-  items: any[] = [
-    { value: 10 },
-    { value: 20 },
-    { value: 30 },
-    { value: 40 },
-    { value: 50 },
-  ];
+export class AddAlunosComponent implements OnInit {
+  
+  aluno: Aluno;
 
-  addABunch(n: number) {
-    for (let x = 0; x < n; x++) {
-      this.items.push({ value: ++max });
-    }
+  submit()
+  {
+    console.log(this.aluno);
   }
 
- 
+  ngOnInit()
+  {
+    this.aluno = new Aluno();   
+  }
 }
