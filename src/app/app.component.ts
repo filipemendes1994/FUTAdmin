@@ -34,15 +34,7 @@ export class AppComponent implements OnInit {
   constructor(public af: AngularFire) { }
 
   ngOnInit() {
-    this.items = this.af.database.list('alunos');
-    console.log(this.items);
 
-    this.af.auth.login({
-      email: 'danielgek@gmail.com',
-      password: 'daniel'
-    }).then(function (error: any) {
-      console.log(error);
-    });
   }
 }
 
