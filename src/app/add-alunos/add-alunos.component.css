@@ -1,0 +1,17 @@
+.content
+{
+    height: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.card
+{
+    margin-top: 16px;
+    background: #FFC107;
+}
+
+.button
+{
+    margin-top: 16px;
+}

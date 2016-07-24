@@ -7,7 +7,7 @@ import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 import {MD_CHECKBOX_DIRECTIVES} from '@angular2-material/checkbox';
 import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
-
+import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
 
 let max = 5;
 
@@ -23,6 +23,7 @@ let max = 5;
     MD_ICON_DIRECTIVES,
     MD_TOOLBAR_DIRECTIVES,
     MD_INPUT_DIRECTIVES,
+    MD_GRID_LIST_DIRECTIVES,
     FORM_DIRECTIVES,
     NgFor,
   ]
@@ -45,4 +46,6 @@ export class AddAlunosComponent {
       this.items.push({ value: ++max });
     }
   }
+
+ 
 }
