@@ -1,3 +1,25 @@
-<p>
-  login works!
-</p>
+
+<md-card >
+    <md-card-title>Login</md-card-title>
+    <md-card-content>
+        <form>
+
+            <table cellspacing="0">
+                <tr>
+                    <td colspan="6">
+                        <md-input #email placeholder="Email" value="danielgek@gmail.com"></md-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <md-input #password placeholder="Password" value="daniel"> </md-input>
+                    </td>
+                
+                </tr>
+                <tr>
+                  <button (click)="login(email.value, password.value)" md-button>Login</button>
+                </tr>
+            </table>
+        </form>
+    </md-card-content>
+</md-card>
