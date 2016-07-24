@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { AlunosService } from './alunos.service';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import { Aluno } from './aluno';
+import { Aluno } from '../aluno';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
+import { AlunosService } from '../alunos.service';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-alunos',
-  directives: [ MD_LIST_DIRECTIVES ],
-  providers: [AlunosService],
-  templateUrl: 'alunos.component.html',
-  styleUrls: ['alunos.component.css']
+  selector: 'list-alunos',
+  directives: [ MD_LIST_DIRECTIVES, ROUTER_DIRECTIVES ],
+  templateUrl: 'list-alunos.component.html',
+  styleUrls: ['list-alunos.component.css']
 })
-export class AlunosComponent implements OnInit {
+export class ListAlunosComponent implements OnInit {
 
   alunos: FirebaseListObservable<Aluno[]>;
   constructor(public as: AlunosService) {}

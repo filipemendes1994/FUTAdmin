@@ -61,6 +61,7 @@ const barrels: string[] = [
   'app/home',
   'app/alunos',
   'app/alunos/add',
+  'app/alunos/list',
   'app/login',
   /** @cli-barrel */
   

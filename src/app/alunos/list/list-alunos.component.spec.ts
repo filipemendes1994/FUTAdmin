@@ -10,7 +10,7 @@ import {
   async, inject
 } from '@angular/core/testing';
 
-import { AlunosComponent } from './alunos.component';
+import { ListAlunosComponent } from './list-alunos.component';
 
 describe('Component: Alunos', () => {
   it('should create an instance', () => {

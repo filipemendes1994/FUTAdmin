@@ -30,7 +30,7 @@ import { AuthService } from './auth.service';
 export class AppComponent implements OnInit {
   
 
-  constructor(af:AuthService) {}
+  constructor() {}
 
   ngOnInit() {
 

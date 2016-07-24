@@ -1,1 +1,1 @@
-export * from './alunos.component';
+export * from './alunos-center.component';

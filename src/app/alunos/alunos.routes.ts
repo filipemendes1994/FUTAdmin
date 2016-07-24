@@ -1,0 +1,37 @@
+import { RouterConfig }          from '@angular/router';
+import { AddAlunosComponent } from './add';
+import { ListAlunosComponent } from './list';
+import { AlunosCenter } from './alunos-center.component';
+import { AuthGuardService }             from '../auth-guard.service';
+
+export const alunosRoutes: RouterConfig = [
+  {
+    path: 'alunos',
+    component: AlunosCenter,
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: '',
+        component: ListAlunosComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'add',
+        component: AddAlunosComponent,
+        canActivate: [AuthGuardService]
+      },
+      /*{
+        path: ':id',
+        component: CrisisDetailComponent,
+        canActivate: [AuthGuard]
+      },*/
+    ]
+  }
+];
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/
