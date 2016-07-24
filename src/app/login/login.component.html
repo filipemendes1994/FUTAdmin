@@ -1,25 +1,12 @@
-
-<md-card >
-    <md-card-title>Login</md-card-title>
-    <md-card-content>
-        <form>
-
-            <table cellspacing="0">
-                <tr>
-                    <td colspan="6">
-                        <md-input #email placeholder="Email" value="danielgek@gmail.com"></md-input>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <md-input #password placeholder="Password" value="daniel"> </md-input>
-                    </td>
-                
-                </tr>
-                <tr>
-                  <button (click)="login(email.value, password.value)" md-button>Login</button>
-                </tr>
-            </table>
-        </form>
-    </md-card-content>
-</md-card>
+<div class="container">
+    <md-card class="login-card">
+        <md-card-title>Login</md-card-title>
+        <md-card-content>
+            <md-input #email placeholder="Email" value="danielgek@gmail.com"></md-input><br>
+            <md-input #password type="password" placeholder="Password" value="daniel"> </md-input>
+        </md-card-content>
+        <md-card-actions align="end">
+            <button md-raised-button color="primary" (click)="login(email.value, password.value)" >Login</button>
+    </md-card-actions>
+    </md-card>
+</div>
