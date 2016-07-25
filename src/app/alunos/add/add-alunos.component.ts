@@ -12,6 +12,7 @@ import {IAluno, Aluno} from '../aluno';
 import { AlunosService } from '../alunos.service';
 import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
+import { MODAL_DIRECTIVES} from 'ng2-bs3-modal/ng2-bs3-modal';
 
 let max = 5;
 
@@ -30,6 +31,7 @@ let max = 5;
     MD_GRID_LIST_DIRECTIVES,
     ROUTER_DIRECTIVES,
     FORM_DIRECTIVES,
+    MODAL_DIRECTIVES,
     NgFor,
   ],
   providers: [AlunosService]
@@ -67,4 +69,16 @@ export class AddAlunosComponent implements OnInit {
       }
     });
   }
+
+  @ViewChild(Alert) alert;
+  alertOpen(){
+      this.alert.alertHeader = true;
+      this.alert.alertTitle = "A simple Alert modal window";
+      this.alert.message = "It is a classic Alert modal with title, body, footer.";
+      this.alert.alertFooter = true;
+      this.alert.okButton = false;
+      this.alert.cancelButton = true;
+      this.alert.cancelButtonText = "Ok, Got it.";
+      this.alert.open();
+    }
 }
