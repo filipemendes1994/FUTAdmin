@@ -81,48 +81,17 @@
             </form>
         </md-card-content>
     </md-card>
+    <md-card class="card" *ngIf="edit==true">
+        <md-card-title>Pagamentos</md-card-title>
+        <md-card-content>
+            <div *ngIf="aluno.pagamentos != undefined">
+                <md-list-item *ngFor="let pagamento of aluno.pagamentos">
+                    <p md-line>{{ pagamento.mes }} {{ pagamento.ano }}</p>
+                    <!-- <button md-button (click)="goToAluno(aluno.$key)">EDIT</button> -->
+                </md-list-item>
+                <button md-button (click)="goToAluno(aluno.$key)">EDIT</button>
+            </div>
+        </md-card-content>
+    </md-card>
     <button md-raised-button (click)="submit()" class="button" color="primary">Adicionar</button>
 </div>   
-
-
-<!--<md-card style="background: #FFC107">
-    <md-card-title>Dados do Aluno</md-card-title>
-    <md-card-content>
-        <form>
-            <!--<md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
-            <!-- <table style="width: 100%" cellspacing="0">
-                <tr>
-                    <td colspan="6">
-                        <md-input placeholder="First name" style="width: 100%"></md-input>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <md-input placeholder="Long Last Name That Will Be Truncated" style="width: 100%"></md-input>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <md-input class="demo-full-width" style="width: 95%" placeholder="Address"></md-input>
-                    </td>
-                    <td colspan="3">
-                        <md-input class="demo-full-width" style="width: 100%" placeholder="Email"></md-input>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <md-input class="demo-full-width" style="width: 95%" placeholder="City" value="Coimbra"></md-input>
-                    </td>
-                    <td colspan="2">
-                        <md-input class="demo-full-width" style="width: 95%" placeholder="District" maxLength="2" value="Coimbra"></md-input>
-                    </td>
-                    <td colspan="2">
-                        <md-input #postalCode class="demo-full-width" style="width: 100%; margin: 10px" maxLength="8" placeholder="Postal Code" value="3045">
-                            <md-hint align="end">{{postalCode.characterCount}} / 8</md-hint>
-                        </md-input>
-                    </td>
-                <tr>
-            </table>
-        </form>-->
-   <!-- </md-card-content>
-</md-card> -->

@@ -23,6 +23,6 @@ export class Aluno extends Pessoa implements IAluno {
     constructor(firstName?: string, lastName?: string, address?: string, email?: string,
         contact?: string, city?: string, district?: string, postalCode?: string) {
             super(firstName, lastName, address, email, contact, city, district, postalCode);
-            this.pagamentos = new Array();
+            this.pagamentos = new Array<Pagamento>();
     }
 }

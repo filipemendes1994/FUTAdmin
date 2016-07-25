@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {NgFor} from '@angular/common';
 import {FORM_DIRECTIVES} from '@angular/forms';
 import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
@@ -9,10 +9,11 @@ import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
 import {IAluno, Aluno} from '../aluno';
-import { AlunosService } from '../alunos.service';
-import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import {AlunosService} from '../alunos.service';
+import {ROUTER_DIRECTIVES, ActivatedRoute} from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
-import { MODAL_DIRECTIVES} from 'ng2-bs3-modal/ng2-bs3-modal';
+import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular2-material/dialog/dialog';
+import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
 
 let max = 5;
 
@@ -31,19 +32,24 @@ let max = 5;
     MD_GRID_LIST_DIRECTIVES,
     ROUTER_DIRECTIVES,
     FORM_DIRECTIVES,
-    MODAL_DIRECTIVES,
     NgFor,
   ],
-  providers: [AlunosService]
+  providers: [MdDialog, AlunosService, OVERLAY_PROVIDERS]
 })
 export class AddAlunosComponent implements OnInit {
 
-  private edit:boolean = false;
-  private sub:any;
+  private sub: any;
   private alunoObservable: FirebaseObjectObservable<IAluno>;
+  private dialogRef: MdDialog;
+  private lastCloseResult: string;
+
+  public edit: boolean = false;
   public aluno: Aluno;
 
-  constructor(private as: AlunosService, private route: ActivatedRoute){}
+  constructor(private as: AlunosService, private route: ActivatedRoute,
+    public dialog: MdDialog, public viewContainerRef: ViewContainerRef){
+
+    }
 
 
   submit()
@@ -61,24 +67,37 @@ export class AddAlunosComponent implements OnInit {
     this.aluno = new Aluno();
     this.sub = this.route.params.subscribe(params => {
       let id = params['id'];
-      if(id != undefined)
-      {
+      if (id !== undefined) {
         this.edit = true;
         this.alunoObservable = this.as.getAluno(id);
-        this.alunoObservable.subscribe(aluno =>{ this.aluno = aluno});
+        this.alunoObservable.subscribe(aluno => { this.aluno = aluno; });
       }
     });
   }
 
-  @ViewChild(Alert) alert;
-  alertOpen(){
-      this.alert.alertHeader = true;
-      this.alert.alertTitle = "A simple Alert modal window";
-      this.alert.message = "It is a classic Alert modal with title, body, footer.";
-      this.alert.alertFooter = true;
-      this.alert.okButton = false;
-      this.alert.cancelButton = true;
-      this.alert.cancelButtonText = "Ok, Got it.";
-      this.alert.open();
-    }
+  open() {
+    let config = new MdDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
+
+    this.dialog.open(JazzDialog, config).then(ref => {
+      this.dialogRef = ref;
+
+      this.dialogRef.afterClosed().subscribe(result => {
+        this.lastCloseResult = result;
+        this.dialogRef = null;
+      });
+    });
+  }
+}
+
+@Component({
+  selector: 'demo-jazz-dialog',
+  template: `
+  <p>It's Jazz!</p>
+  <p><label>How much? <input #howMuch></label></p>
+  <button type="button" (click)="dialogRef.close(howMuch.value)">Close dialog</button>`
+})
+
+export class JazzDialog {
+  constructor(public dialogRef: MdDialogRef<JazzDialog>) { }
 }

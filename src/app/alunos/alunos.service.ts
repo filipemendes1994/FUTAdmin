@@ -15,7 +15,7 @@ export class AlunosService {
   }
 
   addAluno(aluno: Aluno) {
-    
+    console.log(aluno);
     return this.alunos.push(aluno);
   }
 
