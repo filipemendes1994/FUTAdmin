@@ -8,8 +8,10 @@ import {MD_CHECKBOX_DIRECTIVES} from '@angular2-material/checkbox';
 import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
-import {Aluno} from '../aluno';
+import {IAluno, Aluno} from '../aluno';
 import { AlunosService } from '../alunos.service';
+import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import {FirebaseObjectObservable} from 'angularfire2';
 
 let max = 5;
 
@@ -26,22 +28,43 @@ let max = 5;
     MD_TOOLBAR_DIRECTIVES,
     MD_INPUT_DIRECTIVES,
     MD_GRID_LIST_DIRECTIVES,
+    ROUTER_DIRECTIVES,
     FORM_DIRECTIVES,
     NgFor,
   ],
   providers: [AlunosService]
 })
 export class AddAlunosComponent implements OnInit {
-  constructor(private as:AlunosService){}
-  aluno: Aluno;
+
+  private edit:boolean = false;
+  private sub:any;
+  private alunoObservable: FirebaseObjectObservable<IAluno>;
+  public aluno: Aluno;
+
+  constructor(private as: AlunosService, private route: ActivatedRoute){}
+
 
   submit()
   {
-    this.as.addAluno(this.aluno);
+    console.log(this.edit);
+    if(!this.edit) {
+      this.as.addAluno(this.aluno);
+    } else {
+      this.as.editAluno(this.alunoObservable, this.aluno);
+    }
   }
 
   ngOnInit()
   {
-    this.aluno = new Aluno();   
+    this.aluno = new Aluno();
+    this.sub = this.route.params.subscribe(params => {
+      let id = params['id'];
+      if(id != undefined)
+      {
+        this.edit = true;
+        this.alunoObservable = this.as.getAluno(id);
+        this.alunoObservable.subscribe(aluno =>{ this.aluno = aluno});
+      }
+    });
   }
 }
