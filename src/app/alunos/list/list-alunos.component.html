@@ -1,11 +1,16 @@
 <div class="content">
-  <md-list>
-    <md-list-item *ngFor="let aluno of alunos | async">
-      <p md-line>{{ aluno.firstName }} {{ aluno.lasttName }}</p>
-      
-    </md-list-item>
-  </md-list>
-  <a [routerLink]="['/alunos/add']" md-fab>
+  <md-card class="card">
+    <md-card-content>
+      <md-list>
+        <md-list-item *ngFor="let aluno of alunos | async">
+          <p md-line>{{ aluno.firstName }} {{ aluno.lasttName }}</p>
+          
+        </md-list-item>
+      </md-list>
+  </md-card-content>
+  </md-card>
+  
+  <a class="add-aluno" [routerLink]="['/alunos/add']" md-fab>
       <md-icon class="md-24" >add</md-icon>
   </a>
 </div>

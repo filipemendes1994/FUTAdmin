@@ -3,12 +3,13 @@
     height: 100%;
     padding-left: 50px;
     padding-right: 50px;
+    background: #f2f2f2;
+    margin-top: 0px;
 }
 
 .card
 {
-    margin-top: 16px;
-    background: #FFC107;
+    margin-top: 50px;
 }
 
 .button
