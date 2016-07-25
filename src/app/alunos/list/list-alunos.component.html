@@ -1,8 +1,8 @@
 <div class="content">
   <md-list>
     <md-list-item *ngFor="let aluno of alunos | async">
-      <p md-line>{{ aluno.firstName }} {{ aluno.lasttName }}</p>
-      
+      <p md-line>{{ aluno.firstName }} {{ aluno.lastName }}</p>
+      <button md-button (click)="goToAluno(aluno.$key)">EDIT</button>
     </md-list-item>
   </md-list>
   <a [routerLink]="['/alunos/add']" md-fab>
