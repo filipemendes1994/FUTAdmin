@@ -34,8 +34,9 @@ export class ListPagamentosComponent implements OnInit {
   private sub: any;
   public alunoObservable: FirebaseObjectObservable<IAluno>;
   public aluno: Aluno;
-  public add: boolean = false;
+  public edit: boolean = false;
   public toAdd: Pagamento;
+  public auxNum: number;
 
   constructor(private as: AlunosService, private route: ActivatedRoute) {
     this.toAdd = new Pagamento();
@@ -50,13 +51,19 @@ export class ListPagamentosComponent implements OnInit {
     });
   }
 
-  setAdd() {
-    this.add = true;
+  editPayment(pagamento: Pagamento) {
+    this.auxNum = this.aluno.pagamentos.indexOf(pagamento);
+    this.toAdd = this.aluno.pagamentos[this.auxNum];
+    this.edit = true;
+  }
+
+  deletePayment(pagamento: Pagamento) {
+    this.aluno.pagamentos.splice(this.aluno.pagamentos.indexOf(pagamento), 1);
+    this.as.editAluno(this.alunoObservable, this.aluno);
   }
 
   addPayment() {
     this.toAdd.datePayment = Math.floor(Date.now() / 1000);
-    console.log(this.toAdd);
 
     if (this.aluno.pagamentos === undefined) {
       this.aluno.pagamentos = new Array(this.toAdd);
@@ -64,7 +71,16 @@ export class ListPagamentosComponent implements OnInit {
       this.aluno.pagamentos.push(this.toAdd);
     }
     this.as.editAluno(this.alunoObservable, this.aluno);
-    this.add = false;
+
+    this.toAdd = new Pagamento();
+  }
+
+  setPayment() {
+      this.toAdd.datePayment = Math.floor(Date.now() / 1000);
+      this.aluno.pagamentos[this.auxNum] = this.toAdd;
+      this.edit = false;
+      this.toAdd = new Pagamento();
+      this.as.editAluno(this.alunoObservable, this.aluno);
   }
 
 }

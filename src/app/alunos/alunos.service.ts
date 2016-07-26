@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { IAluno, Aluno } from './aluno';
+import { ResponsibleAdult } from './responsibleAdult';
 
 @Injectable()
 export class AlunosService {
@@ -20,6 +21,8 @@ export class AlunosService {
   }
 
   editAluno(alunoObservable: FirebaseObjectObservable<IAluno>, aluno: Aluno) {
+    console.log('saving');
+    console.log(aluno);
     return alunoObservable.update({
       address: aluno.address,
       city: aluno.city,
@@ -29,12 +32,18 @@ export class AlunosService {
       firstName: aluno.firstName,
       lastName: aluno.lastName,
       postalCode: aluno.postalCode,
-      pagamentos: aluno.pagamentos
+      responsibleAdult: aluno.responsibleAdult === undefined ? new ResponsibleAdult() : aluno.responsibleAdult,
+      pagamentos: aluno.pagamentos === undefined ? [] : aluno.pagamentos
     });
   }
 
   getAluno(id: number | string): FirebaseObjectObservable<IAluno>
   {
       return this.af.database.object('alunos/' + id);
+  }
+
+  deleteAluno(key: string)
+  {
+    this.af.database.object('alunos/' + key).remove();
   }
 }

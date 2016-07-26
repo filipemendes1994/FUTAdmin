@@ -18,17 +18,29 @@
                             <p md-line>{{pagamento.datePayment * 1000 | date:"dd/MM/yy" }}</p>
                         </td>
                         <td colspan="2">
-                            <button md-icon-button>
+                            <button md-icon-button (click)="editPayment(pagamento)">
                                 <md-icon svgSrc="/assets/edit_button.svg"></md-icon>
+                            </button>
+                        </td>
+                        <td colspan="2">
+                            <button md-icon-button (click)="deletePayment(pagamento)">
+                                <md-icon svgSrc="/assets/delete_button.svg"></md-icon>
                             </button>
                         </td>
                     </tr>
                 </table>
             </md-list>
-            <button md-button color="primary" (click)="setAdd()">Adicionar Pagamento</button>
-            
-            <br>
-            <table style="width: 100%" cellspacing="0" *ngIf="add==true">
+        </md-card-content>
+    </md-card>
+
+    <br>
+    <md-card class="card">
+        <md-card-title>
+            <p md-line *ngIf="edit==false">Registar Novo Pagamento</p>
+            <p md-line *ngIf="edit==true">Editar Pagamento</p>            
+        </md-card-title>
+        <md-card-content>
+            <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td colspan="2">
                         <md-input [(ngModel)]='toAdd.month' placeholder="Mês" style="width: 95%"></md-input>
@@ -41,8 +53,8 @@
                     </td>
                 </tr>
             </table>
-            <button md-button (click)="addPayment()" *ngIf="add==true">Registar</button>
-
+            <button md-button *ngIf="edit==false" (click)="addPayment()">Registar</button>
+            <button md-button *ngIf="edit==true" (click)="setPayment()">Editar</button>
         </md-card-content>
     </md-card>
 </div>

@@ -23,7 +23,11 @@ export class ListAlunosComponent implements OnInit {
     this.alunos = this.as.getAlunos();
   }
 
-  goToAluno(key: string) {
+  editAluno(key: string) {
     this.router.navigate(['/alunos', key]);
+  }
+
+  deleteAluno(key: string) {
+    this.as.deleteAluno(key);
   }
 }

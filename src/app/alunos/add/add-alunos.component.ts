@@ -9,6 +9,7 @@ import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
 import {IAluno, Aluno} from '../aluno';
+import {ResponsibleAdult} from '../responsibleAdult';
 import {AlunosService} from '../alunos.service';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
@@ -41,6 +42,7 @@ export class AddAlunosComponent implements OnInit {
 
   public edit: boolean = false;
   public aluno: Aluno;
+  public ra: ResponsibleAdult;
 
   constructor(private as: AlunosService, private router: Router, private route: ActivatedRoute){
   }
@@ -48,11 +50,13 @@ export class AddAlunosComponent implements OnInit {
 
   submit()
   {
+    this.aluno.responsibleAdult = this.ra;
     if (!this.edit) {
       this.as.addAluno(this.aluno);
     } else {
       this.as.editAluno(this.alunoObservable, this.aluno);
     }
+    console.log(this.aluno);
   }
 
   ngOnInit() {
@@ -65,6 +69,12 @@ export class AddAlunosComponent implements OnInit {
         this.alunoObservable.subscribe(aluno => { this.aluno = aluno; });
       }
     });
+
+    if(!this.edit || this.aluno.responsibleAdult === undefined) {
+      this.ra = new ResponsibleAdult();
+    } else {
+      this.ra = this.aluno.responsibleAdult;
+    }
   }
 
   irPagamentos(key: string) {
