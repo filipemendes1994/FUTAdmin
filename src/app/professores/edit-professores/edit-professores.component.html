@@ -1,0 +1,43 @@
+<div class="content">
+    <md-card class="card">
+        <md-card-title>Dados do Professor</md-card-title>
+        <md-card-content>
+            <!--<md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
+            <table style="width: 100%" cellspacing="0">
+                <tr>
+                    <td colspan="3">
+                        <md-input [(ngModel)]='professor.firstName' placeholder="Nome Próprio" style="width: 95%"></md-input>
+                    </td>
+                    <td colspan="3">
+                        <md-input [(ngModel)]='professor.lastName' placeholder="Último Nome" style="width: 100%"></md-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='professor.address' class="demo-full-width" style="width: 95%" placeholder="Morada"></md-input>
+                    </td>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='professor.email' class="demo-full-width" style="width: 95%" placeholder="Email"></md-input>
+                    </td>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='professor.contact' class="demo-full-width" style="width: 100%" placeholder="Contato"></md-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='professor.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
+                    </td>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='professor.district' class="demo-full-width" style="width: 95%" placeholder="Distrito" value="Coimbra"></md-input>
+                    </td>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='professor.postalCode' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Código Postal" value="3045">
+                        </md-input>
+                    </td>
+                <tr>
+            </table>
+        </md-card-content>
+    </md-card>
+    <button md-raised-button *ngIf="edit==false" (click)="submit()" class="button" color="primary">Adicionar</button>
+    <button md-raised-button *ngIf="edit==true" (click)="submit()" class="button" color="primary">Editar</button>
+</div>   

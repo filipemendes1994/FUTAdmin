@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 
 import { alunosRoutes} from './alunos/alunos.routes';
 import { pagamentosRoutes} from './pagamentos/pagamentos.routes';
+import { professoresRoutes} from './professores/professores.routes';
 
 export const routes: RouterConfig = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuardService]},
@@ -15,6 +16,7 @@ export const routes: RouterConfig = [
   { path: '', redirectTo: 'home', canActivate:[AuthGuardService] },
   ...alunosRoutes,
   ...pagamentosRoutes,
+  ...professoresRoutes,
 ];
 
 export const authProviders = [AuthGuardService, AuthService];
