@@ -30,7 +30,7 @@ const materialPkgs:string[] = [
   'list',
   'icon',
   'sidenav',
-'grid-list'
+  'grid-list'
 ];
 
 materialPkgs.forEach((pkg) => {
@@ -59,12 +59,12 @@ const barrels: string[] = [
   'app',
   'app/shared',
   'app/home',
-  'app/alunos',
-  'app/alunos/add',
-  'app/alunos/list',
+  'app/students',
+  'app/students/form',
+  'app/students/list',
   'app/login',
-  'app/pagamentos',
-  'app/pagamentos/list-pagamentos',
+  'app/payments',
+  'app/payments/list',
   /** @cli-barrel */
   
 ];

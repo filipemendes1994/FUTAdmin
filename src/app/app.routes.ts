@@ -6,15 +6,15 @@ import { LoginComponent } from './login';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service';
 
-import { alunosRoutes} from './alunos/alunos.routes';
-import { pagamentosRoutes} from './pagamentos/pagamentos.routes';
+import { studentRoutes } from './students/students.routes';
+import { paymentsRoutes} from './payments/payments.routes';
 
 export const routes: RouterConfig = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuardService]},
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', canActivate:[AuthGuardService] },
-  ...alunosRoutes,
-  ...pagamentosRoutes,
+  ...studentRoutes,
+  ...paymentsRoutes,
 ];
 
 export const authProviders = [AuthGuardService, AuthService];

@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES }    from '@angular/router';
 
-import { AlunosService } from './alunos.service';
-
 @Component({
     moduleId: module.id,
-    selector: 'alunos-center',
+    selector: 'payments-center',
     directives: [ROUTER_DIRECTIVES],
-     providers: [AlunosService],
+     providers: [],
     template: `
         <router-outlet></router-outlet>
     `
 })
-export class AlunosCenter implements OnInit {
+export class PaymentsCenter implements OnInit {
     constructor() { }
 
     ngOnInit() { }

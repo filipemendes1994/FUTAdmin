@@ -1,28 +1,28 @@
 import { RouterConfig }          from '@angular/router';
-import { AddAlunosComponent } from './add';
-import { ListAlunosComponent } from './list';
-import { AlunosCenter } from './alunos-center.component';
+import { FormStudentsComponent } from './form';
+import { ListStudentsComponent} from './list';
+import { StudentsCenter } from './students-center.component';
 import { AuthGuardService }             from '../auth-guard.service';
 
-export const alunosRoutes: RouterConfig = [
+export const studentRoutes: RouterConfig = [
   {
-    path: 'alunos',
-    component: AlunosCenter,
+    path: 'students',
+    component: StudentsCenter,
     canActivate: [AuthGuardService],
     children: [
       {
         path: '',
-        component: ListAlunosComponent,
+        component: ListStudentsComponent,
         canActivate: [AuthGuardService]
       },
       {
         path: 'add',
-        component: AddAlunosComponent,
+        component: FormStudentsComponent,
         canActivate: [AuthGuardService]
       },
       {
         path: ':id',
-        component: AddAlunosComponent,
+        component: FormStudentsComponent,
         canActivate: [AuthGuardService]
       },
     ]

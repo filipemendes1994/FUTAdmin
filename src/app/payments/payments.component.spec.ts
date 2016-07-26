@@ -10,11 +10,11 @@ import {
   async, inject
 } from '@angular/core/testing';
 
-import { ListPagamentosComponent } from './list-pagamentos.component';
+import { PaymentsCenter } from './payments-center.component';
 
-describe('Component: ListPagamentos', () => {
+describe('Component: Payments', () => {
   it('should create an instance', () => {
-    /*let component = new ListPagamentosComponent();
-    expect(component).toBeTruthy();*/
+    let component = new PaymentsCenter();
+    expect(component).toBeTruthy();
   });
 });

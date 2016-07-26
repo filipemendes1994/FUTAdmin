@@ -1,4 +1,4 @@
-export class Pagamento {
+export class Payment {
 
     month: string;
     year: string;

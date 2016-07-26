@@ -7,8 +7,8 @@
   padding-bottom: 50px;
 }
 
-.add-aluno{
+.add-student{
   position:absolute;
   right: 50px;
-  margin-top: 16px;
+  bottom:50px;
 }

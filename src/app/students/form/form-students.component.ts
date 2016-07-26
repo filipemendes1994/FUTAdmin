@@ -8,9 +8,9 @@ import {MD_CHECKBOX_DIRECTIVES} from '@angular2-material/checkbox';
 import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
-import {IAluno, Aluno} from '../aluno';
+import {IStudent, Student} from '../student';
 import {ResponsibleAdult} from '../responsibleAdult';
-import {AlunosService} from '../alunos.service';
+import {StudentsService} from '../students.service';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
 
@@ -18,9 +18,9 @@ let max = 5;
 
 @Component({
   moduleId: module.id,
-  selector: 'add-alunos',
-  templateUrl: 'add-alunos.component.html',
-  styleUrls: ['add-alunos.component.css'],
+  selector: 'form-student',
+  templateUrl: 'form-students.component.html',
+  styleUrls: ['form-students.component.css'],
   directives: [
     MD_CARD_DIRECTIVES,
     MD_CHECKBOX_DIRECTIVES,
@@ -33,51 +33,51 @@ let max = 5;
     FORM_DIRECTIVES,
     NgFor,
   ],
-  providers: [AlunosService]
+  providers: [StudentsService]
 })
-export class AddAlunosComponent implements OnInit {
+export class FormStudentsComponent implements OnInit {
 
   private sub: any;
-  private alunoObservable: FirebaseObjectObservable<IAluno>;
+  private studentObservable: FirebaseObjectObservable<IStudent>;
 
   public edit: boolean = false;
-  public aluno: Aluno;
+  public student: Student;
   public ra: ResponsibleAdult;
 
-  constructor(private as: AlunosService, private router: Router, private route: ActivatedRoute){
+  constructor(private as: StudentsService, private router: Router, private route: ActivatedRoute){
   }
 
 
   submit()
   {
-    this.aluno.responsibleAdult = this.ra;
+    this.student.responsibleAdult = this.ra;
     if (!this.edit) {
-      this.as.addAluno(this.aluno);
+      this.as.addStudent(this.student);
     } else {
-      this.as.editAluno(this.alunoObservable, this.aluno);
+      this.as.editStudent(this.studentObservable, this.student);
     }
-    console.log(this.aluno);
+    console.log(this.student);
   }
 
   ngOnInit() {
-    this.aluno = new Aluno();
+    this.student = new Student();
+    this.ra = new ResponsibleAdult();
     this.sub = this.route.params.subscribe(params => {
       let id = params['id'];
       if (id !== undefined) {
         this.edit = true;
-        this.alunoObservable = this.as.getAluno(id);
-        this.alunoObservable.subscribe(aluno => { this.aluno = aluno; });
+        this.studentObservable = this.as.getStudent(id);
+        this.studentObservable.subscribe(student => 
+          { 
+            this.student = student; 
+            this.student.responsibleAdult === undefined ? this.ra = new ResponsibleAdult() :   this.ra = this.student.responsibleAdult 
+          });
       }
     });
-
-    if(!this.edit || this.aluno.responsibleAdult === undefined) {
-      this.ra = new ResponsibleAdult();
-    } else {
-      this.ra = this.aluno.responsibleAdult;
-    }
+   
   }
 
-  irPagamentos(key: string) {
-      this.router.navigate(['/pagamentos', key]);
+  goToPayments(key: string) {
+      this.router.navigate(['/payments', key]);
   }
 }
