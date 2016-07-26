@@ -3,20 +3,20 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'an
 import { IProfessor, Professor } from './professor';
 
 @Injectable()
-export class ProfessoresService {
+export class ProfessorsService {
 
-  professores:FirebaseListObservable<IProfessor[]>;
+  professors:FirebaseListObservable<IProfessor[]>;
   constructor(public af: AngularFire) {
-    this.professores = this.af.database.list('professores');
+    this.professors = this.af.database.list('professors');
   }
 
-  getProfessores(): FirebaseListObservable<IProfessor[]> {
-    return this.professores;
+  getProfessors(): FirebaseListObservable<IProfessor[]> {
+    return this.professors;
   }
 
   addProfessor(professor: Professor) {
     console.log(professor);
-    return this.professores.push(professor);
+    return this.professors.push(professor);
   }
 
   editProfessor(professorObservable: FirebaseObjectObservable<IProfessor>, professor: Professor) {
@@ -36,11 +36,11 @@ export class ProfessoresService {
 
   getProfessor(id: number | string): FirebaseObjectObservable<IProfessor>
   {
-      return this.af.database.object('professores/' + id);
+      return this.af.database.object('professors/' + id);
   }
 
   deleteProfessor(key: string)
   {
-    this.af.database.object('professores/' + key).remove();
+    this.af.database.object('professors/' + key).remove();
   }
 }

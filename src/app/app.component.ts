@@ -28,7 +28,6 @@ import { AuthService } from './auth.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
-  
 
   constructor() {}
 

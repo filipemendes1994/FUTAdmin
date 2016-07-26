@@ -21,8 +21,6 @@ export class AlunosService {
   }
 
   editAluno(alunoObservable: FirebaseObjectObservable<IAluno>, aluno: Aluno) {
-    console.log('saving');
-    console.log(aluno);
     return alunoObservable.update({
       address: aluno.address,
       city: aluno.city,

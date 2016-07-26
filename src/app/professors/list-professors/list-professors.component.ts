@@ -2,29 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 import { IProfessor} from '../professor';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
-import { ProfessoresService } from '../professores.service';
+import { ProfessorsService } from '../professors.service';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 
 @Component({
   moduleId: module.id,
-  selector: 'list-professores',
+  selector: 'list-professors',
   directives: [ MD_LIST_DIRECTIVES, ROUTER_DIRECTIVES, MD_ICON_DIRECTIVES, MD_CARD_DIRECTIVES],
-  templateUrl: 'list-professores.component.html',
-  styleUrls: ['list-professores.component.css']
+  templateUrl: 'list-professors.component.html',
+  styleUrls: ['list-professors.component.css']
 })
-export class ListProfessoresComponent implements OnInit {
+export class ListProfessorsComponent implements OnInit {
 
-  professores: FirebaseListObservable<IProfessor[]>;
-  constructor(public ps: ProfessoresService, private router: Router) {}
+  professors: FirebaseListObservable<IProfessor[]>;
+  constructor(public ps: ProfessorsService, private router: Router) {}
 
   ngOnInit() {
-    this.professores = this.ps.getProfessores();
+    this.professors = this.ps.getProfessors();
   }
 
   editProfessor(key: string) {
-    this.router.navigate(['/professores', key]);
+    this.router.navigate(['/professors', key]);
   }
 
   deleteProfessor(key: string) {

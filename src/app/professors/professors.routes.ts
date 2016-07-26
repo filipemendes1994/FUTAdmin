@@ -1,31 +1,30 @@
 import { RouterConfig } from '@angular/router';
-import { ProfessoresCenter } from './professores-center.component';
-import { ListProfessoresComponent } from './list-professores';
+import { ProfessorsCenter } from './professors-center.component';
+import { ListProfessorsComponent } from './list-professors';
 import { AuthGuardService }             from '../auth-guard.service';
-import { EditProfessoresComponent } from './edit-professores';
+import { EditProfessorsComponent } from './edit-professors';
 
-export const professoresRoutes: RouterConfig = [
+export const professorsRoutes: RouterConfig = [
   {
-    path: 'professores',
-    component: ProfessoresCenter,
+    path: 'professors',
+    component: ProfessorsCenter,
     canActivate: [AuthGuardService],
     children: [
         {
             path: '',
-            component: ListProfessoresComponent,
+            component: ListProfessorsComponent,
             canActivate: [AuthGuardService]
         },
         {
             path: 'add',
-            component: EditProfessoresComponent,
+            component: EditProfessorsComponent,
             canActivate: [AuthGuardService]
         },
         {
             path: ':id',
-            component: EditProfessoresComponent,
+            component: EditProfessorsComponent,
             canActivate: [AuthGuardService]
         }
-
     ]
   }
 ];

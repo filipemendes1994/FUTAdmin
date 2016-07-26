@@ -11,15 +11,15 @@ import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
 import {IProfessor, Professor} from '../professor';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
-import {ProfessoresService} from '../professores.service';
+import {ProfessorsService} from '../professors.service';
 
 let max = 5;
 
 @Component({
   moduleId: module.id,
-  selector: 'edit-professores',
-  templateUrl: 'edit-professores.component.html',
-  styleUrls: ['edit-professores.component.css'],
+  selector: 'edit-professors',
+  templateUrl: 'edit-professors.component.html',
+  styleUrls: ['edit-professors.component.css'],
   directives: [
     MD_CARD_DIRECTIVES,
     MD_CHECKBOX_DIRECTIVES,
@@ -32,9 +32,9 @@ let max = 5;
     FORM_DIRECTIVES,
     NgFor,
   ],
-  providers: [ProfessoresService]
+  providers: [ProfessorsService]
 })
-export class EditProfessoresComponent implements OnInit {
+export class EditProfessorsComponent implements OnInit {
 
   private sub: any;
   private professorObservable: FirebaseObjectObservable<IProfessor>;
@@ -42,7 +42,7 @@ export class EditProfessoresComponent implements OnInit {
   public edit: boolean = false;
   public professor: Professor;
 
-  constructor(public ps: ProfessoresService, private router: Router, private route: ActivatedRoute){
+  constructor(public ps: ProfessorsService, private router: Router, private route: ActivatedRoute){
   }
 
 
