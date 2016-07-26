@@ -1,0 +1,37 @@
+<div class="content">
+    <md-card class="card">
+        <md-card-title>Professores</md-card-title>
+        <md-card-content>
+            <md-list>
+                <table style="width: 100%" cellspacing="0">
+                    <tr *ngFor="let professor of professors | async">
+                        <td colspan="1">
+                            <p md-line>{{professor.firstName}} {{professor.lastName}}</p>
+                        </td>
+                        <td colspan="1">
+                            <p md-line>{{professor.email}}</p>
+                        </td>
+                        <td colspan="1">
+                            <p md-line>{{professor.contact}}</p>
+                            <p md-line>{{professor.city}}</p>
+                        </td>
+                        <td colspan="1">
+                            <button md-icon-button (click)="editProfessor(professor.$key)">
+                                <md-icon>edit</md-icon>
+                            </button>
+                        </td>
+                        <td colspan="1">
+                            <button md-icon-button (click)="deleteProfessor(professor.$key)">
+                                <md-icon>delete</md-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </md-list>
+        </md-card-content>
+    </md-card>
+
+    <a class="add-professor" [routerLink]="['/professors/add']" md-fab>
+      <md-icon class="md-24">add</md-icon>
+    </a>
+</div>
