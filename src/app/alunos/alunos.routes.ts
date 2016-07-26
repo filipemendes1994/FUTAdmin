@@ -24,7 +24,7 @@ export const alunosRoutes: RouterConfig = [
         path: ':id',
         component: AddAlunosComponent,
         canActivate: [AuthGuardService]
-      }
+      },
     ]
   }
 ];

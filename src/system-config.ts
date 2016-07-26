@@ -63,6 +63,8 @@ const barrels: string[] = [
   'app/alunos/add',
   'app/alunos/list',
   'app/login',
+  'app/pagamentos',
+  'app/pagamentos/list-pagamentos',
   /** @cli-barrel */
   
 ];

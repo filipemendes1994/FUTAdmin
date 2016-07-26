@@ -1,0 +1,48 @@
+<div class="content">
+    <md-card class="card">
+        <md-card-title>Pagamentos do Aluno/a {{aluno.firstName}} {{aluno.lastName}}</md-card-title>
+        <md-card-content>
+            <md-list>
+                <table style="width: 100%" cellspacing="0">
+                    <tr *ngFor="let pagamento of aluno.pagamentos">
+                        <td colspan="2">
+                            <p md-line>{{pagamento.month}}</p>
+                        </td>
+                        <td colspan="2">
+                            <p md-line>{{pagamento.year}}</p>
+                        </td>
+                        <td colspan="2">
+                            <p md-line>{{pagamento.value}}€</p>
+                        </td>
+                        <td colspan="2">
+                            <p md-line>{{pagamento.datePayment * 1000 | date:"dd/MM/yy" }}</p>
+                        </td>
+                        <td colspan="2">
+                            <button md-icon-button>
+                                <md-icon svgSrc="/assets/edit_button.svg"></md-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </md-list>
+            <button md-button color="primary" (click)="setAdd()">Adicionar Pagamento</button>
+            
+            <br>
+            <table style="width: 100%" cellspacing="0" *ngIf="add==true">
+                <tr>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='toAdd.month' placeholder="Mês" style="width: 95%"></md-input>
+                    </td>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='toAdd.year' placeholder="Ano" style="width: 95%"></md-input>
+                    </td>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='toAdd.value' placeholder="Valor" style="width: 100%"></md-input>
+                    </td>
+                </tr>
+            </table>
+            <button md-button (click)="addPayment()" *ngIf="add==true">Registar</button>
+
+        </md-card-content>
+    </md-card>
+</div>

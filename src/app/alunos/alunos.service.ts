@@ -19,8 +19,7 @@ export class AlunosService {
     return this.alunos.push(aluno);
   }
 
-  editAluno(alunoObservable: FirebaseObjectObservable<IAluno>, aluno: Aluno)
-  {
+  editAluno(alunoObservable: FirebaseObjectObservable<IAluno>, aluno: Aluno) {
     return alunoObservable.update({
       address: aluno.address,
       city: aluno.city,
@@ -29,13 +28,13 @@ export class AlunosService {
       email: aluno.email,
       firstName: aluno.firstName,
       lastName: aluno.lastName,
-      postalCode: aluno.postalCode
-    }); 
+      postalCode: aluno.postalCode,
+      pagamentos: aluno.pagamentos
+    });
   }
 
   getAluno(id: number | string): FirebaseObjectObservable<IAluno>
   {
       return this.af.database.object('alunos/' + id);
   }
-
 }
