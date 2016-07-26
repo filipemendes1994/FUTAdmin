@@ -10,11 +10,11 @@ import {
   async, inject
 } from '@angular/core/testing';
 
-import { ListDisciplinesComponent } from './list-disciplines.component';
+import { ListClassesComponent } from './list-classes.component';
 
-describe('Component: ListDisciplines', () => {
-  /*it('should create an instance', () => {
-    let component = new ListDisciplinesComponent();
+describe('Component: ListClasses', () => {
+  it('should create an instance', () => {
+    let component = new ListClassesComponent();
     expect(component).toBeTruthy();
-  });*/
+  });
 });

@@ -3,7 +3,7 @@
     <md-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" >
       <md-card class="{{tile.class}}">
         <md-card-header>
-          <img md-card-avatar src="{{tile.path}}">
+          <img (click)="goTo(tile.pathTurmas)" md-card-avatar src="{{tile.path}}">
           <md-card-title>{{tile.text}}</md-card-title>
           <md-card-subtitle>{{tile.description}}</md-card-subtitle>
         </md-card-header>

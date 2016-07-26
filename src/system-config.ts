@@ -70,6 +70,8 @@ const barrels: string[] = [
   'app/professors/form',
   'app/disciplines',
   'app/disciplines/list',
+  'app/disciplines/classes',
+  'app/disciplines/classes/list',
   /** @cli-barrel */
 ];
 
