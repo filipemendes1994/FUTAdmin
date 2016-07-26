@@ -66,10 +66,11 @@ const barrels: string[] = [
   'app/payments',
   'app/payments/list',
   'app/professors',
-  'app/professors/list-professors',
-  'app/professors/edit-professors',
+  'app/professors/list',
+  'app/professors/form',
+  'app/disciplines',
+  'app/disciplines/list',
   /** @cli-barrel */
-  
 ];
 
 const cliSystemConfigPackages: any = {};

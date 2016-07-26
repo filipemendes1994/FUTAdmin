@@ -17,9 +17,9 @@ let max = 5;
 
 @Component({
   moduleId: module.id,
-  selector: 'edit-professors',
-  templateUrl: 'edit-professors.component.html',
-  styleUrls: ['edit-professors.component.css'],
+  selector: 'form-professors',
+  templateUrl: 'form-professors.component.html',
+  styleUrls: ['form-professors.component.css'],
   directives: [
     MD_CARD_DIRECTIVES,
     MD_CHECKBOX_DIRECTIVES,
@@ -34,7 +34,7 @@ let max = 5;
   ],
   providers: [ProfessorsService]
 })
-export class EditProfessorsComponent implements OnInit {
+export class FormProfessorsComponent implements OnInit {
 
   private sub: any;
   private professorObservable: FirebaseObjectObservable<IProfessor>;
