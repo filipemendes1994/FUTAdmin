@@ -1,32 +1,24 @@
 <div class="content">
+    <div style="height:50px;width:100%;"></div>
     <md-card class="card">
-        <md-card-title>students</md-card-title>
+        <md-card-title>Alunos 
+            
+
+        </md-card-title>
         <md-card-content>
-            <md-list>
-                <table style="width: 100%" cellspacing="0">
-                    <tr *ngFor="let student of students | async">
-                        <td colspan="1">
-                            <p md-line>{{student.firstName}} {{student.lastName}}</p>
-                        </td>
-                        <td colspan="1">
-                            <p md-line>{{student.email}}</p>
-                        </td>
-                        <td colspan="1">
-                            <p md-line>{{student.contact}}</p>
-                            <p md-line>{{student.city}}</p>
-                        </td>
-                        <td colspan="1">
-                            <button md-icon-button (click)="editStudent(student.$key)">
-                                <md-icon class="md-24" >edit</md-icon>
-                            </button>
-                        </td>
-                        <td colspan="1">
-                            <button md-icon-button (click)="deleteStudent(student.$key)">
-                                <md-icon class="md-24" >delete</md-icon>
-                            </button>
-                        </td>
-                    </tr>
-                </table>
+            <md-list dense>
+                <md-list-item *ngFor="let student of students | async">
+                    <h4 md-line>{{student.firstName}} {{student.lastName}}</h4>
+                    <p md-line > {{student.city}} </p>
+                    <button md-icon-button (click)="editStudent(student.$key)">
+                        <md-icon class="md-32" >edit</md-icon>
+                    </button>
+                    <button md-icon-button (click)="deleteStudent(student.$key)">
+                        <md-icon class="md-32" >delete</md-icon>
+                    </button>
+                </md-list-item>
+
+
             </md-list>
         </md-card-content>
     </md-card>
