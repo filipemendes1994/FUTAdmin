@@ -43,4 +43,13 @@ export class ProfessorsService {
   {
     this.af.database.object('professors/' + key).remove();
   }
+
+   filter(term: string) {
+    return this.professors.map(professors =>
+       professors.filter(professor => {
+          return professor.firstName.indexOf(term) >= 0 ? true : false;
+        }
+      )
+    );
+  }
 }

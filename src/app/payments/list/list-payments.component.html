@@ -1,30 +1,30 @@
 <div class="content">
     <md-card class="card">
-        <md-card-title>Pagamentos do Aluno/a {{aluno.firstName}} {{aluno.lastName}}</md-card-title>
+        <md-card-title>Pagamentos do Aluno/a {{student.firstName}} {{student.lastName}}</md-card-title>
         <md-card-content>
             <md-list>
                 <table style="width: 100%" cellspacing="0">
-                    <tr *ngFor="let pagamento of aluno.pagamentos">
+                    <tr *ngFor="let payment of student.payments">
                         <td colspan="2">
-                            <p md-line>{{pagamento.month}}</p>
+                            <p md-line>{{payment.month}}</p>
                         </td>
                         <td colspan="2">
-                            <p md-line>{{pagamento.year}}</p>
+                            <p md-line>{{payment.year}}</p>
                         </td>
                         <td colspan="2">
-                            <p md-line>{{pagamento.value}}€</p>
+                            <p md-line>{{payment.value}}€</p>
                         </td>
                         <td colspan="2">
-                            <p md-line>{{pagamento.datePayment * 1000 | date:"dd/MM/yy" }}</p>
+                            <p md-line>{{payment.datePayment * 1000 | date:"dd/MM/yy" }}</p>
                         </td>
                         <td colspan="2">
-                            <button md-icon-button (click)="editPayment(pagamento)">
-                                <md-icon svgSrc="/assets/edit_button.svg"></md-icon>
+                            <button md-icon-button (click)="editPayment(payment)">
+                                <md-icon>edit</md-icon>
                             </button>
                         </td>
                         <td colspan="2">
-                            <button md-icon-button (click)="deletePayment(pagamento)">
-                                <md-icon svgSrc="/assets/delete_button.svg"></md-icon>
+                            <button md-icon-button (click)="deletePayment(payment)">
+                                <md-icon>delete</md-icon>
                             </button>
                         </td>
                     </tr>

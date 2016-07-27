@@ -1,37 +1,33 @@
 <div class="content">
+    <div style="height:50px;width:100%;"></div>
     <md-card class="card">
         <md-card-title>Professores</md-card-title>
         <md-card-content>
-            <md-list>
-                <table style="width: 100%" cellspacing="0">
-                    <tr *ngFor="let professor of professors | async">
-                        <td colspan="1">
-                            <p md-line>{{professor.firstName}} {{professor.lastName}}</p>
-                        </td>
-                        <td colspan="1">
-                            <p md-line>{{professor.email}}</p>
-                        </td>
-                        <td colspan="1">
-                            <p md-line>{{professor.contact}}</p>
-                            <p md-line>{{professor.city}}</p>
-                        </td>
-                        <td colspan="1">
-                            <button md-icon-button (click)="editProfessor(professor.$key)">
-                                <md-icon>edit</md-icon>
-                            </button>
-                        </td>
-                        <td colspan="1">
-                            <button md-icon-button (click)="deleteProfessor(professor.$key)">
-                                <md-icon>delete</md-icon>
-                            </button>
-                        </td>
-                    </tr>
-                </table>
+            <div class="searchbar" style="margin-top:-50px;">
+                <md-input #input (keyup)="search(input.value)" placeholder="Pesquisa" value=""></md-input>
+            </div>
+            <md-list dense>
+                <md-list-item *ngFor="let professor of professors | async">
+                    <h4 md-line>{{professor.firstName}} {{professor.lastName}}</h4>
+                    <p md-line > {{professor.city}} </p>
+                    <button md-icon-button (click)="editProfessor(professor.$key)">
+                        <md-icon class="md-32" >edit</md-icon>
+                    </button>
+                    <button md-icon-button (click)="deleteProfessor(professor.$key)">
+                        <md-icon class="md-32" >delete</md-icon>
+                    </button>
+                </md-list-item>
+
+                <md-list-item  *ngIf="loading"  align="center">
+                    <div class="progress-container">
+                        <md-progress-circle mode="indeterminate" color="primary"></md-progress-circle>
+                    </div>
+                </md-list-item>
             </md-list>
         </md-card-content>
     </md-card>
 
     <a class="add-professor" [routerLink]="['/professors/add']" md-fab>
-      <md-icon class="md-24">add</md-icon>
+        <md-icon class="md-24">add</md-icon>
     </a>
 </div>

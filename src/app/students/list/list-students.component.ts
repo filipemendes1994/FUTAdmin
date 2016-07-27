@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseListObservable } from 'angularfire2';
 import { IStudent} from '../student';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import { StudentsService } from '../students.service';
