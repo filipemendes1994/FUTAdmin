@@ -19,7 +19,6 @@ export class StudentsService {
 
 
   addStudent(student: Student) {
-    console.log(student);
     return this.students.push(student);
   }
 
@@ -48,5 +47,15 @@ export class StudentsService {
   deleteStudent(key: string)
   {
     this.af.database.object('students/' + key).remove();
+  }
+
+  filter(term:string){
+    return this.students.map(students => 
+       students.filter(student => 
+        {
+          return student.firstName.indexOf(term) >= 0 ? true : false; 
+        }
+      )
+    );
   }
 }

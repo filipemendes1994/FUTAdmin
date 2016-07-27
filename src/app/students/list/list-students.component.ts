@@ -9,6 +9,8 @@ import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
 
+import { Observable } from 'rxjs';
+
 @Component({
   moduleId: module.id,
   selector: 'list-students',
@@ -26,7 +28,7 @@ import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle
 export class ListStudentsComponent implements OnInit {
 
   public loading: boolean = true;
-  students: FirebaseListObservable<IStudent[]>;
+  students: Observable<IStudent[]>;
   constructor(public as: StudentsService, private router: Router) {}
 
   ngOnInit() {
@@ -42,5 +44,14 @@ export class ListStudentsComponent implements OnInit {
 
   deleteStudent(key: string) {
     this.as.deleteStudent(key);
+  }
+  search(term:string){    
+    if(term !=''){
+      this.students = this.as.filter(term);
+      //this.students.count
+    }else{
+       this.students = this.as.getStudents();
+    }
+    
   }
 }

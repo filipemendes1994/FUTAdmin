@@ -6,6 +6,9 @@
 
         </md-card-title>
         <md-card-content>
+            <div class="searchbar" style="margin-top:-50px;">
+                <md-input #input (keyup)="search(input.value)" placeholder="Pesquisa" value=""></md-input>
+            </div>
             <md-list dense>
                 <md-list-item *ngFor="let student of students | async">
                     <h4 md-line>{{student.firstName}} {{student.lastName}}</h4>
