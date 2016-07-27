@@ -2,14 +2,10 @@
 
 }
 .container{
-  display: -webkit-flex;
+  background-color: #f2f2f2;
    display: flex;
-   -webkit-flex-direction: row; /* works with row or column */
    flex-direction: row;
-   -webkit-align-items: center;
    align-items: center;
-   -webkit-justify-content: center;
    justify-content: center;
-
-   height: calc(100% - 64px);
+   height: 100%;
 }
