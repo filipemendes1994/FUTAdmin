@@ -32,8 +32,8 @@ import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
 
 export class ListPaymentsComponent implements OnInit {
   private sub: any;
-  public alunoObservable: FirebaseObjectObservable<IStudent>;
-  public aluno: Student;
+  public studentObservable: FirebaseObjectObservable<IStudent>;
+  public student: Student;
   public edit: boolean = false;
   public toAdd: Payment;
   public auxNum: number;
@@ -45,42 +45,44 @@ export class ListPaymentsComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       let id = params['id'];
-      this.alunoObservable = this.as.getStudent(id);
-      this.alunoObservable.subscribe(aluno => this.aluno = aluno);
-      console.log(this.aluno);
+      this.studentObservable = this.as.getStudent(id);
+      this.studentObservable.subscribe(student => this.student = student);
+      console.log(this.student);
     });
   }
 
   editPayment(pagamento: Payment) {
-    this.auxNum = this.aluno.payments.indexOf(pagamento);
-    this.toAdd = this.aluno.payments[this.auxNum];
+    this.auxNum = this.student.payments.indexOf(pagamento);
+    this.toAdd = this.student.payments[this.auxNum];
     this.edit = true;
   }
 
   deletePayment(pagamento: Payment) {
-    this.aluno.payments.splice(this.aluno.payments.indexOf(pagamento), 1);
-    this.as.editStudent(this.alunoObservable, this.aluno);
+    this.student.payments.splice(this.student.payments.indexOf(pagamento), 1);
+    this.as.editStudent(this.studentObservable, this.student);
   }
 
   addPayment() {
     this.toAdd.datePayment = Math.floor(Date.now() / 1000);
 
-    if (this.aluno.payments === undefined) {
-      this.aluno.payments = [this.toAdd];
+    if (this.student.payments === undefined) {
+      this.student.payments = [this.toAdd];
     } else {
-      this.aluno.payments.push(this.toAdd);
+      this.student.payments.push(this.toAdd);
     }
-    this.as.editStudent(this.alunoObservable, this.aluno);
+    this.as.editStudent(this.studentObservable, this.student);
 
     this.toAdd = new Payment();
   }
 
   setPayment() {
       this.toAdd.datePayment = Math.floor(Date.now() / 1000);
-      this.aluno.payments[this.auxNum] = this.toAdd;
+      this.student.payments[this.auxNum] = this.toAdd;
       this.edit = false;
       this.toAdd = new Payment();
-      this.as.editStudent(this.alunoObservable, this.aluno);
+      this.as.editStudent(this.studentObservable, this.student);
   }
+
+  
 
 }
