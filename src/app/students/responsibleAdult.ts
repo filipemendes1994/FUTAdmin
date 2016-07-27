@@ -1,4 +1,4 @@
-import {Pessoa} from '../pessoa';
+import {Person} from '../person';
 
 export interface IStudent {
     $key?: string;
@@ -8,14 +8,16 @@ export interface IStudent {
     email: string;
     contact: string;
     city: string;
-    district: string;
     postalCode: string;
+    socioNumber: number;
+    entryDate: Date;
+    birthdayDate: Date;
 }
 
-export class ResponsibleAdult extends Pessoa implements IStudent {
+export class ResponsibleAdult extends Person implements IStudent {
 
     constructor(firstName?: string, lastName?: string, address?: string, email?: string,
-        contact?: string, city?: string, district?: string, postalCode?: string) {
-            super(firstName, lastName, address, email, contact, city, district, postalCode);
+        contact?: string, city?: string, postalCode?: string, socioNumber?: number, entryDate?: Date, birthdayDate?: Date) {
+            super(firstName, lastName, address, email, contact, city, postalCode, socioNumber, entryDate, birthdayDate);
     }
 }

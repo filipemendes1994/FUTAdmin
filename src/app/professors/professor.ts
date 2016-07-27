@@ -1,6 +1,6 @@
 /* tslint:disable:no-string-literal */
 
-import {Pessoa} from '../pessoa';
+import {Person} from '../person';
 
 export interface IProfessor {
     $key?: string;
@@ -10,15 +10,23 @@ export interface IProfessor {
     email: string;
     contact: string;
     city: string;
-    district: string;
     postalCode: string;
+    socioNumber: number;
+    entryDate: Date;
+    birthdayDate: Date;
+    discipline: string;
+    rewarnPerHour: number;
 }
 
-export class Professor extends Pessoa implements IProfessor {
+export class Professor extends Person implements IProfessor {
+
+    public discipline: string;
+    public rewarnPerHour: number;
 
     constructor(firstName?: string, lastName?: string, address?: string, email?: string,
-        contact?: string, city?: string, district?: string, postalCode?: string) {
-            super(firstName, lastName, address, email, contact, city, district, postalCode);
+        contact?: string, city?: string, postalCode?: string, socioNumber?: number,
+        entryDate?: Date, birthdayDate?: Date) {
+            super(firstName, lastName, address, email, contact, city, postalCode, socioNumber, entryDate, birthdayDate);
     }
 }
 
