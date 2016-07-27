@@ -1,6 +1,8 @@
 <div class="content">
+
+    <div style="height:50px;width:100%;"></div>
     <md-card class="card">
-        <md-card-title>Dados do student</md-card-title>
+        <md-card-title>Dados do Aluno</md-card-title>
         <md-card-content>
             <!--<md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
             <table style="width: 100%" cellspacing="0">
@@ -91,6 +93,11 @@
             <button md-button (click)="goToPayments(student.$key)">Detalhes</button>
         </md-card-content>
     </md-card>
-    <button md-raised-button *ngIf="!edit" (click)="submit()" class="button" color="primary">Adicionar</button>
-    <button md-raised-button *ngIf="edit" (click)="submit()" class="button" color="primary">Editar</button>
+    <div class="buttons-container">
+        <div class="buttons-holder">
+            <button md-raised-button (click)="cancel()" class="button" color="primary">Cancelar</button>
+            <button md-raised-button *ngIf="!edit" (click)="submit()" class="button" color="primary">Adicionar</button>
+            <button md-raised-button *ngIf="edit" (click)="submit()" class="button" color="primary">Editar</button>
+        </div>
+    </div>
 </div>   

@@ -80,4 +80,7 @@ export class FormStudentsComponent implements OnInit {
   goToPayments(key: string) {
       this.router.navigate(['/payments', key]);
   }
+  cancel(){
+    this.router.navigate(['/students']);
+  }
 }
