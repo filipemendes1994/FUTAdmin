@@ -1,8 +1,8 @@
 import { RouterConfig } from '@angular/router';
 import { ProfessorsCenter } from './professors-center.component';
-import { ListProfessorsComponent } from './list-professors';
+import { ListProfessorsComponent } from './list';
 import { AuthGuardService }             from '../auth-guard.service';
-import { EditProfessorsComponent } from './edit-professors';
+import { FormProfessorsComponent } from './form';
 
 export const professorsRoutes: RouterConfig = [
   {
@@ -16,13 +16,13 @@ export const professorsRoutes: RouterConfig = [
             canActivate: [AuthGuardService]
         },
         {
-            path: 'add',
-            component: EditProfessorsComponent,
+            path: 'form',
+            component: FormProfessorsComponent,
             canActivate: [AuthGuardService]
         },
         {
             path: ':id',
-            component: EditProfessorsComponent,
+            component: FormProfessorsComponent,
             canActivate: [AuthGuardService]
         }
     ]

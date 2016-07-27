@@ -1,0 +1,14 @@
+.content
+{
+    height: 100%;
+    background: #f2f2f2;
+}
+
+md-grid-list {
+    height:100%;
+}
+
+md-card {
+    height: 70%;
+    width: 70%;
+}

@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 import { studentRoutes } from './students/students.routes';
 import { paymentsRoutes} from './payments/payments.routes';
 import { professorsRoutes} from './professors/professors.routes';
-
+import { disciplinesRoutes} from './disciplines/disciplines.routes';
 
 export const routes: RouterConfig = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuardService]},
@@ -18,6 +18,7 @@ export const routes: RouterConfig = [
   ...studentRoutes,
   ...paymentsRoutes,
   ...professorsRoutes,
+  ...disciplinesRoutes,
 ];
 
 export const authProviders = [AuthGuardService, AuthService];

@@ -1,0 +1,14 @@
+<div class="content">
+  <md-grid-list cols="2" rowHeight="fit" gutterSize="16px">
+    <md-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" >
+      <md-card class="{{tile.class}}">
+        <md-card-header>
+          <img (click)="goTo(tile.pathTurmas)" md-card-avatar src="{{tile.path}}">
+          <md-card-title>{{tile.text}}</md-card-title>
+          <md-card-subtitle>{{tile.description}}</md-card-subtitle>
+        </md-card-header>
+        <img md-card-image style="height:100%" src="{{tile.path}}">
+      </md-card>
+    </md-grid-tile>
+  </md-grid-list>
+</div>
