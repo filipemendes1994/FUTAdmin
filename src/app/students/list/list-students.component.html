@@ -18,6 +18,12 @@
                     </button>
                 </md-list-item>
 
+                <md-list-item  *ngIf="loading"  align="center">
+                    <div class="progress-container">
+                        <md-progress-circle mode="indeterminate" color="primary"></md-progress-circle>
+                    </div>
+                    
+                </md-list-item>
 
             </md-list>
         </md-card-content>
