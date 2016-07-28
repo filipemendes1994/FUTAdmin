@@ -33,6 +33,7 @@ export class ProfessorsService {
       socioNumber: professor.socioNumber,
       entryDate: professor.entryDate,
       birthdayDate: professor.birthdayDate,
+      discipline: professor.discipline,
     });
   }
 
