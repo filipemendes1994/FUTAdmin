@@ -26,11 +26,13 @@ export class ProfessorsService {
       address: professor.address,
       city: professor.city,
       contact: professor.contact,
-      district: professor.district,
       email: professor.email,
       firstName: professor.firstName,
       lastName: professor.lastName,
       postalCode: professor.postalCode,
+      socioNumber: professor.socioNumber,
+      entryDate: professor.entryDate,
+      birthdayDate: professor.birthdayDate,
     });
   }
 

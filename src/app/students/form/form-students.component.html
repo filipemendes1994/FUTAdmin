@@ -30,18 +30,27 @@
                         <md-input [(ngModel)]='student.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='student.district' class="demo-full-width" style="width: 95%" placeholder="Distrito" value="Coimbra"></md-input>
+                        <md-input [(ngModel)]='student.postalCode' class="demo-full-width" style="width: 95%" maxLength="8" placeholder="Código Postal" value="3045">
+                        </md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='student.postalCode' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]='student.socioNumber' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
                         </md-input>
+                    </td>
+                <tr>
+                <tr>
+                    <td colspan="3">
+                        <md-input [(ngModel)]='student.birthdayDate' class="demo-full-width" style="width: 95%" placeholder="Data de Nascimento" value="Coimbra"></md-input>
+                    </td>
+                    <td colspan="3">
+                        <md-input [(ngModel)]='student.entryDate' class="demo-full-width" style="width: 100%" placeholder="Data de Entrada" value="Coimbra"></md-input>
                     </td>
                 <tr>
             </table>
         </md-card-content>
     </md-card>
     <md-card class="card">
-        <md-card-title>Dados do Encarregado de Educação</md-card-title>
+        <md-card-title>Dados do Aluno</md-card-title>
         <md-card-content>
             <!--<md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
             <table style="width: 100%" cellspacing="0">
@@ -69,11 +78,20 @@
                         <md-input [(ngModel)]='ra.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.district' class="demo-full-width" style="width: 95%" placeholder="Distrito" value="Coimbra"></md-input>
+                        <md-input [(ngModel)]='ra.postalCode' class="demo-full-width" style="width: 95%" maxLength="8" placeholder="Código Postal" value="3045">
+                        </md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.postalCode' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]='ra.socioNumber' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
                         </md-input>
+                    </td>
+                <tr>
+                <tr>
+                    <td colspan="3">
+                        <md-input [(ngModel)]='ra.birthdayDate' class="demo-full-width" style="width: 95%" placeholder="Data de Nascimento" value="Coimbra"></md-input>
+                    </td>
+                    <td colspan="3">
+                        <md-input [(ngModel)]='ra.entryDate' class="demo-full-width" style="width: 100%" placeholder="Data de Entrada" value="Coimbra"></md-input>
                     </td>
                 <tr>
             </table>

@@ -29,11 +29,13 @@ export class StudentsService {
       address: student.address,
       city: student.city,
       contact: student.contact,
-      district: student.district,
       email: student.email,
       firstName: student.firstName,
       lastName: student.lastName,
       postalCode: student.postalCode,
+      socioNumber: student.socioNumber,
+      entryDate: student.entryDate,
+      birthdayDate: student.birthdayDate,
       responsibleAdult: student.responsibleAdult === undefined ? new ResponsibleAdult() : student.responsibleAdult,
       payments: student.payments === undefined ? [] : student.payments
     });
