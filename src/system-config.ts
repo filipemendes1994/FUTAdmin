@@ -9,7 +9,8 @@
 const map: any = {
   'firebase': 'vendor/firebase/firebase.js',
   'angularfire2': 'vendor/angularfire2',
-  '@angular2-material': 'vendor/@angular2-material'
+  '@angular2-material': 'vendor/@angular2-material',
+  'ng2-material-dropdown': 'vendor/ng2-material-dropdown'
 };
 
 /** User packages configuration. */
@@ -17,6 +18,9 @@ const packages: any = {
   angularfire2: {
     defaultExtension: 'js',
     main: 'angularfire2.js'
+  }, 'ng2-material-dropdown': {
+    defaultExtension: 'js',
+    main: 'index.js'
   }
 };
 
@@ -73,6 +77,7 @@ const barrels: string[] = [
   'app/disciplines/list',
   'app/disciplines/classes',
   'app/disciplines/classes/list',
+  'app/disciplines/classes/form',
   /** @cli-barrel */
 ];
 

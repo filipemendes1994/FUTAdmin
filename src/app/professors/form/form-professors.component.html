@@ -1,6 +1,6 @@
 <div class="content">
     <md-card class="card">
-        <md-card-title>Dados do Aluno</md-card-title>
+        <md-card-title>Dados do Professor</md-card-title>
         <md-card-content>
             <!--<md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
             <table style="width: 100%" cellspacing="0">
@@ -47,6 +47,39 @@
             </table>
         </md-card-content>
     </md-card>
-    <button md-raised-button *ngIf="edit==false" (click)="submit()" class="button" color="primary">Adicionar</button>
-    <button md-raised-button *ngIf="edit==true" (click)="submit()" class="button" color="primary">Editar</button>
+
+    <md-card class="card">
+        <md-card-title>Dados Contratuais</md-card-title>
+        <md-card-content>
+            <table style="width: 100%" cellspacing="0">
+                <tr>
+                    <td colspan="2">
+                        <md-checkbox [(ngModel)]="canGive[0]">
+                            Instrumento
+                        </md-checkbox>
+                    </td>
+                    <td colspan="2">
+                        <md-checkbox [(ngModel)]="canGive[1]">
+                            Formação Musical
+                        </md-checkbox>
+                    </td>
+                    <td colspan="2">
+                        <md-checkbox [(ngModel)]="canGive[2]">
+                            Solfejo
+                        </md-checkbox>
+                    </td>
+                    <td colspan="2">
+                        <md-checkbox [(ngModel)]="canGive[3]">
+                            Classe de Conjunto
+                        </md-checkbox>
+                    </td>
+                    <td colspan="2">
+                        <md-input [(ngModel)]='professor.rewarnPerHour' placeholder="Pagamento à Hora" style="width: 100%"></md-input>
+                    </td>
+                </tr>
+            </table>
+        </md-card-content>
+    </md-card>
+    <button md-raised-button *ngIf="!edit" (click)="submit()" class="button" color="primary">Adicionar</button>
+    <button md-raised-button *ngIf="edit" (click)="submit()" class="button" color="primary">Editar</button>
 </div>   

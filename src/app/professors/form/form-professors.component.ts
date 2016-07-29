@@ -12,6 +12,7 @@ import {IProfessor, Professor} from '../professor';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
 import {ProfessorsService} from '../professors.service';
+import { NG2_DROPDOWN_DIRECTIVES } from 'ng2-material-dropdown';
 
 let max = 5;
 
@@ -30,6 +31,7 @@ let max = 5;
     MD_GRID_LIST_DIRECTIVES,
     ROUTER_DIRECTIVES,
     FORM_DIRECTIVES,
+    NG2_DROPDOWN_DIRECTIVES,
     NgFor,
   ],
   providers: [ProfessorsService]
@@ -41,13 +43,15 @@ export class FormProfessorsComponent implements OnInit {
 
   public edit: boolean = false;
   public professor: Professor;
+  public canGive: boolean[];
 
   constructor(public ps: ProfessorsService, private router: Router, private route: ActivatedRoute){
   }
 
 
-  submit()
-  {
+  submit() {
+    this.professor.canGive = this.canGive;
+
     if (!this.edit) {
       this.ps.addProfessor(this.professor);
     } else {
@@ -57,12 +61,18 @@ export class FormProfessorsComponent implements OnInit {
 
   ngOnInit() {
     this.professor = new Professor();
+    this.canGive = new Array(4);
     this.sub = this.route.params.subscribe(params => {
       let id = params['id'];
       if (id !== undefined) {
         this.edit = true;
         this.professorObservable = this.ps.getProfessor(id);
-        this.professorObservable.subscribe(professor => { this.professor = professor; });
+        this.professorObservable.subscribe(professor => { this.professor = professor;
+                                                          this.edit = true;
+                                                          if (this.professor.canGive !== undefined) {
+                                                            this.canGive = this.professor.canGive;
+                                                          }
+                                                      });
       }
     });
   }

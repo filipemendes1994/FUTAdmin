@@ -3,7 +3,7 @@ import { IStudent} from '../student';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import { StudentsService } from '../students.service';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
+import { MD_ICON_DIRECTIVES, MdIconRegistry } from '@angular2-material/icon';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
@@ -22,7 +22,8 @@ import { Observable } from 'rxjs';
       MD_INPUT_DIRECTIVES
   ],
   templateUrl: 'list-students.component.html',
-  styleUrls: ['list-students.component.css']
+  styleUrls: ['list-students.component.css'],
+  viewProviders: [MdIconRegistry],
 })
 export class ListStudentsComponent implements OnInit {
 

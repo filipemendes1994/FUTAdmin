@@ -48,8 +48,7 @@ export class FormStudentsComponent implements OnInit {
   }
 
 
-  submit()
-  {
+  submit() {
     this.student.responsibleAdult = this.ra;
     if (!this.edit) {
       this.as.addStudent(this.student);
@@ -67,14 +66,12 @@ export class FormStudentsComponent implements OnInit {
       if (id !== undefined) {
         this.edit = true;
         this.studentObservable = this.as.getStudent(id);
-        this.studentObservable.subscribe(student => 
-          { 
-            this.student = student; 
-            this.student.responsibleAdult === undefined ? this.ra = new ResponsibleAdult() :   this.ra = this.student.responsibleAdult 
+        this.studentObservable.subscribe(student => {
+            this.student = student;
+            this.student.responsibleAdult === undefined ? this.ra = new ResponsibleAdult() : this.ra = this.student.responsibleAdult;
           });
       }
     });
-   
   }
 
   goToPayments(key: string) {

@@ -10,11 +10,11 @@ import {
   async, inject
 } from '@angular/core/testing';
 
-import { ListClassesComponent } from './list-classes.component';
+import { FormClassesComponent } from './form-classes.component';
 
-describe('Component: ListClasses', () => {
+describe('Component: Form', () => {
   /*it('should create an instance', () => {
-    let component = new ListClassesComponent();
+    let component = new FormComponent();
     expect(component).toBeTruthy();
   });*/
 });

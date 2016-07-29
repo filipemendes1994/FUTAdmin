@@ -13,7 +13,6 @@ export class StudentsService {
 
   getStudents(): FirebaseListObservable<IStudent[]> {
     return this.students;
-    
   }
 
 
@@ -52,10 +51,14 @@ export class StudentsService {
   }
 
   filter(term:string){
-    return this.students.map(students => 
-       students.filter(student => 
+    return this.students.map(students =>
+       students.filter(student =>
         {
-          return student.firstName.indexOf(term) >= 0 ? true : false; 
+          if (student.firstName.indexOf(term) >= 0 || student.lastName.indexOf(term) >= 0) {
+            return true;
+          } else {
+            return false;
+          }
         }
       )
     );
