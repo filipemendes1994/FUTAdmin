@@ -56,4 +56,15 @@ export class ProfessorsService {
       )
     );
   }
+
+  getProfessorsByType(type: number) {
+    return this.professors.map(professors =>
+       professors.filter(professor => {
+          if (professor.canGive !== undefined) {
+            return professor.canGive[type];
+          }
+        }
+      )
+    );
+  }
 }

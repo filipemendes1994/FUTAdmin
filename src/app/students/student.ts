@@ -18,10 +18,7 @@ export interface IStudent {
     birthdayDate: Date; //obr
     responsibleAdult: ResponsibleAdult; //obr
     payments: Payment[];
-    classFm: string;
-    classCc: string[];
-    classInst: string;
-    classSolf: string;
+    classes: boolean[];
 }
 
 export class Student extends Person implements IStudent {
@@ -29,10 +26,7 @@ export class Student extends Person implements IStudent {
     public responsibleAdult: ResponsibleAdult;
     public payments: Payment[];
     public entryDate: Date;
-    public classFm: string;
-    public classCc: string[];
-    public classInst: string;
-    public classSolf: string;
+    public classes: boolean[];
 
     constructor(firstName?: string, lastName?: string, address?: string, email?: string,
         contact?: string, city?: string, postalCode?: string, socioNumber?: number,

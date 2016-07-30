@@ -8,13 +8,15 @@ import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {ClassesService} from '../classes.service';
 import {IClassT, ClassT} from '../class';
-import {FirebaseObjectObservable} from 'angularfire2';
 import {HourDate} from '../hourDate';
 import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
 import {ProfessorsService} from '../../../professors/professors.service';
 import {IProfessor} from '../../../professors/professor';
 import { Observable } from 'rxjs';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
+import {StudentsService} from '../../../students/students.service';
+import {IStudent} from '../../../students/student';
+import {FirebaseObjectObservable} from 'angularfire2';
 
 @Component({
   moduleId: module.id,
@@ -32,14 +34,15 @@ import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
     MD_LIST_DIRECTIVES,
     NgFor,
   ],
-  providers: [ClassesService, ProfessorsService]
+  providers: [ClassesService, ProfessorsService, StudentsService]
 })
 
 export class FormClassesComponent implements OnInit {
 
   public classObservable: FirebaseObjectObservable<IClassT>;
   public classT: ClassT;
-  public professorsObservable: Observable<IProfessor[]>;
+  public professors: Observable<IProfessor[]>;
+  public students: Observable<IStudent[]>;
 
   public schedule: HourDate;
   public presentationName: string;
@@ -48,7 +51,8 @@ export class FormClassesComponent implements OnInit {
   public discipline: string;
   public edit: boolean;
 
-  constructor(public cs: ClassesService, public ps: ProfessorsService, private router: Router, private route: ActivatedRoute) {}
+  constructor(public ss: StudentsService, public cs: ClassesService, public ps: ProfessorsService, 
+    private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.classT = new ClassT();
@@ -57,16 +61,6 @@ export class FormClassesComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.discipline = params['type'];
       this.getPresentationName();
-
-      if (this.discipline === 'fm') {
-        this.presentationName = 'Formação Musical';
-      } else if (this.discipline === 'inst') {
-        this.presentationName = 'Instrumento';
-      } else if (this.discipline === 'cc') {
-        this.presentationName = 'Classe de Conjunto';
-      } else if (this.discipline === 'inst') {
-        this.presentationName = 'Solfejo';
-      }
 
       let id = params['id'];
       if (id !== undefined) {
@@ -81,7 +75,8 @@ export class FormClassesComponent implements OnInit {
       }
     });
 
-    //this.professorsObservable = this.ps.getProfessorsByType(this.convertToPositionArrayCanGive(this.discipline));
+    this.professors = this.ps.getProfessorsByType(this.convertToPositionArrayCanGive(this.discipline));
+    this.students = this.ss.getStudentsWithoutThis(this.convertToPositionArrayCanGive(this.discipline));
   }
 
   getPresentationName() {
@@ -108,16 +103,71 @@ export class FormClassesComponent implements OnInit {
     }
   }
 
-  search(term: string) {
+  searchProfessor(term: string) {
     if (term !== '') {
-      this.professorsObservable = this.ps.filter(term);
+      this.professors = this.ps.filter(term);
     } else {
-       this.professorsObservable = this.ps.getProfessors();
+       this.professors = this.ps.getProfessorsByType(this.convertToPositionArrayCanGive(this.discipline));
     }
   }
 
   checkProfessor(key: string) {
-    this.classT.professor = key;
+    if (key === this.classT.professor) {
+      this.classT.professor = '';
+    } else {
+      this.classT.professor = key;
+    }
   }
 
+  searchStudent(term: string) {
+    if (term !== '') {
+      this.students = this.ss.filter(term);
+    } else {
+       this.students = this.ss.getStudentsWithoutThis(this.convertToPositionArrayCanGive(this.discipline));
+    }
+  }
+
+  checkStudent(student: IStudent) {
+    if (this.classT.students === undefined) {
+      this.classT.students = new Array();
+    }
+
+    let num = this.convertToPositionArrayCanGive(this.discipline);
+
+    let pos = this.classT.students.indexOf(student.$key);
+    if (pos >= 0) {
+      this.classT.students.splice(pos, 1);
+      if (student.classes !== undefined) {
+        student.classes[num] = false;
+      }
+      this.ss.editStudent(this.ss.getStudent(student.$key), student);
+    } else {
+      this.classT.students.push(student.$key);
+      if(student.classes === undefined) {
+        student.classes = new Array(3);
+      }
+      student.classes[num] = true;
+      this.ss.editStudent(this.ss.getStudent(student.$key), student);
+    }
+  }
+
+  verifyStudent(student: IStudent) {
+    if (this.classT.students === undefined) {
+      return false;
+    } else if (this.classT.students.indexOf(student.$key) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  submit() {
+    this.classT.timeSchedule = this.schedule;
+
+    if (!this.edit) {
+      this.cs.addClass(this.classT, this.discipline);
+    } else {
+      this.cs.editClass(this.classObservable, this.classT);
+    }
+  }
 }

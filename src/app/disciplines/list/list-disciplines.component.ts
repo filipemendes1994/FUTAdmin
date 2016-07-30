@@ -32,7 +32,7 @@ export class ListDisciplinesComponent implements OnInit {
   }
 
   goTo(disc: string) {
-    this.router.navigate(['/disciplines', disc]);
+    this.router.navigate(['/disciplines/classes', disc]);
   }
 
 }

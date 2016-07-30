@@ -10,13 +10,9 @@
             </div>
             <md-list dense>
                 <md-list-item *ngFor="let class of classes | async">
-                    <h4 md-line>{{class.firstName}} {{class.lastName}}</h4>
-                    <p md-line > {{class.city}} </p>
+                    <h4 md-line>{{class.name}}</h4>
                     <button md-icon-button (click)="editClass(class.$key)">
                         <md-icon class="md-32" >edit</md-icon>
-                    </button>
-                    <button md-icon-button (click)="deleteClass(class.$key)">
-                        <md-icon class="md-32" >delete</md-icon>
                     </button>
                 </md-list-item>
 
@@ -29,7 +25,9 @@
         </md-card-content>
     </md-card>
     
-    <a class="add-class" [routerLink]="['/disciplines/form', type]" md-fab>
+    <a class="add-class" (click)="goToAdd()" md-fab>
       <md-icon class="md-24" >add</md-icon>
     </a>
 </div>
+
+<router-outlet></router-outlet>

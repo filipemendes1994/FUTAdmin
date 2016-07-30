@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable} from 'angularfire2';
-import { IClassT} from './class';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+import { ClassT, IClassT} from './class';
 
 @Injectable()
 export class ClassesService {
@@ -14,11 +14,11 @@ export class ClassesService {
     return this.classes;
   }
 
-  getClass(type: string, id: string) {
+  getClass(type: string, id: string): FirebaseObjectObservable<IClassT> {
       return this.af.database.object(type + '/' + id);
   }
 
-  filter(term: string){
+  filter(term: string) {
     return this.classes.map(classes =>
        classes.filter(classT =>
         {
@@ -30,5 +30,18 @@ export class ClassesService {
         }
       )
     );
+  }
+
+  addClass(classT: ClassT, type: string) {
+    this.getClasses(type).push(classT);
+  }
+
+  editClass(classTObservable: FirebaseObjectObservable<IClassT>, classT: ClassT) {
+    return classTObservable.update({
+      name: classT.name,
+      professor: classT.professor,
+      timeScheduled: classT.timeSchedule,
+      students: classT.students,
+    });
   }
 }

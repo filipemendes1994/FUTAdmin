@@ -1,9 +1,8 @@
 import { RouterConfig } from '@angular/router';
 import { DisciplinesCenter } from './disciplines-center.component';
 import { ListDisciplinesComponent } from './list';
-import { ListClassesComponent } from './classes/list';
-import { FormClassesComponent } from './classes/form';
 import { AuthGuardService }             from '../auth-guard.service';
+import {classesRoutes} from './classes/classes.routes';
 
 export const disciplinesRoutes: RouterConfig = [
   {
@@ -12,20 +11,11 @@ export const disciplinesRoutes: RouterConfig = [
     canActivate: [AuthGuardService],
     children: [
         {
-            path: ':type',
-            component: ListClassesComponent,
-            canActivate: [AuthGuardService]
-        },
-        {
             path: '',
             component: ListDisciplinesComponent,
             canActivate: [AuthGuardService]
         },
-        {
-            path: 'form/:type',
-            component: FormClassesComponent,
-            canActivate: [AuthGuardService]
-        }
+        ...classesRoutes,
     ]
   }
 ];

@@ -40,7 +40,7 @@ export class ListProfessorsComponent implements OnInit {
     this.ps.deleteProfessor(key);
   }
 
-  search(term:string) {
+  search(term: string) {
     if (term !== '') {
       this.professors = this.ps.filter(term);
     }else {

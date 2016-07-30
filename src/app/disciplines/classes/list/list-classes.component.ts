@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import { Observable } from 'rxjs';
-import {ClassT, IClassT} from '../class';
+import {IClassT} from '../class';
 import {ClassesService} from '../classes.service';
 import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
+import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,8 @@ import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle
     MD_ICON_DIRECTIVES,
     MD_CARD_DIRECTIVES,
     MD_PROGRESS_CIRCLE_DIRECTIVES,
-    MD_INPUT_DIRECTIVES
+    MD_INPUT_DIRECTIVES,
+    MD_LIST_DIRECTIVES,
   ],
   providers: [ClassesService],
 
@@ -53,5 +55,13 @@ export class ListClassesComponent implements OnInit {
     } else {
        this.classes = this.cs.getClasses(this.type);
     }
+  }
+
+  editClass(key: string) {
+    this.router.navigate(['/disciplines/classes/' + this.type + '/form/' + key]);
+  }
+
+  goToAdd() {
+    this.router.navigate(['/disciplines/classes/' + this.type + '/form']);
   }
 }

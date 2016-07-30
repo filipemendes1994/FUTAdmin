@@ -6,7 +6,7 @@ import { ResponsibleAdult } from './responsibleAdult';
 @Injectable()
 export class StudentsService {
 
-  students:FirebaseListObservable<IStudent[]>;
+  students: FirebaseListObservable<IStudent[]>;
   constructor(public af: AngularFire) {
     this.students = this.af.database.list('students');
   }
@@ -14,8 +14,6 @@ export class StudentsService {
   getStudents(): FirebaseListObservable<IStudent[]> {
     return this.students;
   }
-
-
 
   addStudent(student: Student) {
     return this.students.push(student);
@@ -36,24 +34,22 @@ export class StudentsService {
       entryDate: student.entryDate,
       birthdayDate: student.birthdayDate,
       responsibleAdult: student.responsibleAdult === undefined ? new ResponsibleAdult() : student.responsibleAdult,
-      payments: student.payments === undefined ? [] : student.payments
+      payments: student.payments === undefined ? [] : student.payments,
+      classes: student.classes,
     });
   }
 
-  getStudent(id: number | string): FirebaseObjectObservable<IStudent>
-  {
+  getStudent(id: number | string): FirebaseObjectObservable<IStudent> {
       return this.af.database.object('students/' + id);
   }
 
-  deleteStudent(key: string)
-  {
+  deleteStudent(key: string) {
     this.af.database.object('students/' + key).remove();
   }
 
-  filter(term:string){
+  filter(term: string) {
     return this.students.map(students =>
-       students.filter(student =>
-        {
+       students.filter(student => {
           if (student.firstName.indexOf(term) >= 0 || student.lastName.indexOf(term) >= 0) {
             return true;
           } else {
@@ -62,5 +58,23 @@ export class StudentsService {
         }
       )
     );
+  }
+
+  getStudentsWithoutThis(type: number) {
+    return this.students.map(students =>
+       students.filter(student => {
+         if (type === 3) {
+           return true;
+         } else {
+           if (student.classes === undefined) {
+             return true;
+           } else {
+             return student.classes[type];
+           }
+         }
+        }
+      )
+    );
+
   }
 }

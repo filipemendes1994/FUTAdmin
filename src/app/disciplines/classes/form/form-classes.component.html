@@ -37,10 +37,10 @@
         <md-card-content>
             <div class="searchbar" style="margin-top:-50px;">
                 <md-icon style="margin-bottom:10px; margin-right:5px;" class="md-32" >search</md-icon>
-                <md-input #input (keyup)="search(input.value)" placeholder="Pesquisa" value=""></md-input>
+                <md-input #input (keyup)="searchProfessor(input.value)" placeholder="Pesquisa" value=""></md-input>
             </div>
             <md-list dense>
-                <md-list-item (click)="checkProfessor(professor.$key)" *ngFor="let professor of professorsObservable | async">
+                <md-list-item (click)="checkProfessor(professor.$key)" *ngFor="let professor of professors | async">
                     <h4 md-line>{{professor.firstName}} {{professor.lastName}}</h4>
                     <p md-line > {{professor.city}} </p>
                     <button md-icon-button *ngIf="classT.professor==professor.$key">
@@ -56,4 +56,35 @@
             </md-list>
         </md-card-content>
     </md-card>
+
+    <md-card class="card" *ngIf="edit">
+        <md-card-title>Alunos</md-card-title>
+         <md-card-content>
+            <div class="searchbar" style="margin-top:-50px;">
+                <md-icon style="margin-bottom:10px; margin-right:5px;" class="md-32" >search</md-icon>
+                <md-input #input (keyup)="searchStudent(input.value)" placeholder="Pesquisa" value=""></md-input>
+            </div>
+            <md-list dense>
+                <md-list-item (click)="checkStudent(student)" *ngFor="let student of students | async">
+                    <h4 md-line>{{student.firstName}} {{student.lastName}}</h4>
+                    <p md-line > {{student.city}} </p>
+                    <button md-icon-button *ngIf="verifyStudent(student)">
+                        <md-icon class="md-32" >check box</md-icon>
+                    </button>
+                </md-list-item>
+
+                <md-list-item  *ngIf="loading"  align="center">
+                    <div class="progress-container">
+                        <md-progress-circle mode="indeterminate" color="primary"></md-progress-circle>
+                    </div>
+                    
+                </md-list-item>
+
+            </md-list>
+        </md-card-content>
+    </md-card>
+
+    <button md-raised-button *ngIf="edit" (click)="submit()" class="button" color="primary">Editar</button>
+    <button md-raised-button *ngIf="!edit" (click)="submit()" class="button" color="primary">Adicionar</button>
+
 </div>
