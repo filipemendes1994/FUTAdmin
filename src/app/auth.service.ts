@@ -5,7 +5,7 @@ import { Router}    from '@angular/router';
 @Injectable()
 export class AuthService {
 
-  public isLogged = false;
+  public isLogged:boolean = false;
 
   constructor(public af: AngularFire, private router: Router) { }
 
