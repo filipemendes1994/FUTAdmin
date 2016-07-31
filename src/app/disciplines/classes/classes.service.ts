@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { ClassT, IClassT} from './class';
+import {HourDate} from './hourDate';
 
 @Injectable()
 export class ClassesService {
@@ -40,8 +41,8 @@ export class ClassesService {
     return classTObservable.update({
       name: classT.name,
       professor: classT.professor,
-      timeScheduled: classT.timeSchedule,
-      students: classT.students,
+      timeScheduled: (classT.timeSchedule === undefined ? new HourDate() : classT.timeSchedule),
+      students: (classT.students === undefined ? new Array() : classT.students),
     });
   }
 }

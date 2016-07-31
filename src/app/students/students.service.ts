@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { IStudent, Student } from './student';
 import { ResponsibleAdult } from './responsibleAdult';
+import {ClassT} from '../disciplines/classes/class';
 
 @Injectable()
 export class StudentsService {
@@ -60,16 +61,16 @@ export class StudentsService {
     );
   }
 
-  getStudentsWithoutThis(type: number) {
+  getStudentsWithoutThis(type: string, keyClass: string) {
     return this.students.map(students =>
        students.filter(student => {
-         if (type === 3) {
+         if (type === 'cc') {
            return true;
          } else {
-           if (student.classes === undefined) {
+           if (student.classes[type] === keyClass || student.classes[type] === '') {
              return true;
            } else {
-             return student.classes[type];
+             return false;
            }
          }
         }
