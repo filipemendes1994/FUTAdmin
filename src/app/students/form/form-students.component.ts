@@ -13,6 +13,7 @@ import {ResponsibleAdult} from '../responsibleAdult';
 import {StudentsService} from '../students.service';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
+import { NG2_DIRECTIVES } from "ng2-ui";
 
 let max = 5;
 
@@ -32,6 +33,7 @@ let max = 5;
     ROUTER_DIRECTIVES,
     FORM_DIRECTIVES,
     NgFor,
+    NG2_DIRECTIVES
   ],
   providers: [StudentsService]
 })
