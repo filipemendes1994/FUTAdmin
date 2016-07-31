@@ -15,7 +15,7 @@
                             <p md-line>{{payment.value}}€</p>
                         </td>
                         <td colspan="2">
-                            <p md-line>{{payment.datePayment * 1000 | date:"dd/MM/yy" }}</p>
+                            <p md-line>{{payment.datePayment | date:"dd/MM/yy" }}</p>
                         </td>
                         <td colspan="2">
                             <button md-icon-button (click)="editPayment(payment)">
@@ -49,7 +49,9 @@
                         <md-input [(ngModel)]='toAdd.year' placeholder="Ano" style="width: 95%"></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='toAdd.value' placeholder="Valor" style="width: 100%"></md-input>
+                        <md-input [(ngModel)]='toAdd.value' placeholder="Valor" style="width: 100%">
+                            <span md-suffix>€</span>
+                        </md-input>
                     </td>
                 </tr>
             </table>
