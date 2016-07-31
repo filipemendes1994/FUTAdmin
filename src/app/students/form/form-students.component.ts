@@ -77,7 +77,11 @@ export class FormStudentsComponent implements OnInit {
   goToPayments(key: string) {
       this.router.navigate(['/payments', key]);
   }
-  cancel(){
+  cancel() {
     this.router.navigate(['/students']);
+  }
+
+  copyFromStudent(prop: string) {
+    this.ra[prop] = this.student[prop];
   }
 }

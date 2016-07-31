@@ -64,26 +64,44 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.address' class="demo-full-width" style="width: 95%" placeholder="Morada"></md-input>
+                        <md-input [(ngModel)]='ra.address' class="demo-full-width" style="width: 80%; vertical-align: baseline;" placeholder="Morada"></md-input>
+                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('address')">
+                            <md-icon class="md-32" >content_copy</md-icon>
+                        </button>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.email' class="demo-full-width" style="width: 95%" placeholder="Email"></md-input>
+                        <md-input [(ngModel)]='ra.email' class="demo-full-width" style="width: 80%; vertical-align: baseline;" placeholder="Email"></md-input>
+                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('email')">
+                            <md-icon class="md-32" >content_copy</md-icon>
+                        </button>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.contact' class="demo-full-width" style="width: 100%" placeholder="Contato"></md-input>
+                        <md-input [(ngModel)]='ra.contact' class="demo-full-width" style="width: 80%; vertical-align: baseline;" placeholder="Contato"></md-input>
+                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('contact')">
+                            <md-icon class="md-32" >content_copy</md-icon>
+                        </button>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
+                        <md-input [(ngModel)]='ra.city' class="demo-full-width" style="width: 80%; vertical-align: baseline;" placeholder="Cidade" value="Coimbra"></md-input>
+                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('city')">
+                            <md-icon class="md-32" >content_copy</md-icon>
+                        </button>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.postalCode' class="demo-full-width" style="width: 95%" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]='ra.postalCode' class="demo-full-width" style="width: 80%; vertical-align: baseline;" maxLength="8" placeholder="Código Postal" value="3045">
                         </md-input>
+                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('postalCode')">
+                            <md-icon class="md-32" >content_copy</md-icon>
+                        </button>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.socioNumber' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
+                        <md-input [(ngModel)]='ra.socioNumber' class="demo-full-width" style="width: 80%; vertical-align: baseline;" maxLength="8" placeholder="Número de Sócio" value="3045">
                         </md-input>
+                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('socioNumber')">
+                            <md-icon class="md-32" >content_copy</md-icon>
+                        </button>
                     </td>
                 <tr>
                 <tr>
