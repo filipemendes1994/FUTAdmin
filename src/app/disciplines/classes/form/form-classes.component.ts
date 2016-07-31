@@ -39,6 +39,7 @@ import {FirebaseObjectObservable} from 'angularfire2';
 
 export class FormClassesComponent implements OnInit {
 
+  private _idClass: string;
   public classObservable: FirebaseObjectObservable<IClassT>;
   public classT: ClassT;
   public professors: Observable<IProfessor[]>;
@@ -62,10 +63,10 @@ export class FormClassesComponent implements OnInit {
       this.discipline = params['type'];
       this.getPresentationName();
 
-      let id = params['id'];
-      if (id !== undefined) {
+      this._idClass = params['id'];
+      if (this._idClass !== undefined) {
         this.edit = true;
-        this.classObservable = this.cs.getClass(this.discipline, id);
+        this.classObservable = this.cs.getClass(this.discipline, this._idClass);
         this.classObservable.subscribe(classT => {
             this.classT = classT;
             if (classT.timeSchedule !== undefined) {
@@ -76,7 +77,7 @@ export class FormClassesComponent implements OnInit {
     });
 
     this.professors = this.ps.getProfessorsByType(this.convertToPositionArrayCanGive(this.discipline));
-    this.students = this.ss.getStudentsWithoutThis(this.convertToPositionArrayCanGive(this.discipline));
+    this.students = this.ss.getStudentsWithoutThis(this.discipline, this._idClass);
   }
 
   getPresentationName() {
@@ -123,38 +124,41 @@ export class FormClassesComponent implements OnInit {
     if (term !== '') {
       this.students = this.ss.filter(term);
     } else {
-       this.students = this.ss.getStudentsWithoutThis(this.convertToPositionArrayCanGive(this.discipline));
+       this.students = this.ss.getStudentsWithoutThis(this.discipline, this._idClass);
     }
   }
 
   checkStudent(student: IStudent) {
-    if (this.classT.students === undefined) {
-      this.classT.students = new Array();
-    }
 
-    let num = this.convertToPositionArrayCanGive(this.discipline);
-
-    let pos = this.classT.students.indexOf(student.$key);
-    if (pos >= 0) {
-      this.classT.students.splice(pos, 1);
-      if (student.classes !== undefined) {
-        student.classes[num] = false;
+    if (this.discipline !== 'cc') {
+      if (student.classes[this.discipline] === '') {
+        student.classes[this.discipline] = this._idClass;
+      } else {
+        student.classes[this.discipline] = '';
       }
-      this.ss.editStudent(this.ss.getStudent(student.$key), student);
     } else {
-      this.classT.students.push(student.$key);
-      if(student.classes === undefined) {
-        student.classes = new Array(3);
+      if (student.classes.cc === undefined) {
+        student.classes.cc = new Array();
       }
-      student.classes[num] = true;
-      this.ss.editStudent(this.ss.getStudent(student.$key), student);
+      student.classes.cc.push(this._idClass);
     }
+
+    this.ss.editStudent(this.ss.getStudent(student.$key), student);
   }
 
   verifyStudent(student: IStudent) {
-    if (this.classT.students === undefined) {
-      return false;
-    } else if (this.classT.students.indexOf(student.$key) >= 0) {
+
+    if (this.discipline === 'cc') {
+      if (student.classes.cc === undefined) {
+        return false;
+      } else if (student.classes.cc.indexOf(this._idClass) >= 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    if (student.classes[this.discipline] === this._idClass) {
       return true;
     } else {
       return false;
