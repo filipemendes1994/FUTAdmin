@@ -51,12 +51,17 @@ export class FormProfessorsComponent implements OnInit {
 
   submit() {
     this.professor.canGive = this.canGive;
-
+    if (!this.edit) {
+      this.professor.entryDate = Math.floor(Date.now());
+    }
     if (!this.edit) {
       this.ps.addProfessor(this.professor);
     } else {
       this.ps.editProfessor(this.professorObservable, this.professor);
     }
+
+    this.router.navigate(['/professors']);
+
   }
 
   ngOnInit() {

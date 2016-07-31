@@ -43,7 +43,7 @@ export class FormStudentsComponent implements OnInit {
   public edit: boolean = false;
   public student: Student;
   public ra: ResponsibleAdult;
-  
+
   constructor(private as: StudentsService, private router: Router, private route: ActivatedRoute){
   }
 
@@ -51,11 +51,18 @@ export class FormStudentsComponent implements OnInit {
   submit() {
     this.student.responsibleAdult = this.ra;
     if (!this.edit) {
+      this.student.entryDate = Math.floor(Date.now());
+      this.ra.entryDate = Math.floor(Date.now());
+    }
+
+    if (!this.edit) {
       this.as.addStudent(this.student);
     } else {
       this.as.editStudent(this.studentObservable, this.student);
     }
-    console.log(this.student);
+
+    this.router.navigate(['/students']);
+
   }
 
   ngOnInit() {

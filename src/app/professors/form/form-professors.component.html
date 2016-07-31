@@ -24,7 +24,25 @@
                         <md-input [(ngModel)]='professor.contact' class="demo-full-width" style="width: 100%" placeholder="Contato"></md-input>
                     </td>
                 </tr>
+                <tr *ngIf="!edit">
+                    <td colspan="3">
+                        <md-input [(ngModel)]='professor.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
+                    </td>
+                    <td colspan="3">
+                        <md-input [(ngModel)]='professor.postalCode' class="demo-full-width" style="width: 95%" maxLength="8" placeholder="Código Postal" value="3045">
+                        </md-input>
+                    </td>
                 <tr>
+                <tr *ngIf="!edit">
+                    <td colspan="3">
+                        <md-input [(ngModel)]='professor.birthdayDate' class="demo-full-width" style="width: 95%" placeholder="Data de Nascimento" value="Coimbra"></md-input>
+                    </td>
+                    <td colspan="3">
+                        <md-input [(ngModel)]='professor.socioNumber' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
+                        </md-input>
+                    </td>
+                <tr>
+                <tr *ngIf="edit">
                     <td colspan="2">
                         <md-input [(ngModel)]='professor.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
                     </td>
@@ -37,12 +55,13 @@
                         </md-input>
                     </td>
                 <tr>
-                <tr>
+                <tr *ngIf="edit">
                     <td colspan="3">
                         <md-input [(ngModel)]='professor.birthdayDate' class="demo-full-width" style="width: 95%" placeholder="Data de Nascimento" value="Coimbra"></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='professor.entryDate' class="demo-full-width" style="width: 100%" placeholder="Data de Entrada" value="Coimbra"></md-input>
+                        <md-input disabled value="{{professor.entryDate |  date:'dd/MM/yy'}}" class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
+                        </md-input>
                     </td>
                 <tr>
             </table>
@@ -75,7 +94,9 @@
                         </md-checkbox>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='professor.rewarnPerHour' placeholder="Pagamento à Hora" style="width: 100%"></md-input>
+                        <md-input [(ngModel)]='professor.rewarnPerHour' placeholder="Pagamento à Hora" style="width: 100%">
+                            <span md-suffix>€</span>
+                        </md-input>
                     </td>
                 </tr>
             </table>
