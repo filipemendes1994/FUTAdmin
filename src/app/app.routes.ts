@@ -7,7 +7,6 @@ import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service';
 
 import { studentRoutes } from './students/students.routes';
-import { paymentsRoutes} from './payments/payments.routes';
 import { professorsRoutes} from './professors/professors.routes';
 import { disciplinesRoutes} from './disciplines/disciplines.routes';
 
@@ -16,7 +15,6 @@ export const routes: RouterConfig = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', canActivate:[AuthGuardService] },
   ...studentRoutes,
-  ...paymentsRoutes,
   ...professorsRoutes,
   ...disciplinesRoutes,
 ];

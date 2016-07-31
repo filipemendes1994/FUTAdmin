@@ -1,7 +1,7 @@
 /* tslint:disable:no-string-literal */
 
 import {Person} from '../person';
-import {Payment} from '../payments/payment';
+import {Payment} from './payments/payment';
 import {ResponsibleAdult} from './responsibleAdult';
 import {Disciplines} from '../disciplines/disciplines';
 

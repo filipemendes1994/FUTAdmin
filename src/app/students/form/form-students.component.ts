@@ -36,14 +36,14 @@ let max = 5;
   providers: [StudentsService]
 })
 export class FormStudentsComponent implements OnInit {
-
+  public _keyStudent: string;
   private sub: any;
   private studentObservable: FirebaseObjectObservable<IStudent>;
 
   public edit: boolean = false;
   public student: Student;
   public ra: ResponsibleAdult;
-
+  
   constructor(private as: StudentsService, private router: Router, private route: ActivatedRoute){
   }
 
@@ -62,10 +62,10 @@ export class FormStudentsComponent implements OnInit {
     this.student = new Student();
     this.ra = new ResponsibleAdult();
     this.sub = this.route.params.subscribe(params => {
-      let id = params['id'];
-      if (id !== undefined) {
+      this._keyStudent = params['id'];
+      if (this._keyStudent !== undefined) {
         this.edit = true;
-        this.studentObservable = this.as.getStudent(id);
+        this.studentObservable = this.as.getStudent(this._keyStudent);
         this.studentObservable.subscribe(student => {
             this.student = student;
             this.student.responsibleAdult === undefined ? this.ra = new ResponsibleAdult() : this.ra = this.student.responsibleAdult;
@@ -75,8 +75,9 @@ export class FormStudentsComponent implements OnInit {
   }
 
   goToPayments(key: string) {
-      this.router.navigate(['/payments', key]);
+      this.router.navigate(['/students/form/' + this._keyStudent + '/payments']);
   }
+
   cancel() {
     this.router.navigate(['/students']);
   }

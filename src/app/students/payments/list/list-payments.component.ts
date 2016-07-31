@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
-import {Student , IStudent} from '../../students/student';
-import { StudentsService } from '../../students/students.service';
+import {Student , IStudent} from '../../student';
+import { StudentsService } from '../../students.service';
 import {FirebaseObjectObservable} from 'angularfire2';
 import {Payment} from '../payment';
 import {FORM_DIRECTIVES} from '@angular/forms';

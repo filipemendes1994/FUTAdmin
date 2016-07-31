@@ -116,10 +116,10 @@
         </md-card-content>
     </md-card>
     <md-card class="card" *ngIf="edit==true">
-        <md-card-title>Payments</md-card-title>
+        <md-card-title>Pagamentos</md-card-title>
         <md-card-content>
             <div *ngIf="student.payments == undefined">
-                <p md-line>Não há Payments registados</p>
+                <p md-line>Não há pagamentos registados</p>
             </div>
             <div *ngIf="student.payments">
                 <p md-line > Último registado em {{ student.payments[student.payments.length-1].datePayment*1000 | date:"dd/MM/yy" }} para 
