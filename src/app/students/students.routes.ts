@@ -3,6 +3,7 @@ import { FormStudentsComponent } from './form';
 import { ListStudentsComponent} from './list';
 import { StudentsCenter } from './students-center.component';
 import { AuthGuardService }             from '../auth-guard.service';
+import { ListPaymentsComponent} from './payments/list';
 
 export const studentRoutes: RouterConfig = [
   {
@@ -16,13 +17,18 @@ export const studentRoutes: RouterConfig = [
         canActivate: [AuthGuardService]
       },
       {
-        path: 'add',
+        path: 'form',
         component: FormStudentsComponent,
         canActivate: [AuthGuardService]
       },
       {
-        path: ':id',
+        path: 'form/:id',
         component: FormStudentsComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'form/:id/payments',
+        component: ListPaymentsComponent,
         canActivate: [AuthGuardService]
       },
     ]

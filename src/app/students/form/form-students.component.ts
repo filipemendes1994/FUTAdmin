@@ -38,7 +38,7 @@ let max = 5;
   providers: [StudentsService]
 })
 export class FormStudentsComponent implements OnInit {
-
+  public _keyStudent: string;
   private sub: any;
   private studentObservable: FirebaseObjectObservable<IStudent>;
 
@@ -53,21 +53,28 @@ export class FormStudentsComponent implements OnInit {
   submit() {
     this.student.responsibleAdult = this.ra;
     if (!this.edit) {
+      this.student.entryDate = Math.floor(Date.now());
+      this.ra.entryDate = Math.floor(Date.now());
+    }
+
+    if (!this.edit) {
       this.as.addStudent(this.student);
     } else {
       this.as.editStudent(this.studentObservable, this.student);
     }
-    console.log(this.student);
+
+    this.router.navigate(['/students']);
+
   }
 
   ngOnInit() {
     this.student = new Student();
     this.ra = new ResponsibleAdult();
     this.sub = this.route.params.subscribe(params => {
-      let id = params['id'];
-      if (id !== undefined) {
+      this._keyStudent = params['id'];
+      if (this._keyStudent !== undefined) {
         this.edit = true;
-        this.studentObservable = this.as.getStudent(id);
+        this.studentObservable = this.as.getStudent(this._keyStudent);
         this.studentObservable.subscribe(student => {
             this.student = student;
             this.student.responsibleAdult === undefined ? this.ra = new ResponsibleAdult() : this.ra = this.student.responsibleAdult;
@@ -77,9 +84,14 @@ export class FormStudentsComponent implements OnInit {
   }
 
   goToPayments(key: string) {
-      this.router.navigate(['/payments', key]);
+      this.router.navigate(['/students/form/' + this._keyStudent + '/payments']);
   }
-  cancel(){
+
+  cancel() {
     this.router.navigate(['/students']);
+  }
+
+  copyFromStudent(prop: string) {
+    this.ra[prop] = this.student[prop];
   }
 }

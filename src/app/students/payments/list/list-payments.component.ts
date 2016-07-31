@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
-import {Student , IStudent} from '../../students/student';
-import { StudentsService } from '../../students/students.service';
+import {Student , IStudent} from '../../student';
+import { StudentsService } from '../../students.service';
 import {FirebaseObjectObservable} from 'angularfire2';
 import {Payment} from '../payment';
 import {FORM_DIRECTIVES} from '@angular/forms';
@@ -63,7 +63,7 @@ export class ListPaymentsComponent implements OnInit {
   }
 
   addPayment() {
-    this.toAdd.datePayment = Math.floor(Date.now() / 1000);
+    this.toAdd.datePayment = Math.floor(Date.now());
 
     if (this.student.payments === undefined) {
       this.student.payments = [this.toAdd];
@@ -76,13 +76,9 @@ export class ListPaymentsComponent implements OnInit {
   }
 
   setPayment() {
-      this.toAdd.datePayment = Math.floor(Date.now() / 1000);
       this.student.payments[this.auxNum] = this.toAdd;
       this.edit = false;
       this.toAdd = new Payment();
       this.as.editStudent(this.studentObservable, this.student);
   }
-
-  
-
 }

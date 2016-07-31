@@ -39,19 +39,18 @@ export class ListStudentsComponent implements OnInit {
   }
 
   editStudent(key: string) {
-    this.router.navigate(['/students', key]);
+    this.router.navigate(['/students/form', key]);
   }
 
   deleteStudent(key: string) {
     this.as.deleteStudent(key);
   }
-  search(term:string){    
-    if(term !=''){
+  search(term: string){
+    if (term != ''){
       this.students = this.as.filter(term);
-      //this.students.count
     }else{
        this.students = this.as.getStudents();
     }
-    
+
   }
 }
