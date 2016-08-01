@@ -41,7 +41,7 @@ export class ClassesService {
     return classTObservable.update({
       name: classT.name,
       professor: classT.professor,
-      timeScheduled: (classT.timeSchedule === undefined ? new HourDate() : classT.timeSchedule),
+      timeSchedule: (classT.timeSchedule === undefined ? new HourDate() : classT.timeSchedule),
       students: (classT.students === undefined ? new Array() : classT.students),
     });
   }

@@ -3,9 +3,8 @@
     height: 100%;
     padding-left: 50px;
     padding-right: 50px;
-    background: #f2f2f2;
-    padding-top: 10px;
-    padding-bottom: 40px;    
+    background: #f2f2f2;    
+    overflow-x: auto;
 }
 
 .card
@@ -16,4 +15,12 @@
 .button
 {
     margin-top: 16px;
+}
+
+.searchbar {
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  display: flex;
+
 }

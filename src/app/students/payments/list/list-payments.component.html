@@ -2,9 +2,18 @@
     <md-card class="card">
         <md-card-title>Pagamentos do Aluno/a {{student.firstName}} {{student.lastName}}</md-card-title>
         <md-card-content>
+            <div class="searchbar" style="margin-top:-50px;">
+                <button md-icon-button (click)="addAutoPayments()">
+                    <md-icon>playlist_add</md-icon>
+                </button>            
+            </div>
             <md-list>
                 <table style="width: 100%" cellspacing="0">
                     <tr *ngFor="let payment of student.payments">
+                        <td colspan="2">
+                            <md-checkbox [(ngModel)]="payment.done">
+                            </md-checkbox>
+                        </td>
                         <td colspan="2">
                             <p md-line>{{payment.month}}</p>
                         </td>
@@ -21,12 +30,13 @@
                             <button md-icon-button (click)="editPayment(payment)">
                                 <md-icon>edit</md-icon>
                             </button>
-                        </td>
-                        <td colspan="2">
+                            <button md-icon-button (click)="savePayment(payment)">
+                                <md-icon>save</md-icon>
+                            </button>
                             <button md-icon-button (click)="deletePayment(payment)">
                                 <md-icon>delete</md-icon>
                             </button>
-                        </td>
+                        </td>                    
                     </tr>
                 </table>
             </md-list>

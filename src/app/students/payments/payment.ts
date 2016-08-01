@@ -4,7 +4,8 @@ export class Payment {
     year: string;
     value: string;
     datePayment: any;
-
-    constructor(month?: string, year?: string, value?: string, datePayment?: any) {
+    done: boolean;
+    constructor(month?: string, year?: string, value?: string, datePayment?: any, done?: boolean) {
+        this.done = false;
     }
 }
