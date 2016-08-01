@@ -10,7 +10,8 @@ const map: any = {
   'firebase': 'vendor/firebase/firebase.js',
   'angularfire2': 'vendor/angularfire2',
   '@angular2-material': 'vendor/@angular2-material',
-  'ng2-material-dropdown': 'vendor/ng2-material-dropdown'
+  'ng2-material-dropdown': 'vendor/ng2-material-dropdown',
+  'ng2-ui': 'https://npmcdn.com/ng2-ui' 
 };
 
 /** User packages configuration. */
@@ -21,6 +22,10 @@ const packages: any = {
   }, 'ng2-material-dropdown': {
     defaultExtension: 'js',
     main: 'index.js'
+  },
+  'ng2-ui': {
+    main: 'dist/index.js',
+    defaultExtension: 'js'
   }
 };
 
