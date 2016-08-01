@@ -1,12 +1,13 @@
 <div class="content">
     <div style="height:50px;width:100%;"></div>
     <md-card class="card">
-        <md-card-title>Professores</md-card-title>
-        <md-card-content>
-            <div class="searchbar" style="margin-top:-50px;">
+        <md-toolbar color="primary">Professores
+            <div class="searchbar">
                 <md-icon style="margin-bottom:10px; margin-right:5px;" class="md-32" >search</md-icon>
                 <md-input #input (keyup)="search(input.value)" placeholder="Pesquisa" value=""></md-input>
             </div>
+        </md-toolbar>
+        <md-card-content>
             <md-list dense>
                 <md-list-item *ngFor="let professor of professors | async">
                     <h4 md-line>{{professor.firstName}} {{professor.lastName}}</h4>

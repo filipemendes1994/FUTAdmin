@@ -7,6 +7,7 @@ import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
+import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 
 import { Observable } from 'rxjs';
 
@@ -19,6 +20,7 @@ import { Observable } from 'rxjs';
                 MD_CARD_DIRECTIVES,
                 MD_PROGRESS_CIRCLE_DIRECTIVES,
                 MD_INPUT_DIRECTIVES,
+                MD_TOOLBAR_DIRECTIVES,
               ],
   templateUrl: 'list-professors.component.html',
   styleUrls: ['list-professors.component.css']

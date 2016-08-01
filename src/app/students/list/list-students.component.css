@@ -33,6 +33,9 @@
 
 }
 
+.searchbar .md-input-underline {
+  border: 1px solid white;
+}
 
 
 md-card{

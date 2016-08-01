@@ -163,7 +163,7 @@
         </md-card-content>
     </md-card>
     <md-card class="card" *ngIf="edit==true">
-        <md-card-title>Pagamentos</md-card-title>
+        <md-toolbar color="primary">Pagamentos</md-toolbar>
         <md-card-content>
             <div *ngIf="student.payments == undefined">
                 <p md-line>Não há pagamentos registados</p>
@@ -173,7 +173,7 @@
                     o mês {{ student.payments[student.payments.length-1].month }} do ano 
                     {{ student.payments[student.payments.length-1].year }} </p>
             </div>
-            <button md-button (click)="goToPayments(student.$key)">Detalhes</button>
+            <button md-raised-button class="button" color="primary" (click)="goToPayments(student.$key)">Detalhes</button>
         </md-card-content>
     </md-card>
     <div class="buttons-container">

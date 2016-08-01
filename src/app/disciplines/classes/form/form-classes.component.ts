@@ -17,6 +17,7 @@ import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import {StudentsService} from '../../../students/students.service';
 import {IStudent} from '../../../students/student';
 import {FirebaseObjectObservable} from 'angularfire2';
+import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 
 @Component({
   moduleId: module.id,
@@ -32,6 +33,7 @@ import {FirebaseObjectObservable} from 'angularfire2';
     ROUTER_DIRECTIVES,
     FORM_DIRECTIVES,
     MD_LIST_DIRECTIVES,
+    MD_TOOLBAR_DIRECTIVES,
     NgFor,
   ],
   providers: [ClassesService, ProfessorsService, StudentsService]
@@ -173,5 +175,7 @@ export class FormClassesComponent implements OnInit {
     } else {
       this.cs.editClass(this.classObservable, this.classT);
     }
+
+    this.router.navigate(['/disciplines/classes', this.discipline]);
   }
 }
