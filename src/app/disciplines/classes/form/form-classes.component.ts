@@ -153,7 +153,9 @@ export class FormClassesComponent implements OnInit {
     if (this.discipline === 'cc') {
       if (student.classes.cc === undefined) {
         return false;
-      } else if (student.classes.cc.indexOf(this._idClass) >= 0) {
+      }
+
+      if (student.classes.cc.indexOf(this._idClass) >= 0) {
         return true;
       } else {
         return false;
