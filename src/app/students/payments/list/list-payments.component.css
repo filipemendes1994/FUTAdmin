@@ -24,3 +24,13 @@
   display: flex;
 
 }
+
+md-card{
+  margin-bottom: 50px;
+  padding: 0px;
+  overflow-y: auto;
+}
+
+md-card-content{
+  padding: 24px;
+}

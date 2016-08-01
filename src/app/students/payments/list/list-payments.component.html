@@ -1,12 +1,13 @@
 <div class="content">
     <md-card class="card">
-        <md-toolbar color="primary">Pagamentos do Aluno/a {{student.firstName}} {{student.lastName}}</md-toolbar>
-        <md-card-content>
-            <div class="searchbar" style="margin-top:-50px;">
+        <md-toolbar color="primary">Pagamentos do Aluno/a {{student.firstName}} {{student.lastName}}
+            <div class="searchbar">
                 <button md-icon-button (click)="addAutoPayments()">
                     <md-icon>playlist_add</md-icon>
                 </button>            
             </div>
+        </md-toolbar>
+        <md-card-content>
             <md-list>
                 <table style="width: 100%" cellspacing="0">
                     <tr *ngFor="let payment of student.payments">
@@ -46,8 +47,8 @@
     <br>
     <md-card class="card">
         <md-toolbar color="primary">
-            <p md-line *ngIf="edit==false">Registar Novo Pagamento</p>
-            <p md-line *ngIf="edit==true">Editar Pagamento</p>            
+            <p md-line *ngIf="!edit">Registar Novo Pagamento</p>
+            <p md-line *ngIf="edit">Editar Pagamento</p>            
         </md-toolbar>
         <md-card-content>
             <table style="width: 100%" cellspacing="0">
