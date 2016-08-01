@@ -54,5 +54,10 @@ export class AppComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+
+  logout(){
+    this.as.isLogged = false;
+    this.router.navigate(['/login']);
+  }
 }
 

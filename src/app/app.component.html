@@ -7,7 +7,9 @@
     </button>
   <span style="margin-left: 10px">FUTAdmin</span>
   <span class="fill-remaining-space"></span>
-  <span>Copyright @ 2016</span>
+  <button *ngIf="as.isLogged" (click)="logout()" md-icon-button>
+      <md-icon class="md-24">exit_to_app</md-icon>
+    </button>
 </md-toolbar>
 <md-sidenav-layout class="demo-sidenav-layout">
 
