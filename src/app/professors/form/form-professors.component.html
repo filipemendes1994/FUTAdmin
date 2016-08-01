@@ -101,6 +101,10 @@
             </table>
         </md-card-content>
     </md-card>
-    <button md-raised-button *ngIf="!edit" (click)="submit()" class="button" color="primary">Adicionar</button>
-    <button md-raised-button *ngIf="edit" (click)="submit()" class="button" color="primary">Editar</button>
-</div>   
+    <div class="buttons-container">
+        <div class="buttons-holder">
+            <button md-raised-button *ngIf="!edit" (click)="submit()" class="button" color="primary">Adicionar</button>
+            <button md-raised-button *ngIf="edit" (click)="submit()" class="button" color="primary">Editar</button>
+        </div>
+    </div>
+</div>

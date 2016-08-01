@@ -25,3 +25,15 @@ md-card{
 md-card-content{
   padding: 24px;
 }
+
+.buttons-container{
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.buttons-holder {
+    align-self: flex-end;
+}
