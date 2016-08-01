@@ -35,11 +35,10 @@
                 <tr>
                 <tr *ngIf="!edit">
                     <td colspan="3">
-                        <md-input [(ngModel)]='professor.birthdayDate' class="demo-full-width" style="width: 95%" placeholder="Data de Nascimento" value="Coimbra"></md-input>
+                        <md-input type="date" (ngModelChange)="professor.birthdayDate=$event" [(ngModel)]="professor.birthdayDate" value="{{professor.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento"></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='professor.socioNumber' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
-                        </md-input>
+                       <md-input type="date"  (ngModelChange)="professor.entryDate=$event" [(ngModel)]="professor.entryDate" value="{{professor.entryDate |  date: 'yyyy-MM-dd' }}" style="width: 100%" placeholder="Data de Entrada"></md-input>
                     </td>
                 <tr>
                 <tr *ngIf="edit">
@@ -57,11 +56,10 @@
                 <tr>
                 <tr *ngIf="edit">
                     <td colspan="3">
-                        <md-input [(ngModel)]='professor.birthdayDate' class="demo-full-width" style="width: 95%" placeholder="Data de Nascimento" value="Coimbra"></md-input>
+                        <md-input type="date" (ngModelChange)="professor.birthdayDate=$event" [(ngModel)]="professor.birthdayDate" value="{{professor.entryDate |  date:'yyyy-MM-dd'}}" style="width: 95%" placeholder="Data de Nascimento"></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input disabled value="{{professor.entryDate |  date:'dd/MM/yy'}}" class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
-                        </md-input>
+                        <md-input type="date" disabled value="{{professor.entryDate |  date:'yyyy-MM-dd'}}" style="width: 100%" placeholder="Data de Entrada"></md-input>
                     </td>
                 <tr>
             </table>

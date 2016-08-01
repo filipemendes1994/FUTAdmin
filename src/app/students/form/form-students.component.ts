@@ -51,8 +51,8 @@ export class FormStudentsComponent implements OnInit {
   submit() {
     this.student.responsibleAdult = this.ra;
     if (!this.edit) {
-      this.student.entryDate = Math.floor(Date.now());
-      this.ra.entryDate = Math.floor(Date.now());
+      this.student.entryDate = new Date();
+      this.ra.entryDate = new Date();
     }
 
     if (!this.edit) {
