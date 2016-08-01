@@ -142,7 +142,13 @@ export class FormClassesComponent implements OnInit {
       if (student.classes.cc === undefined) {
         student.classes.cc = new Array();
       }
-      student.classes.cc.push(this._idClass);
+
+      let pos = student.classes.cc.indexOf(this._idClass);
+      if (pos >= 0) {
+        student.classes.cc.splice(pos, 1);
+      } else {
+        student.classes.cc.push(this._idClass);
+      }
     }
 
     this.ss.editStudent(this.ss.getStudent(student.$key), student);
@@ -154,7 +160,6 @@ export class FormClassesComponent implements OnInit {
       if (student.classes.cc === undefined) {
         return false;
       }
-
       if (student.classes.cc.indexOf(this._idClass) >= 0) {
         return true;
       } else {
