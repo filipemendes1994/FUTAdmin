@@ -4,33 +4,33 @@
     <md-card class="card">
         <md-toolbar color="primary">Dados do Aluno</md-toolbar>
         <md-card-content>
-            <!--<md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
+            <!--<md-input placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td colspan="3">
-                        <md-input [(ngModel)]='student.firstName' placeholder="Nome Próprio" style="width: 95%"></md-input>
+                        <md-input [(ngModel)]="student.firstName" placeholder="Nome Próprio" style="width: 95%"></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='student.lastName' placeholder="Último Nome" style="width: 100%"></md-input>
+                        <md-input [(ngModel)]="student.lastName" placeholder="Último Nome" style="width: 100%"></md-input>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <md-input [(ngModel)]='student.address' class="demo-full-width" style="width: 95%" placeholder="Morada"></md-input>
+                        <md-input [(ngModel)]="student.address" style="width: 95%" placeholder="Morada"></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='student.email' class="demo-full-width" style="width: 95%" placeholder="Email"></md-input>
+                        <md-input [(ngModel)]="student.email" style="width: 95%" placeholder="Email"></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='student.contact' class="demo-full-width" style="width: 100%" placeholder="Contato"></md-input>
+                        <md-input [(ngModel)]="student.contact" style="width: 100%" placeholder="Contato"></md-input>
                     </td>
                 </tr>
                 <tr *ngIf="!edit">
                     <td colspan="3">
-                        <md-input [(ngModel)]='student.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
+                        <md-input [(ngModel)]="student.city" style="width: 95%" placeholder="Cidade" ></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='student.postalCode' class="demo-full-width" style="width: 95%" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]="student.postalCode" style="width: 95%" maxLength="8" placeholder="Código Postal">
                         </md-input>
                     </td>
                 <tr>
@@ -39,20 +39,20 @@
                         <md-input type="date" (ngModelChange)="student.birthdayDate=$event" [(ngModel)]="student.birthdayDate" value="{{student.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento" ></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='student.socioNumber' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
+                        <md-input [(ngModel)]="student.socioNumber" style="width: 100%" maxLength="8" placeholder="Número de Sócio" >
                         </md-input>
                     </td>
                 <tr>
                 <tr *ngIf="edit">
                     <td colspan="2">
-                        <md-input [(ngModel)]='student.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
+                        <md-input [(ngModel)]="student.city" style="width: 95%" placeholder="Cidade" ></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='student.postalCode' class="demo-full-width" style="width: 95%" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]="student.postalCode" style="width: 95%" maxLength="8" placeholder="Código Postal">
                         </md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='student.socioNumber' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
+                        <md-input [(ngModel)]="student.socioNumber" style="width: 100%" maxLength="8" placeholder="Número de Sócio">
                         </md-input>
                     </td>
                 <tr>
@@ -68,50 +68,49 @@
             </table>
         </md-card-content>
     </md-card>
-    <md-card class="card">
+    <md-card [class.card]="edit" >
         <md-toolbar color="primary">Dados do Encarregado de Educação</md-toolbar>
         <md-card-content>
-            <!--<md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td colspan="3">
-                        <md-input [(ngModel)]='ra.firstName' placeholder="Nome Próprio" style="width: 95%"></md-input>
+                        <md-input [(ngModel)]="ra.firstName" placeholder="Nome Próprio" style="width: 95%"></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='ra.lastName' placeholder="Último Nome" style="width: 87%"></md-input>
+                        <md-input [(ngModel)]="ra.lastName" placeholder="Último Nome" style="width: 87%"></md-input>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.address' class="demo-full-width" style="width: 80%; vertical-align: baseline;" placeholder="Morada"></md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('address')">
+                        <md-input [(ngModel)]="ra.address" style="width: 80%;" placeholder="Morada"></md-input>
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('address')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.email' class="demo-full-width" style="width: 80%; vertical-align: baseline;" placeholder="Email"></md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('email')">
+                        <md-input [(ngModel)]="ra.email" style="width: 80%;" placeholder="Email"></md-input>
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('email')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.contact' class="demo-full-width" style="width: 80%; vertical-align: baseline;" placeholder="Contato"></md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('contact')">
+                        <md-input [(ngModel)]="ra.contact" style="width: 80%;" placeholder="Contato"></md-input>
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('contact')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
                 </tr>
                 <tr *ngIf="!edit">
                     <td colspan="3">
-                        <md-input [(ngModel)]='ra.city' class="demo-full-width" style="width: 85%; vertical-align: baseline;" placeholder="Cidade" value="Coimbra"></md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('city')">
+                        <md-input [(ngModel)]="ra.city" style="width: 85%;" placeholder="Cidade"></md-input>
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('city')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='ra.postalCode' class="demo-full-width" style="width: 87%; vertical-align: baseline;" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]="ra.postalCode" style="width: 87%;" maxLength="8" placeholder="Código Postal">
                         </md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('postalCode')">
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('postalCode')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
@@ -121,31 +120,31 @@
                         <md-input type="date" (ngModelChange)="ra.birthdayDate=$event" [(ngModel)]="ra.birthdayDate" value="{{ra.birthdayDate |  date: 'yyyy-MM-dd' }}"  style="width: 95%; vertical-align: 11px;" placeholder="Data de Nascimento"></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='ra.socioNumber' class="demo-full-width" style="width: 87%; vertical-align: baseline;" placeholder="Número de Sócio">
+                        <md-input [(ngModel)]="ra.socioNumber" style="width: 87%;" placeholder="Número de Sócio">
                         </md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('socioNumber')">
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('socioNumber')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
                 </tr>
                 <tr *ngIf="edit">
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.city' class="demo-full-width" style="width: 80%; vertical-align: baseline;" placeholder="Cidade" value="Coimbra"></md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('city')">
+                        <md-input [(ngModel)]="ra.city" style="width: 80%;" placeholder="Cidade" ></md-input>
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('city')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.postalCode' class="demo-full-width" style="width: 80%; vertical-align: baseline;" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]="ra.postalCode" style="width: 80%;" maxLength="8" placeholder="Código Postal" >
                         </md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('postalCode')">
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('postalCode')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='ra.socioNumber' class="demo-full-width" style="width: 80%; vertical-align: baseline;" maxLength="8" placeholder="Número de Sócio" value="3045">
+                        <md-input [(ngModel)]="ra.socioNumber" style="width: 80%;" maxLength="8" placeholder="Número de Sócio">
                         </md-input>
-                        <button md-icon-button style="vertical-align: baseline;" (click)="copyFromStudent('socioNumber')">
+                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('socioNumber')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
                     </td>
@@ -162,7 +161,7 @@
             </table>
         </md-card-content>
     </md-card>
-    <md-card class="card" *ngIf="edit==true">
+    <md-card *ngIf="edit">
         <md-toolbar color="primary">Pagamentos</md-toolbar>
         <md-card-content>
             <div *ngIf="student.payments == undefined">

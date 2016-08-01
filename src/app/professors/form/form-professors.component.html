@@ -1,38 +1,38 @@
 <div class="content">
     <div style="height:50px;width:100%;"></div>
     <md-card class="card">
-    <md-toolbar color="primary">Dados do Professor</md-toolbar>        
+        <md-toolbar color="primary">Dados do Professor</md-toolbar>
         <md-card-content>
-            <!--<md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
+            <!--<md-input placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td colspan="3">
-                        <md-input [(ngModel)]='professor.firstName' placeholder="Nome Próprio" style="width: 95%"></md-input>
+                        <md-input [(ngModel)]="professor.firstName" placeholder="Nome Próprio" style="width: 95%"></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='professor.lastName' placeholder="Último Nome" style="width: 100%"></md-input>
+                        <md-input [(ngModel)]="professor.lastName" placeholder="Último Nome" style="width: 100%"></md-input>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <md-input [(ngModel)]='professor.address' class="demo-full-width" style="width: 95%" placeholder="Morada"></md-input>
+                        <md-input [(ngModel)]="professor.address" style="width: 95%" placeholder="Morada"></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='professor.email' class="demo-full-width" style="width: 95%" placeholder="Email"></md-input>
+                        <md-input type="email" [(ngModel)]="professor.email" style="width: 95%" placeholder="Email"></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='professor.contact' class="demo-full-width" style="width: 100%" placeholder="Contato"></md-input>
+                        <md-input [(ngModel)]="professor.contact" style="width: 100%" placeholder="Contato"></md-input>
                     </td>
                 </tr>
                 <tr *ngIf="!edit">
                     <td colspan="3">
-                        <md-input [(ngModel)]='professor.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
+                        <md-input [(ngModel)]="professor.city" style="width: 95%" placeholder="Cidade" ></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input [(ngModel)]='professor.postalCode' class="demo-full-width" style="width: 95%" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]="professor.postalCode" style="width: 95%" maxLength="8" placeholder="Código Postal">
                         </md-input>
                     </td>
-                <tr>
+                </tr>
                 <tr *ngIf="!edit">
                     <td colspan="3">
                         <md-input type="date" (ngModelChange)="professor.birthdayDate=$event" [(ngModel)]="professor.birthdayDate" value="{{professor.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento"></md-input>
@@ -40,20 +40,21 @@
                     <td colspan="3">
                        <md-input type="date"  (ngModelChange)="professor.entryDate=$event" [(ngModel)]="professor.entryDate" value="{{professor.entryDate |  date: 'yyyy-MM-dd' }}" style="width: 100%" placeholder="Data de Entrada"></md-input>
                     </td>
-                <tr>
+                </tr>
                 <tr *ngIf="edit">
                     <td colspan="2">
-                        <md-input [(ngModel)]='professor.city' class="demo-full-width" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
+                        <md-input [(ngModel)]="professor.city" style="width: 95%" placeholder="Cidade" value="Coimbra"></md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='professor.postalCode' class="demo-full-width" style="width: 95%" maxLength="8" placeholder="Código Postal" value="3045">
+                        <md-input [(ngModel)]="professor.postalCode" style="width: 95%" maxLength="8" placeholder="Código Postal"
+                            value="3045">
                         </md-input>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='professor.socioNumber' class="demo-full-width" style="width: 100%" maxLength="8" placeholder="Número de Sócio" value="3045">
+                        <md-input [(ngModel)]="professor.socioNumber" style="width: 100%" maxLength="8" placeholder="Número de Sócio" >
                         </md-input>
                     </td>
-                <tr>
+                </tr>
                 <tr *ngIf="edit">
                     <td colspan="3">
                         <md-input type="date" (ngModelChange)="professor.birthdayDate=$event" [(ngModel)]="professor.birthdayDate" value="{{professor.entryDate |  date:'yyyy-MM-dd'}}" style="width: 95%" placeholder="Data de Nascimento"></md-input>
@@ -61,12 +62,12 @@
                     <td colspan="3">
                         <md-input type="date" disabled value="{{professor.entryDate |  date:'yyyy-MM-dd'}}" style="width: 100%" placeholder="Data de Entrada"></md-input>
                     </td>
-                <tr>
+                </tr>
             </table>
         </md-card-content>
     </md-card>
 
-    <md-card class="card">
+    <md-card>
         <md-toolbar color="primary">Dados Contratuais</md-toolbar>
         <md-card-content>
             <table style="width: 100%" cellspacing="0">
@@ -92,7 +93,7 @@
                         </md-checkbox>
                     </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='professor.rewarnPerHour' placeholder="Pagamento à Hora" style="width: 100%">
+                        <md-input [(ngModel)]="professor.rewarnPerHour" placeholder="Pagamento à Hora" style="width: 100%">
                             <span md-suffix>€</span>
                         </md-input>
                     </td>

@@ -4,13 +4,12 @@
     padding-left: 50px;
     padding-right: 50px;
     background: #f2f2f2;
-    padding-top: 10px;
     overflow-x: auto;
 }
 
 .card
 {
-    margin-top: 16px;
+    margin-bottom: 50px;
 }
 
 .button
@@ -19,7 +18,6 @@
 }
 
 md-card{
-  margin-bottom: 50px;
   padding: 0px;
   overflow-y: auto;
 }

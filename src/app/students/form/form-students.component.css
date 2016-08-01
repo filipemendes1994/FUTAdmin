@@ -29,8 +29,12 @@
     margin-top: 16px;
 }
 
+.card{
+    margin-bottom: 50px;
+}
+
 md-card{
-  margin-bottom: 50px;
+  
   padding: 0px;
   overflow-y: auto;
 }
