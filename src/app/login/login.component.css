@@ -9,3 +9,26 @@
    justify-content: center;
    height: 100%;
 }
+md-card{
+  padding: 0px;
+  overflow-y: auto;
+}
+md-card-content{
+  padding: 24px;
+}
+
+.buttons-container{
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.buttons-holder {
+    align-self: flex-end;
+    margin-top: -16px;
+    margin-right: 24px;
+    margin-bottom: 24px;
+    
+}

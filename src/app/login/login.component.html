@@ -1,12 +1,18 @@
 <div class="container">
     <md-card class="login-card">
-        <md-card-title>Login</md-card-title>
+        <md-toolbar color="primary">Login</md-toolbar>
+        
         <md-card-content>
             <md-input #email placeholder="Email" value="danielgek@gmail.com"></md-input><br>
             <md-input #password type="password" placeholder="Password" value="daniel"> </md-input>
+
+            
         </md-card-content>
-        <md-card-actions align="end">
-            <button md-raised-button color="primary" (click)="login(email.value, password.value)" >Login</button>
-    </md-card-actions>
+        <div class="buttons-container">
+            <div class="buttons-holder">
+                <button md-raised-button color="primary" (click)="login(email.value, password.value)" >Login</button>
+            </div>
+        </div>
+        
     </md-card>
 </div>
