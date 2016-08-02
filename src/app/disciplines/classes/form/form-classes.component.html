@@ -40,7 +40,7 @@
         </md-toolbar>
         <md-card-content>
             <md-list dense>
-                <md-list-item (click)="checkProfessor(professor.$key)" *ngFor="let professor of professors | async">
+                <md-list-item (click)="checkProfessor(professor)" *ngFor="let professor of professors | async">
                     <h4 md-line>{{professor.firstName}} {{professor.lastName}}</h4>
                     <p md-line > {{professor.city}} </p>
                     <button md-icon-button *ngIf="classT.professor==professor.$key">

@@ -43,6 +43,8 @@ export class FormClassesComponent implements OnInit {
 
   private _idClass: string;
   public classObservable: FirebaseObjectObservable<IClassT>;
+  public professorObservable: FirebaseObjectObservable<IProfessor>;
+
   public classT: ClassT;
   public professors: Observable<IProfessor[]>;
   public students: Observable<IStudent[]>;
@@ -114,11 +116,27 @@ export class FormClassesComponent implements OnInit {
     }
   }
 
-  checkProfessor(key: string) {
-    if (key === this.classT.professor) {
+  checkProfessor(professor: IProfessor) {
+    if (professor.$key === this.classT.professor) {
+      if (this.discipline === 'inst') {
+        professor.counterHours -= this.classT.numberStudents;
+        professor.paymentPerMonth -= this.classT.numberStudents * professor.rewarnPerHour;
+      } else {
+        let diff = this.classT.timeSchedule.getDiffHour();
+        professor.counterHours -= diff;
+        professor.paymentPerMonth -= diff * professor.rewarnPerHour;
+      }
       this.classT.professor = '';
     } else {
-      this.classT.professor = key;
+      if (this.discipline === 'inst') {
+        professor.counterHours += this.classT.numberStudents;
+        professor.paymentPerMonth += this.classT.numberStudents * professor.rewarnPerHour;
+      } else {
+        let diff = this.classT.timeSchedule.getDiffHour();
+        professor.counterHours += diff;
+        professor.paymentPerMonth += diff * professor.rewarnPerHour;
+      }
+      this.classT.professor = professor.$key;
     }
   }
 
@@ -134,10 +152,13 @@ export class FormClassesComponent implements OnInit {
 
     if (this.discipline !== 'cc') {
       if (student.classes[this.discipline] === '') {
+        this.classT.numberStudents++;
         student.classes[this.discipline] = this._idClass;
       } else {
+        this.classT.numberStudents--;
         student.classes[this.discipline] = '';
       }
+
     } else {
       if (student.classes.cc === undefined) {
         student.classes.cc = new Array();
@@ -146,8 +167,10 @@ export class FormClassesComponent implements OnInit {
       let pos = student.classes.cc.indexOf(this._idClass);
       if (pos >= 0) {
         student.classes.cc.splice(pos, 1);
+        this.classT.numberStudents--;
       } else {
         student.classes.cc.push(this._idClass);
+        this.classT.numberStudents++;
       }
     }
 

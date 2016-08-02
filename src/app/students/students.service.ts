@@ -78,4 +78,24 @@ export class StudentsService {
     );
 
   }
+
+  getStudentsFrom(discipline: string) {
+    return this.students.map(students =>
+       students.filter(student => {
+         if (discipline === 'cc') {
+           if (student.classes.cc !== undefined) {
+             return true;
+           } else {
+             return false;
+           }
+         }
+         if (student.classes[discipline] !== '') {
+           return true;
+         } else {
+           return false;
+         }
+       }
+      )
+    );
+  }
 }

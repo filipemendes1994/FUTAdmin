@@ -6,17 +6,17 @@ export interface IClassT {
     name: string;
     professor: string;
     timeSchedule: HourDate;
-    students: string[];
+    numberStudents: number;
 }
 
 export class ClassT implements IClassT {
 
     public name: string;
     public professor: string;
-    public students: string[];
     public timeSchedule: HourDate;
-
+    public numberStudents: number;
     constructor() {
+        this.numberStudents = 0;
     }
 }
 

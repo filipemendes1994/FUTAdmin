@@ -5,7 +5,7 @@ import { IProfessor, Professor } from './professor';
 @Injectable()
 export class ProfessorsService {
 
-  professors:FirebaseListObservable<IProfessor[]>;
+  professors: FirebaseListObservable<IProfessor[]>;
   constructor(public af: AngularFire) {
     this.professors = this.af.database.list('professors');
   }
@@ -35,6 +35,9 @@ export class ProfessorsService {
       birthdayDate: professor.birthdayDate,
       canGive: professor.canGive,
       rewarnPerHour: professor.rewarnPerHour,
+      counterHours: professor.counterHours,
+      paymentPerMonth: professor.paymentPerMonth,
+
     });
   }
 
@@ -67,4 +70,27 @@ export class ProfessorsService {
       )
     );
   }
+
+  getProfessorsFrom(discipline: string) {
+    let pos = this.convertToPositionArrayCanGive(discipline);
+    return this.professors.map(professors =>
+       professors.filter(professor => {
+            return professor.canGive[pos];
+          }
+      )
+    );
+  }
+
+  convertToPositionArrayCanGive(disc: string) {
+    if (disc === 'inst') {
+      return 0;
+    } else if (disc === 'fm') {
+      return 1;
+    } else if (disc === 'solf') {
+      return 2;
+    } else if (disc === 'cc') {
+      return 3;
+    }
+  }
+
 }
