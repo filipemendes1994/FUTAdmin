@@ -5,7 +5,7 @@ import { ROUTER_DIRECTIVES }    from '@angular/router';
     moduleId: module.id,
     selector: 'disciplines-center',
     directives: [ROUTER_DIRECTIVES],
-     providers: [],
+    providers: [],
     template: `
         <router-outlet></router-outlet>
     `

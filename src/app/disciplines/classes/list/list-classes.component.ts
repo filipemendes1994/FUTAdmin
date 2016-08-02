@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
-import { Observable } from 'rxjs';
-import {IClassT} from '../class';
-import {ClassesService} from '../classes.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { IClassT } from '../class';
+import { ClassesService } from '../classes.service';
 import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
+import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
-import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
+import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 
 @Component({
   moduleId: module.id,
@@ -23,20 +23,19 @@ import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
     MD_INPUT_DIRECTIVES,
     MD_LIST_DIRECTIVES,
     MD_TOOLBAR_DIRECTIVES,
-  ],
-  providers: [ClassesService],
+  ]
 
 })
-export class ListClassesComponent implements OnInit {
+export class ListClassesComponent implements OnInit, OnDestroy {
 
-  public sub: any;
+  public routerSubscription: Subscription;
   public presentationName: string;
   public type: string;
   public classes: Observable<IClassT[]>;
   constructor(public cs: ClassesService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.routerSubscription = this.route.params.subscribe(params => {
       this.type = params['type'];
       this.classes = this.cs.getClasses(this.type);
       if (this.type === 'fm') {
@@ -65,5 +64,9 @@ export class ListClassesComponent implements OnInit {
 
   goToAdd() {
     this.router.navigate(['/disciplines/classes/' + this.type + '/form']);
+  }
+
+  ngOnDestroy(){
+    this.routerSubscription.unsubscribe();
   }
 }

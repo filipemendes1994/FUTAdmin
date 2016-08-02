@@ -37,8 +37,9 @@ let max = 5;
 })
 export class FormStudentsComponent implements OnInit, OnDestroy {
   public _keyStudent: string;
-  private sub: Subscription;
+  private routerSubscription: Subscription;
   private studentObservable: FirebaseObjectObservable<IStudent>;
+  private studentSubscription: Subscription;
 
   public edit: boolean = false;
   public student: Student;
@@ -68,12 +69,12 @@ export class FormStudentsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.student = new Student();
     this.ra = new ResponsibleAdult();
-    this.sub = this.route.params.subscribe(params => {
+    this.routerSubscription = this.route.params.subscribe(params => {
       this._keyStudent = params['id'];
       if (this._keyStudent !== undefined) {
         this.edit = true;
         this.studentObservable = this.as.getStudent(this._keyStudent);
-        this.studentObservable.subscribe(student => {
+        this.studentSubscription = this.studentObservable.subscribe(student => {
             this.student = student;
             this.student.responsibleAdult === undefined ? this.ra = new ResponsibleAdult() : this.ra = this.student.responsibleAdult;
           });
@@ -94,6 +95,11 @@ export class FormStudentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.sub.unsubscribe();
+
+    if(this.edit){
+      this.studentSubscription.unsubscribe();
+    }
+    this.routerSubscription.unsubscribe();
+
   }
 }
