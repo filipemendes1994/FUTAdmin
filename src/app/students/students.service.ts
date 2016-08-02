@@ -85,10 +85,26 @@ export class StudentsService {
   countSudents(){
     var count = 0;
      this.students.map(list => list.length).subscribe(lenght =>  count = lenght);
-     
-   
     return count;
   }
 
-
+  getStudentsFrom(discipline: string) {
+    return this.students.map(students =>
+       students.filter(student => {
+         if (discipline === 'cc') {
+           if (student.classes.cc !== undefined) {
+             return true;
+           } else {
+             return false;
+           }
+         }
+         if (student.classes[discipline] !== '') {
+           return true;
+         } else {
+           return false;
+         }
+       }
+      )
+    );
+  }
 }
