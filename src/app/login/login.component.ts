@@ -5,6 +5,7 @@ import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+import { Router}    from '@angular/router';
 @Component({
   moduleId: module.id,
   selector: 'app-login',
@@ -20,7 +21,7 @@ import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 export class LoginComponent implements OnInit {
 
 
-  constructor( public authService: AuthService) {}
+  constructor( public authService: AuthService,  private router: Router) {}
 
   ngOnInit() {
   }
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
   login(email:string, pass:string){
     console.log(email);
     this.authService.login(email, pass)
+    .then(success => this.router.navigate(['/home']))
     .catch(erro => console.log);
   }
 
