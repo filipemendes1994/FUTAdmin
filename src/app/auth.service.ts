@@ -11,7 +11,7 @@ export class AuthService {
 
   login(email: string, password: string) {
 
-    return this.af.auth.login({email: email,password: password})
+    return this.af.auth.login({email: email, password: password})
       .then(data => {
         this.isLogged = true;
         this.router.navigate(['/home']);

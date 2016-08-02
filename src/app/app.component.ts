@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MD_ICON_DIRECTIVES, MdIconRegistry } from '@angular2-material/icon';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
@@ -21,11 +21,9 @@ import { AuthService } from './auth.service';
     MD_BUTTON_DIRECTIVES,
     MD_LIST_DIRECTIVES
   ],
-
   providers: [MdIconRegistry],
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  pipes: [],
 })
 export class AppComponent implements OnInit {
   showBack: boolean = false;
