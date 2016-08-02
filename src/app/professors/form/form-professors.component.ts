@@ -33,8 +33,7 @@ let max = 5;
     FORM_DIRECTIVES,
     NG2_DROPDOWN_DIRECTIVES,
     NgFor,
-  ],
-  providers: [ProfessorsService]
+  ]
 })
 export class FormProfessorsComponent implements OnInit {
 

@@ -32,8 +32,7 @@ let max = 5;
     ROUTER_DIRECTIVES,
     FORM_DIRECTIVES,
     NgFor,
-  ],
-  providers: [StudentsService]
+  ]
 })
 export class FormStudentsComponent implements OnInit {
   public _keyStudent: string;
