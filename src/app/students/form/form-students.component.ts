@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy } from '@angular/core';
 import {NgFor} from '@angular/common';
 import {FORM_DIRECTIVES} from '@angular/forms';
 import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
@@ -13,6 +13,7 @@ import {ResponsibleAdult} from '../responsibleAdult';
 import {StudentsService} from '../students.service';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
+import { Subscription } from 'rxjs/Rx';
 
 let max = 5;
 
@@ -34,9 +35,9 @@ let max = 5;
     NgFor,
   ]
 })
-export class FormStudentsComponent implements OnInit {
+export class FormStudentsComponent implements OnInit, OnDestroy {
   public _keyStudent: string;
-  private sub: any;
+  private sub: Subscription;
   private studentObservable: FirebaseObjectObservable<IStudent>;
 
   public edit: boolean = false;
@@ -90,5 +91,9 @@ export class FormStudentsComponent implements OnInit {
 
   copyFromStudent(prop: string) {
     this.ra[prop] = this.student[prop];
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 }
