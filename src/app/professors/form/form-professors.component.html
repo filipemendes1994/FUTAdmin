@@ -34,8 +34,12 @@
                     </td>
                 </tr>
                 <tr *ngIf="!edit">
-                    <td colspan="6">
+                    <td colspan="3">
                         <md-input type="date" (ngModelChange)="professor.birthdayDate=$event" [(ngModel)]="professor.birthdayDate" value="{{professor.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento"></md-input>
+                    </td>
+                    <td colspan="3">
+                        <md-input [(ngModel)]="professor.socioNumber" style="width: 100%" maxLength="8" placeholder="Número de Sócio" >
+                        </md-input>
                     </td>
                 </tr>
                 <tr *ngIf="edit">
