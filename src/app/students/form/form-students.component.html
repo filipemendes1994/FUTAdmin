@@ -61,7 +61,7 @@
                         <md-input type="date" (ngModelChange)="student.birthdayDate=$event" [(ngModel)]="student.birthdayDate" value="{{student.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento" ></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input type="date" disabled value="{{student.entryDate | date: 'yyyy-MM-dd' }}" style="width: 100%"  placeholder="Número de Sócio">
+                        <md-input type="date" disabled (ngModelChange)="student.entryDate=$event" [(ngModel)]="student.entryDate"  value="student.entryDate" style="width: 100%;" placeholder="Data de Entrada">
                         </md-input>
                     </td>
                 <tr>
@@ -154,7 +154,7 @@
                         <md-input type="date" (ngModelChange)="ra.birthdayDate=$event" [(ngModel)]="ra.birthdayDate" value="{{ra.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento" ></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input tyep="date" disabled (ngModelChange)="ra.entryDate=$event" [(ngModel)]="ra.entryDate"  value="{{ra.entryDate |  date: 'yyyy-MM-dd' }}" style="width: 100%;" placeholder="Data de Entrada">
+                        <md-input type="date" disabled (ngModelChange)="ra.entryDate=$event" [(ngModel)]="ra.entryDate"  value="ra.entryDate" style="width: 100%;" placeholder="Data de Entrada">
                         </md-input>
                     </td>
                 </tr>

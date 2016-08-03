@@ -13,8 +13,8 @@ export interface IProfessor {
     city: string;
     postalCode: string;
     socioNumber: number;
-    entryDate: Date;
-    birthdayDate: Date;
+    entryDate: string;
+    birthdayDate: string;
     rewarnPerHour: number;
     canGive: boolean[];
     counterHours: number;
@@ -30,7 +30,7 @@ export class Professor extends Person implements IProfessor {
 
     constructor(firstName?: string, lastName?: string, address?: string, email?: string,
         contact?: string, city?: string, postalCode?: string, socioNumber?: number,
-        entryDate?: Date, birthdayDate?: Date, counterHours?: number, paymentPerMonth?: number) {
+        entryDate?: string, birthdayDate?: string, counterHours?: number, paymentPerMonth?: number) {
             super(firstName, lastName, address, email, contact, city, postalCode, socioNumber, entryDate, birthdayDate);
             this.canGive = new Array(4);
             for (let i = 0 ; i < 4; i++) {

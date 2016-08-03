@@ -52,11 +52,9 @@ export class FormStudentsComponent implements OnInit, OnDestroy {
 
 
   submit() {
+
     this.student.responsibleAdult = this.ra;
-    if (!this.edit) {
-      this.student.entryDate = new Date();
-      this.ra.entryDate = new Date();
-    }
+    console.log(this.student);
 
     if (!this.edit) {
       this.as.addStudent(this.student);

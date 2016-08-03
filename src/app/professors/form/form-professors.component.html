@@ -34,11 +34,8 @@
                     </td>
                 </tr>
                 <tr *ngIf="!edit">
-                    <td colspan="3">
+                    <td colspan="6">
                         <md-input type="date" (ngModelChange)="professor.birthdayDate=$event" [(ngModel)]="professor.birthdayDate" value="{{professor.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento"></md-input>
-                    </td>
-                    <td colspan="3">
-                       <md-input type="date"  (ngModelChange)="professor.entryDate=$event" [(ngModel)]="professor.entryDate" value="{{professor.entryDate |  date: 'yyyy-MM-dd' }}" style="width: 100%" placeholder="Data de Entrada"></md-input>
                     </td>
                 </tr>
                 <tr *ngIf="edit">
@@ -57,10 +54,11 @@
                 </tr>
                 <tr *ngIf="edit">
                     <td colspan="3">
-                        <md-input type="date" (ngModelChange)="professor.birthdayDate=$event" [(ngModel)]="professor.birthdayDate" value="{{professor.entryDate |  date:'yyyy-MM-dd'}}" style="width: 95%" placeholder="Data de Nascimento"></md-input>
+                        <md-input type="date" (ngModelChange)="professor.birthdayDate=$event" [(ngModel)]="professor.birthdayDate" value="{{professor.birthdayDate |  date:'yyyy-MM-dd'}}" style="width: 95%" placeholder="Data de Nascimento"></md-input>
                     </td>
                     <td colspan="3">
-                        <md-input type="date" disabled value="{{professor.entryDate |  date:'yyyy-MM-dd'}}" style="width: 100%" placeholder="Data de Entrada"></md-input>
+                        <md-input type="date" disabled (ngModelChange)="professor.entryDate=$event" [(ngModel)]="professor.entryDate"  value="professor.entryDate" style="width: 100%;" placeholder="Data de Entrada">
+                        </md-input>
                     </td>
                 </tr>
             </table>
