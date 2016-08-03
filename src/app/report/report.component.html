@@ -1,0 +1,25 @@
+<div class="content">
+  <div style="width:100%;height:50px;"></div>
+  <md-card>
+    <md-toolbar color="primary">Reportar Um crash</md-toolbar>
+    <md-card-content>
+      <table >
+        <tr>
+          <td>
+            <md-input style="width:50%" [(ngModel)]="report.subject" placeholder="Assunto" ></md-input>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <md-input style="width:100%" [(ngModel)]="report.description" placeholder="Descrição" ></md-input>
+          </td>
+        </tr>
+      </table>
+    </md-card-content>
+  </md-card>
+  <div class="buttons-container">
+        <div class="buttons-holder">
+            <button md-raised-button (click)="submit()" class="button" color="primary">Enviar</button>
+        </div>
+    </div>
+</div>

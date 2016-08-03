@@ -7,9 +7,17 @@
     </button>
   <span style="margin-left: 10px">FUTAdmin</span>
   <span class="fill-remaining-space"></span>
+  <button *ngIf="as.isLogged"  md-icon-button>
+      <md-icon class="md-24">info_outline</md-icon>
+  </button>
+
+  <a [routerLink]="['/report']" *ngIf="as.isLogged" md-icon-button>
+    <md-icon class="md-24">bug_report</md-icon>
+  </a>
   <button *ngIf="as.isLogged" (click)="logout()" md-icon-button>
       <md-icon class="md-24">exit_to_app</md-icon>
-    </button>
+  </button>
+
 </md-toolbar>
 <md-sidenav-layout class="demo-sidenav-layout">
 
