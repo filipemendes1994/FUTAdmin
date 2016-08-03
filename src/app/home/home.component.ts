@@ -4,13 +4,14 @@ import { ProfessorsService } from '../professors/professors.service';
 import { ClassesService } from '../disciplines/classes/classes.service';
 import { IClassT } from '../disciplines/classes/class';
 
-import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
-import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
-import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
-import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
-import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
+import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
+import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
+import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
+import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
 import { Observable } from 'rxjs';
-import { IStudent} from '../students/student';
+import { IStudent } from '../students/student';
 import { IProfessor} from '../professors/professor';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
@@ -26,6 +27,7 @@ import { ROUTER_DIRECTIVES, Router } from '@angular/router';
               MD_PROGRESS_CIRCLE_DIRECTIVES,
               MD_BUTTON_DIRECTIVES,
               ROUTER_DIRECTIVES,
+              MD_ICON_DIRECTIVES
         ]
 })
 export class HomeComponent implements OnInit, OnDestroy {

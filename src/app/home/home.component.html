@@ -1,49 +1,57 @@
 <div class="content">
-  <md-grid-list cols="2" rowHeight="fit" gutterSize="16px">
+  <md-grid-list cols="2" rowHeight="fit" gutterSize="0px">
 
     <md-grid-tile [colspan]="tiles[0]._cols" [rowspan]="tiles[0]._rows" >
       <md-card class="card">
-        <md-toolbar color="primary">{{tiles[0].subject}}</md-toolbar>
+        <md-toolbar color="primary">
+          <span >{{tiles[0].subject}}</span>
+          <span class="fill-remaining-space"></span>
+          <a [routerLink]="['students']" md-icon-button>
+              <md-icon class="md-32">list</md-icon>
+          </a>
+        </md-toolbar>
         <md-card-content>
-          <p>{{tiles[0].data['numTotal']}} inscritos.</p>
-          <p>{{tiles[0].data['numInst']}} inscrições em Instrumento.</p>
-          <p>{{tiles[0].data['numFm']}} inscrições em Formação Musical.</p>
-          <p>{{tiles[0].data['numSolf']}} inscrições em Solfejo.</p>
-          <p>{{tiles[0].data['numCc']}} inscrições em Classes de Conjunto.</p>        
+          <div class="line"><span class="number">{{tiles[0].data['numTotal']}}</span> inscritos.</div>
+          <div class="line"><span class="number">{{tiles[0].data['numInst']}}</span> inscrições em Instrumento.</div>
+          <div class="line"><span class="number">{{tiles[0].data['numFm']}}</span> inscrições em Formação Musical.</div>
+          <div class="line"><span class="number">{{tiles[0].data['numSolf']}}</span> inscrições em Solfejo.</div>
+          <div class="line"><span class="number">{{tiles[0].data['numCc']}}</span> inscrições em Classes de Conjunto.</div>        
         </md-card-content> 
-      <md-card-actions style="margin-left: 0px; margin-right: 0px;">
-        <button md-raised-button (click)="goTo('/students')" class="button" color="primary">VER TODOS OS ALUNOS</button>
-      </md-card-actions>
       </md-card>
     </md-grid-tile>
 
     <md-grid-tile [colspan]="tiles[1]._cols" [rowspan]="tiles[1]._rows" >
       <md-card class="card">
-        <md-toolbar color="primary">{{tiles[1].subject}}</md-toolbar>
+        <md-toolbar color="primary">
+          <span >{{tiles[1].subject}}</span>
+          <span class="fill-remaining-space"></span>
+          <a [routerLink]="['professors']" md-icon-button>
+              <md-icon class="md-32">list</md-icon>
+          </a>
+        </md-toolbar>
         <md-card-content>
-          <p>{{tiles[1].data['numTotal']}} registados.</p>
-          <p>{{tiles[1].data['numInst']}} podem dar Instrumento.</p>
-          <p>{{tiles[1].data['numFm']}} podem dar Formação Musical.</p>
-          <p>{{tiles[1].data['numSolf']}} podem dar Solfejo.</p>
-          <p>{{tiles[1].data['numCc']}} podem dar Classes de Conjunto.</p>        
+          <div class="line"><span class="number">{{tiles[1].data['numTotal']}}</span> registados.</div>
+          <div class="line"><span class="number">{{tiles[1].data['numInst']}}</span> podem dar Instrumento.</div>
+          <div class="line"><span class="number">{{tiles[1].data['numFm']}}</span> podem dar Formação Musical.</div>
+          <div class="line"><span class="number">{{tiles[1].data['numSolf']}}</span> podem dar Solfejo.</div>
+          <div class="line"><span class="number">{{tiles[1].data['numCc']}}</span> podem dar Classes de Conjunto.</div>        
           <p>Recebem, em média, {{tiles[1].data['mediaPayments'] | number:'.2-2'}}€ por hora.</p> 
           <p>Despesa mensal: {{tiles[1].data['totalPayments'] | number:'.2-2'}}€</p>
         </md-card-content>
-        <md-card-actions style="margin-left: 0px; margin-right: 0px;">
-          <button md-raised-button (click)="goTo('/professors')" class="button" color="primary">VER TODOS OS ALUNOS</button>
-        </md-card-actions>
       </md-card>
     </md-grid-tile>
 
     <md-grid-tile [colspan]="tiles[2]._cols" [rowspan]="tiles[2]._rows" >
       <md-card class="card">
-        <md-toolbar color="primary">{{tiles[2].subject}}</md-toolbar>
+        <md-toolbar color="primary">
+          <span >{{tiles[2].subject}}</span>
+        </md-toolbar>
         <md-card-content>
-          <p>{{tiles[2].data['numTotal']}} registadas.</p>
-          <p>{{tiles[2].data['numInst']}} de Instrumento, média de {{tiles[2].data['mediaNumStudentsPerClassInst']}} alunos cada.</p>
-          <p>{{tiles[2].data['numFm']}} de Formação Musical, média de {{tiles[2].data['mediaNumStudentsPerClassFm']}} alunos cada.</p>
-          <p>{{tiles[2].data['numSolf']}} de Solfejo, média de {{tiles[2].data['mediaNumStudentsPerClassSolf']}} alunos cada.</p>
-          <p>{{tiles[2].data['numCc']}} de Classe de Conjunto, média de {{tiles[2].data['mediaNumStudentsPerClassCc']}} alunos cada.</p>          
+          <div class="line"><span class="number">{{tiles[2].data['numTotal']}} </span> registadas.</div>
+          <div class="line"><span class="number">{{tiles[2].data['numInst']}} </span> de Instrumento, média de {{tiles[2].data['mediaNumStudentsPerClassInst']}} alunos cada.</div>
+          <div class="line"><span class="number">{{tiles[2].data['numFm']}} </span> de Formação Musical, média de {{tiles[2].data['mediaNumStudentsPerClassFm']}} alunos cada.</div>
+          <div class="line"><span class="number">{{tiles[2].data['numSolf']}} </span> de Solfejo, média de {{tiles[2].data['mediaNumStudentsPerClassSolf']}} alunos cada.</div>
+          <div class="line"><span class="number">{{tiles[2].data['numCc']}} </span> de Classe de Conjunto, média de {{tiles[2].data['mediaNumStudentsPerClassCc']}} alunos cada.</div>          
         </md-card-content>
       </md-card>
     </md-grid-tile>

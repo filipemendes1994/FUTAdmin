@@ -2,7 +2,6 @@
   height:100%;
   padding-left: 50px;
   padding-right: 50px;
-  margin-top: 20px;
   background: #f2f2f2;
   overflow-x: auto;
 }
@@ -12,10 +11,9 @@ md-grid-list {
 }
 
 md-card{
-    height: 80%;
-    width: 80%;
-    margin-bottom: 50px;
-    margin-top: -10px;
+    height: 90%;
+    width: 90%;
+    
     padding: 0px;
     overflow-y: auto;
 }
@@ -24,6 +22,16 @@ md-card-content{
   padding: 24px;
 }
 
-.button{
-  margin-left: 20px !important; 
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+.number{
+  color: #009688;
+  font-size: 1.7em;
+  font-weight: bold;
+
+}
+.line {
+  font-size: 1.3em;
 }
