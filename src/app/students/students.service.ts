@@ -44,7 +44,7 @@ export class StudentsService {
     });
   }
 
-  getStudent(id: number | string): FirebaseObjectObservable<IStudent> {
+  getStudent(id: string): FirebaseObjectObservable<IStudent> {
       return this.af.database.object('students/' + id);
   }
 

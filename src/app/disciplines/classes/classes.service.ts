@@ -42,7 +42,6 @@ export class ClassesService {
       name: classT.name,
       professor: classT.professor,
       timeSchedule: (classT.timeSchedule === undefined ? new HourDate() : classT.timeSchedule),
-      students: (classT.students === undefined ? new Array() : classT.students),
     });
   }
 }
