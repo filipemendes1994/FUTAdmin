@@ -16,7 +16,7 @@
                             </md-checkbox>
                         </td>
                         <td colspan="2">
-                            <p md-line>{{payment.month}}</p>
+                            <p md-line>{{months[payment.month]}}</p>
                         </td>
                         <td colspan="2">
                             <p md-line>{{payment.year}}</p>
@@ -54,20 +54,16 @@
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td colspan="2">
-                        <md-input [(ngModel)]='toAdd.month' placeholder="Mês" style="width: 95%"></md-input>
-                    </td>
+                        <md-input type="date" (ngModelChange)="tmpPayment['date']=$event" [(ngModel)]="tmpPayment['date']" value="{{tmpPayment['date'] | date: 'yyyy-MM-dd'}}" style="width: 95%" placeholder="Mes e Ano Correspondentes" ></md-input>                    </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]='toAdd.year' placeholder="Ano" style="width: 95%"></md-input>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]='toAdd.value' placeholder="Valor" style="width: 100%">
+                        <md-input [(ngModel)]="tmpPayment['value']" placeholder="Valor" style="width: 100%">
                             <span md-suffix>€</span>
                         </md-input>
                     </td>
                 </tr>
             </table>
-            <button class="button" color="primary" md-raised-button *ngIf="edit==false" (click)="addPayment()">Registar</button>
-            <button class="button" color="primary" md-raised-button *ngIf="edit==true" (click)="setPayment()">Editar</button>
+            <button class="button" color="primary" md-raised-button *ngIf="!edit" (click)="addPayment()">Registar</button>
+            <button class="button" color="primary" md-raised-button *ngIf="edit" (click)="setPayment()">Editar</button>
         </md-card-content>
     </md-card>
 </div>

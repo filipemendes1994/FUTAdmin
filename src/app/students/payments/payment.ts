@@ -1,11 +1,14 @@
 export class Payment {
 
-    month: string;
-    year: string;
-    value: string;
+    month: number;
+    year: number;
+    value: number;
     datePayment: any;
     done: boolean;
-    constructor(month?: string, year?: string, value?: string, datePayment?: any, done?: boolean) {
+    constructor(month?: number, year?: number, value?: number, datePayment?: any, done?: boolean) {
+        this.month = month;
+        this.year = year;
+        this.value = value;
         this.done = false;
     }
 }
