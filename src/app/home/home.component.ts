@@ -93,6 +93,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.cs.getClasses('cc').map(list => list).subscribe(list => this.tiles[2].data['mediaNumStudentsPerClassCc'] =
       this.getMediumStudents(list));
 
+    //tile 3
+    this.tiles[3].data['students'] = [];
+    this.tiles[3].data['numTotal'] = 0;
+
+    this.ss.getStudents().map(students => students).subscribe(students => {
+      for (let i = 0; i < students.length; i++) {
+        let num = this.checkPayments(students[i]);
+        if (num > 0) {
+          this.tiles[3].data['numTotal'] += num;
+          this.tiles[3].data['students'].push({
+            firstName: students[i].firstName,
+            lastName: students[i].lastName,
+            inLate: num
+          });
+
+          console.log(this.tiles[3].data['students']);
+        }
+      }
+    });
 }
 
   ngOnDestroy(){
@@ -126,6 +145,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     return numStudents / list.length;
+  }
+
+  checkPayments(student: IStudent): number {
+    console.log('oi');
+
+    if (student.payments === undefined) {
+      return 0;
+    }
+
+    let result = 0;
+    let date = new Date();
+    console.log(date.getMonth(), date.getFullYear());
+    let payments = student.payments;
+    for (let i = 0; i < payments.length; i++) {
+      console.log(payments[i]);
+      if (payments[i].year < date.getFullYear() && !payments[i].done) {
+        console.log('1');
+        result++;
+      } else if (payments[i].year === date.getFullYear() && !payments[i].done && payments[i].month < date.getMonth()+2) {
+        console.log('2');
+        result++;
+      } else if (payments[i].year < date.getFullYear() && !payments[i].done) {
+        console.log('3');
+        result++;
+      }
+    }
+
+    return result;
   }
 
 }
