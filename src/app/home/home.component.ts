@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.ps.getProfessorsFrom('solf').map(list => list.length).subscribe(lenght =>  this.tiles[1].data['numSolf'] = lenght);
     this.ps.getProfessorsFrom('cc').map(list => list.length).subscribe(lenght =>  this.tiles[1].data['numCc'] = lenght);
     this.ps.getProfessors().map(list => list).subscribe(list => this.tiles[1].data['mediaPayments'] = this.getMedium(list));
-    this.ps.getProfessors().map(list => list).subscribe(list => this.tiles[1].data['totalPayments'] = this.getTotalPayments(list));
+    //this.ps.getProfessors().map(list => list).subscribe(list => this.tiles[1].data['totalPayments'] = this.getTotalPayments(list));
 
     //tile 2
     this.tiles[2].data['numTotal'] = 0;
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.tiles[2].data['numInst'] = Number(length);
       this.tiles[2].data['numTotal'] += Number(length);
     });
-        this.cs.getClasses('fm').map(list => list.length).subscribe(length => {
+    this.cs.getClasses('fm').map(list => list.length).subscribe(length => {
       this.tiles[2].data['numFm'] = Number(length);
       this.tiles[2].data['numTotal'] += Number(length);
     });

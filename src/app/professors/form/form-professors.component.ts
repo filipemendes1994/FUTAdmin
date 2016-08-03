@@ -52,9 +52,7 @@ export class FormProfessorsComponent implements OnInit, OnDestroy {
 
   submit() {
     this.professor.canGive = this.canGive;
-    if (!this.edit) {
-      this.professor.entryDate = new Date();
-    }
+
     if (!this.edit) {
       this.ps.addProfessor(this.professor);
     } else {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { IProfessor, Professor } from './professor';
+import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class ProfessorsService {
@@ -15,7 +16,8 @@ export class ProfessorsService {
   }
 
   addProfessor(professor: Professor) {
-    console.log(professor);
+    var datePipe = new DatePipe();
+    professor.entryDate = datePipe.transform(new Date(), 'yyyy-MM-dd');
     return this.professors.push(professor);
   }
 

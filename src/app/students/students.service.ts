@@ -3,7 +3,7 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'an
 import { IStudent, Student } from './student';
 import { ResponsibleAdult } from './responsibleAdult';
 import { ClassT } from '../disciplines/classes/class';
-
+import {DatePipe} from '@angular/common';
 import {Observable} from 'rxjs/RX';
 import 'rxjs/add/operator/count';
 
@@ -21,6 +21,9 @@ export class StudentsService {
   }
 
   addStudent(student: Student) {
+    var datePipe = new DatePipe();
+    student.entryDate = datePipe.transform(new Date(), 'yyyy-MM-dd');
+    student.responsibleAdult.entryDate = datePipe.transform(new Date(), 'yyyy-MM-dd');
     return this.students.push(student);
   }
 

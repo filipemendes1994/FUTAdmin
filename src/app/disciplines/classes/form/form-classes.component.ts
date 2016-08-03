@@ -176,6 +176,7 @@ export class FormClassesComponent implements OnInit, OnDestroy {
     }
 
     this.ss.editStudent(this.ss.getStudent(student.$key), student);
+    this.cs.editClass(this.classObservable, this.classT);
   }
 
   verifyStudent(student: IStudent) {
