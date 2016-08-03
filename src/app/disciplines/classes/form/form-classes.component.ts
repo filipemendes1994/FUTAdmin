@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import {NgFor} from '@angular/common';
-import {FORM_DIRECTIVES} from '@angular/forms';
-import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
-import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
-import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
-import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
-import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
-import {ClassesService} from '../classes.service';
-import {IClassT, ClassT} from '../class';
-import {HourDate} from '../hourDate';
-import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
-import {ProfessorsService} from '../../../professors/professors.service';
-import {IProfessor} from '../../../professors/professor';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { FORM_DIRECTIVES } from '@angular/forms';
+import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
+import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
+import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
+import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
+import { ClassesService } from '../classes.service';
+import { IClassT, ClassT } from '../class';
+import { HourDate } from '../hourDate';
+import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
+import { ProfessorsService } from '../../../professors/professors.service';
+import { IProfessor } from '../../../professors/professor';
+import { Observable, Subscription } from 'rxjs';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
-import {StudentsService} from '../../../students/students.service';
-import {IStudent} from '../../../students/student';
-import {FirebaseObjectObservable} from 'angularfire2';
-import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
+import { StudentsService } from '../../../students/students.service';
+import { IStudent } from '../../../students/student';
+import { FirebaseObjectObservable } from 'angularfire2';
+import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 
 @Component({
   moduleId: module.id,
@@ -36,14 +36,15 @@ import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
     MD_TOOLBAR_DIRECTIVES,
     NgFor,
   ],
-  providers: [ClassesService, ProfessorsService, StudentsService]
+  providers: [ProfessorsService, StudentsService]
 })
 
-export class FormClassesComponent implements OnInit {
+export class FormClassesComponent implements OnInit, OnDestroy {
 
   private _idClass: string;
   public classObservable: FirebaseObjectObservable<IClassT>;
   public professorObservable: FirebaseObjectObservable<IProfessor>;
+  public classSubscription: Subscription;
 
   public classT: ClassT;
   public professors: Observable<IProfessor[]>;
@@ -51,7 +52,7 @@ export class FormClassesComponent implements OnInit {
 
   public schedule: HourDate;
   public presentationName: string;
-  public sub: any;
+  public routerSubscription: Subscription;
 
   public discipline: string;
   public edit: boolean;
@@ -63,7 +64,7 @@ export class FormClassesComponent implements OnInit {
     this.classT = new ClassT();
     this.schedule = new HourDate();
 
-    this.sub = this.route.params.subscribe(params => {
+    this.routerSubscription = this.route.params.subscribe(params => {
       this.discipline = params['type'];
       this.getPresentationName();
 
@@ -71,7 +72,7 @@ export class FormClassesComponent implements OnInit {
       if (this._idClass !== undefined) {
         this.edit = true;
         this.classObservable = this.cs.getClass(this.discipline, this._idClass);
-        this.classObservable.subscribe(classT => {
+        this.classSubscription = this.classObservable.subscribe(classT => {
             this.classT = classT;
             if (classT.timeSchedule !== undefined) {
               this.schedule = classT.timeSchedule;
@@ -207,5 +208,12 @@ export class FormClassesComponent implements OnInit {
     }
 
     this.router.navigate(['/disciplines/classes', this.discipline]);
+  }
+
+  ngOnDestroy(){
+    if (this.edit) {
+      this.classSubscription.unsubscribe();
+    }
+    this.routerSubscription.unsubscribe();
   }
 }

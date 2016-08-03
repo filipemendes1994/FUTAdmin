@@ -7,7 +7,7 @@ import { StudentsService } from './students.service';
     moduleId: module.id,
     selector: 'student-center',
     directives: [ROUTER_DIRECTIVES],
-     providers: [StudentsService],
+    providers: [StudentsService],
     template: `
         <router-outlet></router-outlet>
     `

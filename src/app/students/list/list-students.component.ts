@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IStudent} from '../student';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import { StudentsService } from '../students.service';
@@ -8,6 +8,8 @@ import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
+
+import { Subscription } from 'rxjs/Rx';
 
 import { Observable } from 'rxjs';
 
@@ -27,16 +29,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['list-students.component.css'],
   viewProviders: [MdIconRegistry],
 })
-export class ListStudentsComponent implements OnInit {
+export class ListStudentsComponent implements OnInit,OnDestroy {
 
   public loading: boolean = true;
   students: Observable<IStudent[]>;
+  studentsSubscription: Subscription;
   constructor(public as: StudentsService, private router: Router) {}
 
   ngOnInit() {
     this.students = this.as.getStudents();
-    this.students.subscribe(onNext => {
+    this.studentsSubscription = this.students.subscribe(onNext => {
       this.loading = false;
+
     });
   }
 
@@ -54,5 +58,9 @@ export class ListStudentsComponent implements OnInit {
        this.students = this.as.getStudents();
     }
 
+  }
+
+  ngOnDestroy(){
+    this.studentsSubscription.unsubscribe();
   }
 }

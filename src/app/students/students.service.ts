@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { IStudent, Student } from './student';
 import { ResponsibleAdult } from './responsibleAdult';
-import {ClassT} from '../disciplines/classes/class';
+import { ClassT } from '../disciplines/classes/class';
+
+import {Observable} from 'rxjs/RX';
+import 'rxjs/add/operator/count';
 
 @Injectable()
 export class StudentsService {
@@ -10,6 +13,7 @@ export class StudentsService {
   students: FirebaseListObservable<IStudent[]>;
   constructor(public af: AngularFire) {
     this.students = this.af.database.list('students');
+    console.log("initing service");
   }
 
   getStudents(): FirebaseListObservable<IStudent[]> {
@@ -76,7 +80,12 @@ export class StudentsService {
         }
       )
     );
+  }
 
+  countSudents(){
+    var count = 0;
+     this.students.map(list => list.length).subscribe(lenght =>  count = lenght);
+    return count;
   }
 
   getStudentsFrom(discipline: string) {

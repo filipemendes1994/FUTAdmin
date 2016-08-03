@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy } from '@angular/core';
 import {NgFor} from '@angular/common';
 import {FORM_DIRECTIVES} from '@angular/forms';
 import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
@@ -13,6 +13,7 @@ import {ResponsibleAdult} from '../responsibleAdult';
 import {StudentsService} from '../students.service';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {FirebaseObjectObservable} from 'angularfire2';
+import { Subscription } from 'rxjs/Rx';
 
 let max = 5;
 
@@ -32,13 +33,13 @@ let max = 5;
     ROUTER_DIRECTIVES,
     FORM_DIRECTIVES,
     NgFor,
-  ],
-  providers: [StudentsService]
+  ]
 })
-export class FormStudentsComponent implements OnInit {
+export class FormStudentsComponent implements OnInit, OnDestroy {
   public _keyStudent: string;
-  private sub: any;
+  private routerSubscription: Subscription;
   private studentObservable: FirebaseObjectObservable<IStudent>;
+  private studentSubscription: Subscription;
 
   public edit: boolean = false;
   public student: Student;
@@ -68,12 +69,12 @@ export class FormStudentsComponent implements OnInit {
   ngOnInit() {
     this.student = new Student();
     this.ra = new ResponsibleAdult();
-    this.sub = this.route.params.subscribe(params => {
+    this.routerSubscription = this.route.params.subscribe(params => {
       this._keyStudent = params['id'];
       if (this._keyStudent !== undefined) {
         this.edit = true;
         this.studentObservable = this.as.getStudent(this._keyStudent);
-        this.studentObservable.subscribe(student => {
+        this.studentSubscription = this.studentObservable.subscribe(student => {
             this.student = student;
             this.student.responsibleAdult === undefined ? this.ra = new ResponsibleAdult() : this.ra = this.student.responsibleAdult;
           });
@@ -91,5 +92,14 @@ export class FormStudentsComponent implements OnInit {
 
   copyFromStudent(prop: string) {
     this.ra[prop] = this.student[prop];
+  }
+
+  ngOnDestroy(){
+
+    if(this.edit){
+      this.studentSubscription.unsubscribe();
+    }
+    this.routerSubscription.unsubscribe();
+
   }
 }

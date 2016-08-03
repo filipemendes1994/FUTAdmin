@@ -29,7 +29,7 @@ import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
     MD_CHECKBOX_DIRECTIVES,
     MD_TOOLBAR_DIRECTIVES,
   ],
-  providers: [StudentsService, MdIconRegistry],
+  providers: [MdIconRegistry],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
 })
