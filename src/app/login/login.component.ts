@@ -20,6 +20,9 @@ import { Router}    from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  showWarning: boolean = false;
+  warningMessage:string = '';
+
 
   constructor( public authService: AuthService,  private router: Router) {}
 
@@ -27,10 +30,13 @@ export class LoginComponent implements OnInit {
   }
 
   login(email:string, pass:string){
-    console.log(email);
+    
     this.authService.login(email, pass)
     .then(success => this.router.navigate(['/home']))
-    .catch(erro => console.log);
+    .catch(error => {
+      this.showWarning = true;
+      this.warningMessage = error.message;
+    });
   }
 
 

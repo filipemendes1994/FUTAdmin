@@ -2,11 +2,11 @@
     <md-card class="login-card">
         <md-toolbar color="primary">Login</md-toolbar>
         
-        <md-card-content style="min-width: 200px">
+        <md-card-content>
             <md-input style="width: 100%;" #email placeholder="Email" value=""></md-input><br>
             <md-input style="width: 100%;" #password type="password" placeholder="Password" value=""> </md-input>
 
-            
+            <p color="warn" *ngIf="showWarning">{{warningMessage}}</p>
         </md-card-content>
         <div class="buttons-container">
             <div class="buttons-holder">
