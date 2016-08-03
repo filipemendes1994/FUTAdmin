@@ -33,9 +33,26 @@
 
 }
 
-.searchbar .md-input-underline {
-  border: 1px solid white;
+
+
+.searchbar .md-input-element {
+  color: white;
 }
+
+.searchbar .md-input-placeholder{
+  color: white;
+}
+.searchbar .md-input-underline {
+  border-top: 1px solid rgba(255, 255, 255, 0.38);
+}
+
+.searchbar .md-input-ripple{
+  background-color: white!important;
+}
+.searchbar md-icon{
+  height:36px;
+}
+
 
 
 md-card{

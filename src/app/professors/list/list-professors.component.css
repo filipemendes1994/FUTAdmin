@@ -24,12 +24,30 @@
   margin: auto;
 }
 
+
 .searchbar {
   justify-content: flex-end;
   align-items: flex-end;
   width: 100%;
   display: flex;
 
+}
+
+
+
+.searchbar .md-input-element {
+  color: white;
+}
+
+.searchbar .md-input-placeholder{
+  color: white;
+}
+.searchbar .md-input-underline {
+  border-top: 1px solid rgba(255, 255, 255, 0.38);
+}
+
+.searchbar .md-input-ripple{
+  background-color: white!important;
 }
 
 md-card{

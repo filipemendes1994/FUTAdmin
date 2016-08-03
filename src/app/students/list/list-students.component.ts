@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { IStudent} from '../student';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import { StudentsService } from '../students.service';
@@ -28,6 +28,7 @@ import { Observable } from 'rxjs';
   templateUrl: 'list-students.component.html',
   styleUrls: ['list-students.component.css'],
   viewProviders: [MdIconRegistry],
+  encapsulation: ViewEncapsulation.None
 })
 export class ListStudentsComponent implements OnInit,OnDestroy {
 
