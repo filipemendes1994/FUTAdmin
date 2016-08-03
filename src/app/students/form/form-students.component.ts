@@ -44,6 +44,8 @@ export class FormStudentsComponent implements OnInit, OnDestroy {
   public edit: boolean = false;
   public student: Student;
   public ra: ResponsibleAdult;
+  public months = ['Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   constructor(private as: StudentsService, private router: Router, private route: ActivatedRoute){
   }

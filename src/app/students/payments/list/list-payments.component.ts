@@ -12,6 +12,7 @@ import {MD_ICON_DIRECTIVES, MdIconRegistry} from '@angular2-material/icon';
 import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
 import {MD_CHECKBOX_DIRECTIVES} from '@angular2-material/checkbox';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+import { Observable } from 'rxjs';
 
 @Component({
   moduleId: module.id,
@@ -30,32 +31,34 @@ import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
     MD_TOOLBAR_DIRECTIVES,
   ],
   providers: [MdIconRegistry],
-  pipes: [],
-  encapsulation: ViewEncapsulation.None,
 })
 
 export class ListPaymentsComponent implements OnInit {
+  private sub: any;
   public months = ['Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
   public classesYear = ['Setembro', 'Outubro', 'Novembro', 'Dezembro', 'Janeiro',
     'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto'];
-  private sub: any;
+
   public studentObservable: FirebaseObjectObservable<IStudent>;
   public student: Student;
   public edit: boolean = false;
   public toAdd: Payment;
   public tmpPayment: {date: Date, value: number};
   public auxNum: number;
+  public payments: Observable<Payment[]>;
   constructor(private as: StudentsService, private route: ActivatedRoute) {
     this.toAdd = new Payment();
   }
 
-  ngOnInit() {
+ngOnInit() {
+    this.student = new Student();
     this.sub = this.route.params.subscribe(params => {
       let id = params['id'];
       this.studentObservable = this.as.getStudent(id);
       this.studentObservable.subscribe(student => this.student = student);
-      console.log(this.student);
+      this.payments = this.studentObservable.map(student => student.payments);
+      //console.log(this.student);
     });
 
     this.tmpPayment = {
@@ -63,7 +66,6 @@ export class ListPaymentsComponent implements OnInit {
       'value' : 0
     };
   }
-
   editPayment(pagamento: Payment) {
     let date = new Date(Number(pagamento.year), this.months.indexOf(this.months[pagamento.month]), 1);
 

@@ -10,7 +10,7 @@
         <md-card-content>
             <md-list>
                 <table style="width: 100%" cellspacing="0">
-                    <tr *ngFor="let payment of student.payments">
+                    <tr *ngFor="let payment of payments | async">
                         <td colspan="2">
                             <md-checkbox [(ngModel)]="payment.done">
                             </md-checkbox>
