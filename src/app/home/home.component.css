@@ -35,3 +35,7 @@ md-card-content{
 .line {
   font-size: 1.3em;
 }
+
+[md-icon-button] {
+  line-height: 36px;
+}    

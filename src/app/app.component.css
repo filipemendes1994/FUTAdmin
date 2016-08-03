@@ -11,3 +11,7 @@ md-sidenav-layout{
   height: calc(100% - 65px);
 
 }
+
+[md-icon-button] {
+  line-height: 36px;
+}    
