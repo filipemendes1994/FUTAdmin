@@ -35,21 +35,21 @@
 
 
 
-.searchbar .md-input-element {
+:host .searchbar .md-input-element {
   color: white;
 }
 
-.searchbar .md-input-placeholder{
+:host .searchbar .md-input-placeholder{
   color: white;
 }
-.searchbar .md-input-underline {
+:host .searchbar .md-input-underline {
   border-top: 1px solid rgba(255, 255, 255, 0.38);
 }
 
-.searchbar .md-input-ripple{
+:host .searchbar .md-input-ripple{
   background-color: white!important;
 }
-.searchbar md-icon{
+:host .searchbar md-icon{
   height:36px;
 }
 

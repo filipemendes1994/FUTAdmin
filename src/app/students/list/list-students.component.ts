@@ -28,7 +28,6 @@ import { Observable } from 'rxjs';
   templateUrl: 'list-students.component.html',
   styleUrls: ['list-students.component.css'],
   viewProviders: [MdIconRegistry],
-  encapsulation: ViewEncapsulation.None
 })
 export class ListStudentsComponent implements OnInit,OnDestroy {
 
