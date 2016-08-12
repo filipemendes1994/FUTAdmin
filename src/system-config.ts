@@ -40,7 +40,8 @@ const materialPkgs:string[] = [
   'icon',
   'sidenav',
   'grid-list',
-  'progress-circle'
+  'progress-circle',
+  'progress-bar'
 ];
 
 materialPkgs.forEach((pkg) => {

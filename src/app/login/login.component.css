@@ -23,13 +23,12 @@ md-card-content{
     align-items: flex-end;
     width: 100%;
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 24px;
 }
 
 .buttons-holder {
     align-self: flex-end;
-    margin-top: -16px;
     margin-right: 24px;
-    margin-bottom: 24px;
+ 
     
 }

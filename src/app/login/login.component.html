@@ -1,18 +1,27 @@
 <div class="container">
     <md-card class="login-card">
         <md-toolbar color="primary">Login</md-toolbar>
-        
-        <md-card-content>
-            <md-input style="width: 100%;" #email placeholder="Email" value=""></md-input><br>
-            <md-input style="width: 100%;" #password type="password" placeholder="Password" value=""> </md-input>
-
-            <p color="warn" *ngIf="showWarning">{{warningMessage}}</p>
-        </md-card-content>
-        <div class="buttons-container">
-            <div class="buttons-holder">
-                <button md-raised-button color="primary" (click)="login(email.value, password.value)" >Login</button>
+        <md-progress-bar mode="indeterminate" color="primary" *ngIf="submitted"></md-progress-bar>
+        <form [formGroup]="loginForm"  (ngSubmit)="submit()" >
+            <md-card-content>
+                <md-input [attr.dividerColor]="loginForm.controls.email.valid ? 'primary' : 'warn'" style="width: 100%;" formControlName="email" placeholder="Email" type="email">
+                    <md-hint [hidden]="loginForm.controls.email.valid || (loginForm.controls.email.pristine && !submitted)" align="start">
+                        This field is required!
+                    </md-hint>
+                </md-input>
+                <md-input style="width: 100%;" formControlName="password" type="password" placeholder="Password"> 
+                    <md-hint [hidden]="loginForm.controls.password.valid || (loginForm.controls.password.pristine && !submitted)" align="start">
+                        This field is required!
+                    </md-hint>
+                </md-input>
+                <p color="warn" *ngIf="showWarning">{{warningMessage}}</p>
+            </md-card-content>
+            <div class="buttons-container">
+                <div class="buttons-holder">
+                    <button md-raised-button type="submit" color="primary" >Login</button>
+                </div>
             </div>
-        </div>
+        </form>
         
     </md-card>
 </div>
