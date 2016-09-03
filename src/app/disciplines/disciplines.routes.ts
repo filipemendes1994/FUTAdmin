@@ -1,13 +1,13 @@
-import { RouterConfig } from '@angular/router';
-import { DisciplinesCenter } from './disciplines-center.component';
-import { ListDisciplinesComponent } from './list';
-import { AuthGuardService }             from '../auth-guard.service';
 import {classesRoutes} from './classes/classes.routes';
+import { Routes, RouterModule } from '@angular/router';
+import { DisciplinesComponent } from './disciplines.component';
+import { ListDisciplinesComponent } from './list';
+import { AuthGuardService } from '../auth-guard.service';
 
-export const disciplinesRoutes: RouterConfig = [
+const disciplinesRoutes: Routes = [
   {
     path: 'disciplines',
-    component: DisciplinesCenter,
+    component: DisciplinesComponent,
     canActivate: [AuthGuardService],
     children: [
         {
@@ -15,7 +15,10 @@ export const disciplinesRoutes: RouterConfig = [
             component: ListDisciplinesComponent,
             canActivate: [AuthGuardService]
         },
-        ...classesRoutes,
+
+        ...classesRoutes
     ]
-  }
+  },
 ];
+
+export const disciplinesRouting = RouterModule.forChild(disciplinesRoutes);

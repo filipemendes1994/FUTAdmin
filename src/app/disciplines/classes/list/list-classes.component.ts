@@ -1,29 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { IClassT } from '../class';
 import { ClassesService } from '../classes.service';
-import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
-import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
-import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+
 
 @Component({
-  moduleId: module.id,
   selector: 'app-list-classes',
   templateUrl: 'list-classes.component.html',
   styleUrls: ['list-classes.component.css'],
-  directives: [
-    ROUTER_DIRECTIVES,
-    MD_ICON_DIRECTIVES,
-    MD_CARD_DIRECTIVES,
-    MD_PROGRESS_CIRCLE_DIRECTIVES,
-    MD_INPUT_DIRECTIVES,
-    MD_LIST_DIRECTIVES,
-    MD_TOOLBAR_DIRECTIVES,
-  ]
 
 })
 export class ListClassesComponent implements OnInit, OnDestroy {

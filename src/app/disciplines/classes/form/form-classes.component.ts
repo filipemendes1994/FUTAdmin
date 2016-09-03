@@ -1,42 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgFor } from '@angular/common';
-import { FORM_DIRECTIVES } from '@angular/forms';
-import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
-import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ClassesService } from '../classes.service';
 import { IClassT, ClassT } from '../class';
 import { HourDate } from '../hourDate';
-import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
-import { ProfessorsService } from '../../../professors/professors.service';
 import { IProfessor } from '../../../professors/professor';
 import { Observable, Subscription } from 'rxjs';
-import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
-import { StudentsService } from '../../../students/students.service';
 import { IStudent } from '../../../students/student';
 import { FirebaseObjectObservable } from 'angularfire2';
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+import { FormGroup } from '@angular/forms/src/model';
 
+import { ProfessorsService } from '../../../professors/professors.service';
+import { StudentsService } from '../../../students/students.service';
 @Component({
-  moduleId: module.id,
   selector: 'app-form-classes',
   templateUrl: 'form-classes.component.html',
-  styleUrls: ['form-classes.component.css'],
-  directives: [
-    MD_CARD_DIRECTIVES,
-    MD_BUTTON_DIRECTIVES,
-    MD_ICON_DIRECTIVES,
-    MD_INPUT_DIRECTIVES,
-    MD_PROGRESS_CIRCLE_DIRECTIVES,
-    ROUTER_DIRECTIVES,
-    FORM_DIRECTIVES,
-    MD_LIST_DIRECTIVES,
-    MD_TOOLBAR_DIRECTIVES,
-    NgFor,
-  ],
-  providers: [ProfessorsService, StudentsService]
+  styleUrls: ['form-classes.component.css']
 })
 
 export class FormClassesComponent implements OnInit, OnDestroy {
@@ -57,8 +35,15 @@ export class FormClassesComponent implements OnInit, OnDestroy {
   public discipline: string;
   public edit: boolean;
 
-  constructor(public ss: StudentsService, public cs: ClassesService, public ps: ProfessorsService, 
-    private router: Router, private route: ActivatedRoute) {}
+  public classesForm: FormGroup;
+
+  constructor(
+    public ss: StudentsService,
+    public cs: ClassesService,
+    public ps: ProfessorsService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.classT = new ClassT();

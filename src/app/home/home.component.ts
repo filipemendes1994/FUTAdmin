@@ -1,34 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { StudentsService } from '../students/students.service';
 import { ProfessorsService } from '../professors/professors.service';
 import { ClassesService } from '../disciplines/classes/classes.service';
 import { IClassT } from '../disciplines/classes/class';
 
-import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
-import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
 import { Observable } from 'rxjs';
 import { IStudent } from '../students/student';
 import { IProfessor} from '../professors/professor';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
   providers: [StudentsService, ProfessorsService, ClassesService],
-  directives: [MD_GRID_LIST_DIRECTIVES,
-              MD_CARD_DIRECTIVES,
-              MD_TOOLBAR_DIRECTIVES,
-              MD_PROGRESS_CIRCLE_DIRECTIVES,
-              MD_BUTTON_DIRECTIVES,
-              ROUTER_DIRECTIVES,
-              MD_ICON_DIRECTIVES
-        ]
+
 })
 export class HomeComponent implements OnInit, OnDestroy {
   /*home (alunos: n.total n.por disciplinas) 
@@ -49,19 +35,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //tile 0
-    this.ss.getStudents().map(list => list.length).subscribe(lenght =>  this.tiles[0].data['numTotal'] = lenght);
+    /*this.ss.getStudents().map(list => list.length).subscribe(lenght =>  this.tiles[0].data['numTotal'] = lenght);
     this.ss.getStudentsFrom('inst').map(list => list.length).subscribe(lenght =>  this.tiles[0].data['numInst'] = lenght);
     this.ss.getStudentsFrom('fm').map(list => list.length).subscribe(lenght =>  this.tiles[0].data['numFm'] = lenght);
     this.ss.getStudentsFrom('solf').map(list => list.length).subscribe(lenght =>  this.tiles[0].data['numSolf'] = lenght);
     this.ss.getStudentsFrom('cc').map(list => list.length).subscribe(lenght =>  this.tiles[0].data['numCc'] = lenght);
-
+*/
     //tile 1 
-    this.ps.getProfessors().map(list => list.length).subscribe(lenght =>  this.tiles[1].data['numTotal'] = lenght);
+    /*this.ps.getProfessors().map(list => list.length).subscribe(lenght =>  this.tiles[1].data['numTotal'] = lenght);
     this.ps.getProfessorsFrom('inst').map(list => list.length).subscribe(lenght =>  this.tiles[1].data['numInst'] = lenght);
     this.ps.getProfessorsFrom('fm').map(list => list.length).subscribe(lenght =>  this.tiles[1].data['numFm'] = lenght);
     this.ps.getProfessorsFrom('solf').map(list => list.length).subscribe(lenght =>  this.tiles[1].data['numSolf'] = lenght);
     this.ps.getProfessorsFrom('cc').map(list => list.length).subscribe(lenght =>  this.tiles[1].data['numCc'] = lenght);
     this.ps.getProfessors().map(list => list).subscribe(list => this.tiles[1].data['mediaPayments'] = this.getMedium(list));
+    */
     //this.ps.getProfessors().map(list => list).subscribe(list => this.tiles[1].data['totalPayments'] = this.getTotalPayments(list));
 
     //tile 2
@@ -107,8 +94,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             lastName: students[i].lastName,
             inLate: num
           });
-
-          console.log(this.tiles[3].data['students']);
         }
       }
     });
@@ -148,7 +133,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   checkPayments(student: IStudent): number {
-    console.log('oi');
 
     if (student.payments === undefined) {
       return 0;
@@ -156,18 +140,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     let result = 0;
     let date = new Date();
-    console.log(date.getMonth(), date.getFullYear());
     let payments = student.payments;
     for (let i = 0; i < payments.length; i++) {
-      console.log(payments[i]);
       if (payments[i].year < date.getFullYear() && !payments[i].done) {
-        console.log('1');
         result++;
       } else if (payments[i].year === date.getFullYear() && !payments[i].done && payments[i].month < date.getMonth()+2) {
-        console.log('2');
         result++;
       } else if (payments[i].year < date.getFullYear() && !payments[i].done) {
-        console.log('3');
         result++;
       }
     }

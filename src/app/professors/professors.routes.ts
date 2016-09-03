@@ -1,13 +1,13 @@
-import { RouterConfig } from '@angular/router';
-import { ProfessorsCenter } from './professors-center.component';
+import { Routes, RouterModule } from '@angular/router';
+import { ProfessorsComponent } from './professors.component';
 import { ListProfessorsComponent } from './list';
-import { AuthGuardService }             from '../auth-guard.service';
+import { AuthGuardService } from '../auth-guard.service';
 import { FormProfessorsComponent } from './form';
 
-export const professorsRoutes: RouterConfig = [
+const professorsRoutes: Routes = [
   {
     path: 'professors',
-    component: ProfessorsCenter,
+    component: ProfessorsComponent,
     canActivate: [AuthGuardService],
     children: [
         {
@@ -28,3 +28,5 @@ export const professorsRoutes: RouterConfig = [
     ]
   }
 ];
+
+export const professorsRouting = RouterModule.forChild(professorsRoutes);

@@ -4,13 +4,10 @@ import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import {
-  beforeEach, beforeEachProviders,
-  describe, xdescribe,
-  expect, it, xit,
   async, inject
 } from '@angular/core/testing';
 
-import { DisciplinesCenter } from './disciplines-center.component';
+import { DisciplinesComponent } from './disciplines.component';
 
 describe('Component: Disciplines', () => {
   /*it('should create an instance', () => {

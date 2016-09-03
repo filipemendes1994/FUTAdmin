@@ -1,4 +1,4 @@
-import {provideRouter, RouterConfig} from '@angular/router';
+import { RouterModule, Routes} from '@angular/router';
 
 import { HomeComponent } from './home';
 
@@ -6,21 +6,16 @@ import { LoginComponent } from './login';
 import { ReportComponent } from './report';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service';
-
-import { studentRoutes } from './students/students.routes';
-import { professorsRoutes} from './professors/professors.routes';
-import { disciplinesRoutes} from './disciplines/disciplines.routes';
+import { } from './students/students.routes';
 
 
-export const routes: RouterConfig = [
+
+const routesConfig: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent },
   { path: 'report', component: ReportComponent },
-  { path: '', redirectTo: 'home', canActivate: [AuthGuardService] },
-  ...studentRoutes,
-  ...professorsRoutes,
-  ...disciplinesRoutes,
+  { path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuardService] }
 ];
 
 export const authProviders = [AuthGuardService, AuthService];
-export const APP_ROUTE_PROVIDER = [provideRouter(routes), authProviders];
+export const routing = RouterModule.forRoot(routesConfig);

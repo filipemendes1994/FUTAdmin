@@ -1,1 +1,1 @@
-export * from './disciplines-center.component';
+export * from './disciplines.module';

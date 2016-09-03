@@ -1,1 +1,1 @@
-export * from './students-center.component';
+export * from './students.module';

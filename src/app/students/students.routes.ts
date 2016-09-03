@@ -1,14 +1,14 @@
-import { RouterConfig }          from '@angular/router';
+import { RouterModule, Routes }          from '@angular/router';
 import { FormStudentsComponent } from './form';
 import { ListStudentsComponent} from './list';
-import { StudentsCenter } from './students-center.component';
-import { AuthGuardService }             from '../auth-guard.service';
+import { StudentsComponent } from './students.component';
+import { AuthGuardService } from '../auth-guard.service';
 import { ListPaymentsComponent} from './payments/list';
 
-export const studentRoutes: RouterConfig = [
+const studentRoutes: Routes = [
   {
     path: 'students',
-    component: StudentsCenter,
+    component: StudentsComponent,
     canActivate: [AuthGuardService],
     children: [
       {
@@ -35,9 +35,4 @@ export const studentRoutes: RouterConfig = [
   }
 ];
 
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
+export const studentRouting = RouterModule.forChild(studentRoutes);

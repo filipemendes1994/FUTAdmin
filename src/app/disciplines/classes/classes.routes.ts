@@ -1,14 +1,13 @@
-import { RouterConfig } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ListClassesComponent } from './list';
 import { FormClassesComponent } from './form';
 import { AuthGuardService }             from '../../auth-guard.service';
-import { ClassesCenter } from './classes-center.component';
 
-export const classesRoutes: RouterConfig = [
+
+
+export const classesRoutes: Routes = [
   {
     path: 'classes',
-    component: ClassesCenter,
-    canActivate: [AuthGuardService],
     children: [
         {
             path: ':type',
@@ -28,3 +27,4 @@ export const classesRoutes: RouterConfig = [
     ]
   }
 ];
+

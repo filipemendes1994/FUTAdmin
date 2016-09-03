@@ -6,7 +6,7 @@ export class AuthService {
 
   public isLogged:boolean = false;
 
-  constructor(public af: AngularFire) { }
+  constructor(public af: AngularFire) {  }
 
   login(email: string, password: string) {
 

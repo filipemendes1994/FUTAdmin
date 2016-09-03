@@ -3,6 +3,7 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'an
 import { IProfessor, Professor } from './professor';
 import { DatePipe } from '@angular/common';
 
+
 @Injectable()
 export class ProfessorsService {
 
@@ -22,8 +23,6 @@ export class ProfessorsService {
   }
 
   editProfessor(professorObservable: FirebaseObjectObservable<IProfessor>, professor: Professor) {
-    console.log('saving');
-    console.log(professor);
     return professorObservable.update({
       address: professor.address,
       city: professor.city,

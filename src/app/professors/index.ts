@@ -1,1 +1,1 @@
-export * from './professors-center.component';
+export * from './professors.module';

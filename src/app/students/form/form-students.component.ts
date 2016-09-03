@@ -1,39 +1,11 @@
-import {Component, OnInit, OnDestroy } from '@angular/core';
-import {NgFor} from '@angular/common';
-import {FORM_DIRECTIVES} from '@angular/forms';
-import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
-import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
-import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
-import {MD_CHECKBOX_DIRECTIVES} from '@angular2-material/checkbox';
-import {MD_ICON_DIRECTIVES} from '@angular2-material/icon';
-import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
-import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
-import {IStudent, Student} from '../student';
-import {ResponsibleAdult} from '../responsibleAdult';
-import {StudentsService} from '../students.service';
-import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
-import {FirebaseObjectObservable} from 'angularfire2';
 import { Subscription } from 'rxjs/Rx';
 
 let max = 5;
 
 @Component({
-  moduleId: module.id,
   selector: 'form-student',
   templateUrl: 'form-students.component.html',
   styleUrls: ['form-students.component.css'],
-  directives: [
-    MD_CARD_DIRECTIVES,
-    MD_CHECKBOX_DIRECTIVES,
-    MD_BUTTON_DIRECTIVES,
-    MD_ICON_DIRECTIVES,
-    MD_TOOLBAR_DIRECTIVES,
-    MD_INPUT_DIRECTIVES,
-    MD_GRID_LIST_DIRECTIVES,
-    ROUTER_DIRECTIVES,
-    FORM_DIRECTIVES,
-    NgFor,
-  ]
 })
 export class FormStudentsComponent implements OnInit, OnDestroy {
   public _keyStudent: string;
