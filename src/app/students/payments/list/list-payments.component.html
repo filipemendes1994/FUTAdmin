@@ -10,9 +10,9 @@
         <md-card-content>
             <md-list>
                 <table style="width: 100%" cellspacing="0">
-                    <tr *ngFor="let payment of student.payments">
+                    <tr *ngFor="let payment of payments | async">
                         <td colspan="2">
-                            <md-checkbox [(ngModel)]="payment.done">
+                            <md-checkbox >
                             </md-checkbox>
                         </td>
                         <td colspan="2">
@@ -34,7 +34,7 @@
                             <button md-icon-button (click)="savePayment(payment)">
                                 <md-icon>save</md-icon>
                             </button>
-                            <button md-icon-button (click)="deletePayment(payment)">
+                            <button md-icon-button (click)="deletePayment(payment.$key)">
                                 <md-icon>delete</md-icon>
                             </button>
                         </td>                    
@@ -54,9 +54,10 @@
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td colspan="2">
-                        <md-input type="date" (ngModelChange)="tmpPayment['date']=$event" [(ngModel)]="tmpPayment['date']" value="{{tmpPayment['date'] | date: 'yyyy-MM-dd'}}" style="width: 95%" placeholder="Mes e Ano Correspondentes" ></md-input>                    </td>
+                        <md-input type="date"  style="width: 95%" placeholder="Mes e Ano Correspondentes" ></md-input>                    
+                    </td>
                     <td colspan="2">
-                        <md-input [(ngModel)]="tmpPayment['value']" placeholder="Valor" style="width: 100%">
+                        <md-input  placeholder="Valor" style="width: 100%">
                             <span md-suffix>€</span>
                         </md-input>
                     </td>

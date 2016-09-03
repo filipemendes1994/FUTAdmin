@@ -1,183 +1,298 @@
 <div class="content">
 
-    <div style="height:50px;width:100%;"></div>
-    <md-card class="card">
-        <md-toolbar color="primary">Dados do Aluno</md-toolbar>
-        <md-card-content>
-            <!--<md-input placeholder="Company (disabled)" disabled value="FUT"></md-input> -->
-            <table style="width: 100%" cellspacing="0">
-                <tr>
-                    <td colspan="3">
-                        <md-input [(ngModel)]="student.firstName" placeholder="Nome Próprio" style="width: 95%"></md-input>
-                    </td>
-                    <td colspan="3">
-                        <md-input [(ngModel)]="student.lastName" placeholder="Último Nome" style="width: 100%"></md-input>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="student.address" style="width: 95%" placeholder="Morada"></md-input>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="student.email" style="width: 95%" placeholder="Email"></md-input>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="student.contact" style="width: 100%" placeholder="Contato"></md-input>
-                    </td>
-                </tr>
-                <tr *ngIf="!edit">
-                    <td colspan="3">
-                        <md-input [(ngModel)]="student.city" style="width: 95%" placeholder="Cidade" ></md-input>
-                    </td>
-                    <td colspan="3">
-                        <md-input [(ngModel)]="student.postalCode" style="width: 95%" maxLength="8" placeholder="Código Postal">
-                        </md-input>
-                    </td>
-                <tr>
-                <tr *ngIf="!edit">
-                    <td colspan="3">
-                        <md-input type="date" (ngModelChange)="student.birthdayDate=$event" [(ngModel)]="student.birthdayDate" value="{{student.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento" ></md-input>
-                    </td>
-                    <td colspan="3">
-                        <md-input [(ngModel)]="student.socioNumber" style="width: 100%" maxLength="8" placeholder="Número de Sócio" >
-                        </md-input>
-                    </td>
-                <tr>
-                <tr *ngIf="edit">
-                    <td colspan="2">
-                        <md-input [(ngModel)]="student.city" style="width: 95%" placeholder="Cidade" ></md-input>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="student.postalCode" style="width: 95%" maxLength="8" placeholder="Código Postal">
-                        </md-input>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="student.socioNumber" style="width: 100%" maxLength="8" placeholder="Número de Sócio">
-                        </md-input>
-                    </td>
-                <tr>
-                <tr *ngIf="edit">
-                    <td colspan="3">
-                        <md-input type="date" (ngModelChange)="student.birthdayDate=$event" [(ngModel)]="student.birthdayDate" value="{{student.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento" ></md-input>
-                    </td>
-                    <td colspan="3">
-                        <md-input type="date" disabled (ngModelChange)="student.entryDate=$event" [(ngModel)]="student.entryDate"  value="student.entryDate" style="width: 100%;" placeholder="Data de Entrada">
-                        </md-input>
-                    </td>
-                <tr>
-            </table>
-        </md-card-content>
-    </md-card>
-    <md-card [class.card]="edit" >
-        <md-toolbar color="primary">Dados do Encarregado de Educação</md-toolbar>
-        <md-card-content>
-            <table style="width: 100%" cellspacing="0">
-                <tr>
-                    <td colspan="3">
-                        <md-input [(ngModel)]="ra.firstName" placeholder="Nome Próprio" style="width: 95%"></md-input>
-                    </td>
-                    <td colspan="3">
-                        <md-input [(ngModel)]="ra.lastName" placeholder="Último Nome" style="width: 87%"></md-input>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="ra.address" style="width: 80%;" placeholder="Morada"></md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('address')">
+    <div color="primary" style="height:50px;width:100%;"></div>
+    <form [formGroup]="studentForm" (ngSubmit)="submit(studentForm.value, studentForm.valid)">
+        <md-card class="card">
+            <md-toolbar color="primary">Dados do Aluno</md-toolbar>
+            <md-card-content>
+
+                <table style="width: 100%" cellspacing="0">
+                    <tr>
+                        <td colspan="3">
+                            <md-input formControlName="firstName" placeholder="Nome Próprio" style="width: 95%">
+                                <md-hint [hidden]="studentForm.controls.firstName.valid || (studentForm.controls.firstName.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="3">
+                            <md-input formControlName="lastName" placeholder="Último Nome" style="width: 100%">
+                                <md-hint [hidden]="studentForm.controls.lastName.valid || (studentForm.controls.lastName.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <md-input formControlName="address" style="width: 95%" placeholder="Morada">
+                                <md-hint [hidden]="studentForm.controls.address.valid || (studentForm.controls.address.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="2">
+                            <md-input formControlName="email" style="width: 95%" placeholder="Email">
+                                <md-hint [hidden]="studentForm.controls.email.valid || (studentForm.controls.email.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="2">
+                            <md-input formControlName="contact" style="width: 100%" placeholder="Contato">
+                                <md-hint [hidden]="studentForm.controls.contact.valid || (studentForm.controls.contact.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!edit">
+                        <td colspan="3">
+                            <md-input formControlName="city" style="width: 95%" placeholder="Cidade">
+                                <md-hint [hidden]="studentForm.controls.city.valid || (studentForm.controls.city.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="3">
+                            <md-input formControlName="postalCode" style="width: 95%" maxLength="8" placeholder="Código Postal">
+
+                                <md-hint [hidden]="studentForm.controls.postalCode.valid || (studentForm.controls.postalCode.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!edit">
+                        <td colspan="3">
+                            <md-input type="date" formControlName="birthdayDate" style="width: 95%" placeholder="Data de Nascimento">
+                                <md-hint [hidden]="studentForm.controls.birthdayDate.valid || (studentForm.controls.birthdayDate.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="3">
+                            <!--<md-input formControlName="socioNumber" style="width: 100%" maxLength="8" placeholder="Número de Sócio">
+
+                                <md-hint [hidden]="studentForm.controls.socioNumber.valid || (studentForm.controls.socioNumber.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>-->
+                        </td>
+                    </tr>
+                    <tr *ngIf="edit">
+                        <td colspan="2">
+                            <md-input formControlName="city" style="width: 95%" placeholder="Cidade">
+                                <md-hint [hidden]="studentForm.controls.city.valid || (studentForm.controls.city.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="2">
+                            <md-input formControlName="postalCode" style="width: 95%" maxLength="8" placeholder="Código Postal">
+
+                                <md-hint [hidden]="studentForm.controls.postalCode.valid || (studentForm.controls.postalCode.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="2">
+                            <!--<md-input formControlName="socioNumber" style="width: 100%" maxLength="8" placeholder="Número de Sócio">
+
+                                <md-hint [hidden]="studentForm.controls.socioNumber.valid || (studentForm.controls.socioNumber.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>-->
+                        </td>
+                    </tr>
+                    <tr *ngIf="edit">
+                        <td colspan="3">
+                            <md-input type="date" formControlName="birthdayDate" style="width: 95%"
+                                placeholder="Data de Nascimento">
+                                <md-hint [hidden]="studentForm.controls.birthdayDate.valid || (studentForm.controls.birthdayDate.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="3">
+                            <!--<md-input type="date" disabled formControlName="entryDate" style="width: 100%;" placeholder="Data de Entrada">
+
+                                <md-hint [hidden]="studentForm.controls.entryDate.valid || (studentForm.controls.entryDate.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>-->
+                        </td>
+                    </tr>
+                </table>
+
+            </md-card-content>
+        </md-card>
+        <md-card [class.card]="edit" formGroupName="responsibleAdult">
+            <md-toolbar color="primary">Dados do Encarregado de Educação</md-toolbar>
+            <md-card-content>
+                <table style="width: 100%" cellspacing="0">
+                    <tr>
+                        <td colspan="3">
+                            <md-input formControlName="firstName" placeholder="Nome Próprio" style="width: 95%">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.firstName.valid || (studentForm.controls.responsibleAdult.controls.firstName.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="3">
+                            <md-input formControlName="lastName" placeholder="Último Nome" style="width: 87%">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.lastName.valid || (studentForm.controls.responsibleAdult.controls.lastName.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <md-input formControlName="address" style="width: 80%;" placeholder="Morada">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.address.valid || (studentForm.controls.responsibleAdult.controls.address.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('address')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="ra.email" style="width: 80%;" placeholder="Email"></md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('email')">
+                        </td>
+                        <td colspan="2">
+                            <md-input formControlName="email" style="width: 80%;" placeholder="Email">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.email.valid || (studentForm.controls.responsibleAdult.controls.email.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('email')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="ra.contact" style="width: 80%;" placeholder="Contato"></md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('contact')">
+                        </td>
+                        <td colspan="2">
+                            <md-input formControlName="contact" style="width: 80%;" placeholder="Contato">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.contact.valid || (studentForm.controls.responsibleAdult.controls.contact.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('contact')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
-                    </td>
-                </tr>
-                <tr *ngIf="!edit">
-                    <td colspan="3">
-                        <md-input [(ngModel)]="ra.city" style="width: 85%;" placeholder="Cidade"></md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('city')">
+                        </td>
+                    </tr>
+                    <tr *ngIf="!edit">
+                        <td colspan="3">
+                            <md-input formControlName="city" style="width: 85%;" placeholder="Cidade">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.city.valid || (studentForm.controls.responsibleAdult.controls.city.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('city')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
-                    </td>
-                    <td colspan="3">
-                        <md-input [(ngModel)]="ra.postalCode" style="width: 87%;" maxLength="8" placeholder="Código Postal">
-                        </md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('postalCode')">
+                        </td>
+                        <td colspan="3">
+                            <md-input formControlName="postalCode" style="width: 87%;" maxLength="8" placeholder="Código Postal">
+
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.postalCode.valid || (studentForm.controls.responsibleAdult.controls.postalCode.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('postalCode')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
-                    </td>
-                </tr>
-                <tr *ngIf="!edit">
-                    <td colspan="3">
-                        <md-input type="date" (ngModelChange)="ra.birthdayDate=$event" [(ngModel)]="ra.birthdayDate" value="{{ra.birthdayDate |  date: 'yyyy-MM-dd' }}"  style="width: 95%; vertical-align: 11px;" placeholder="Data de Nascimento"></md-input>
-                    </td>
-                    <td colspan="3">
-                        <md-input [(ngModel)]="ra.socioNumber" style="width: 87%;" placeholder="Número de Sócio">
-                        </md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('socioNumber')">
+                        </td>
+                    </tr>
+                    <tr *ngIf="!edit">
+                        <td colspan="3">
+                            <md-input type="date" formControlName="birthdayDate" style="width: 95%; vertical-align: 11px;" placeholder="Data de Nascimento">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.birthdayDate.valid || (studentForm.controls.responsibleAdult.controls.birthdayDate.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="3">
+                            <!--<md-input formControlName="socioNumber" style="width: 87%;" placeholder="Número de Sócio">
+
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.socioNumber.valid || (studentForm.controls.responsibleAdult.controls.socioNumber.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('socioNumber')">
+                            <md-icon class="md-32" >content_copy</md-icon>
+                        </button>-->
+                        </td>
+                    </tr>
+                    <tr *ngIf="edit">
+                        <td colspan="2">
+                            <md-input formControlName="city" style="width: 80%;" placeholder="Cidade">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.city.valid || (studentForm.controls.responsibleAdult.controls.city.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('city')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
-                    </td>
-                </tr>
-                <tr *ngIf="edit">
-                    <td colspan="2">
-                        <md-input [(ngModel)]="ra.city" style="width: 80%;" placeholder="Cidade" ></md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('city')">
+                        </td>
+                        <td colspan="2">
+                            <md-input formControlName="postalCode" style="width: 80%;" maxLength="8" placeholder="Código Postal">
+
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.postalCode.valid || (studentForm.controls.responsibleAdult.controls.postalCode.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('postalCode')">
                             <md-icon class="md-32" >content_copy</md-icon>
                         </button>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="ra.postalCode" style="width: 80%;" maxLength="8" placeholder="Código Postal" >
-                        </md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('postalCode')">
+                        </td>
+                        <td colspan="2">
+                            <!--<md-input formControlName="socioNumber" style="width: 80%;" maxLength="8" placeholder="Número de Sócio">
+
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.socioNumber.valid || (studentForm.controls.responsibleAdult.controls.socioNumber.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                            <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('socioNumber')">
                             <md-icon class="md-32" >content_copy</md-icon>
-                        </button>
-                    </td>
-                    <td colspan="2">
-                        <md-input [(ngModel)]="ra.socioNumber" style="width: 80%;" maxLength="8" placeholder="Número de Sócio">
-                        </md-input>
-                        <button md-icon-button style="vertical-align: bottom;" (click)="copyFromStudent('socioNumber')">
-                            <md-icon class="md-32" >content_copy</md-icon>
-                        </button>
-                    </td>
-                </tr>
-                <tr *ngIf="edit">
-                    <td colspan="3">
-                        <md-input type="date" (ngModelChange)="ra.birthdayDate=$event" [(ngModel)]="ra.birthdayDate" value="{{ra.birthdayDate |  date: 'yyyy-MM-dd' }}" style="width: 95%" placeholder="Data de Nascimento" ></md-input>
-                    </td>
-                    <td colspan="3">
-                        <md-input type="date" disabled (ngModelChange)="ra.entryDate=$event" [(ngModel)]="ra.entryDate"  value="ra.entryDate" style="width: 100%;" placeholder="Data de Entrada">
-                        </md-input>
-                    </td>
-                </tr>
-            </table>
-        </md-card-content>
-    </md-card>
-    <md-card *ngIf="edit">
-        <md-toolbar color="primary">Pagamentos</md-toolbar>
-        <md-card-content>
-            <div *ngIf="student.payments == undefined">
-                <p md-line>Não há pagamentos registados</p>
+                        </button>-->
+                        </td>
+                    </tr>
+                    <tr *ngIf="edit">
+                        <td colspan="3">
+                            <md-input type="date" formControlName="birthdayDate" style="width: 95%" placeholder="Data de Nascimento">
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.birthdayDate.valid || (studentForm.controls.responsibleAdult.controls.birthdayDate.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>
+                        </td>
+                        <td colspan="3">
+                            <!--<md-input type="date" disabled formControlName="entryDate" style="width: 100%;" placeholder="Data de Entrada">
+
+                                <md-hint [hidden]="studentForm.controls.responsibleAdult.controls.entryDate.valid || (studentForm.controls.responsibleAdult.controls.entryDate.pristine && !submitted)" align="start">
+                                    This field is required!
+                                </md-hint>
+                            </md-input>-->
+                        </td>
+                    </tr>
+                </table>
+            </md-card-content>
+        </md-card>
+        <md-card *ngIf="edit">
+            <md-toolbar color="primary">Pagamentos</md-toolbar>
+            <md-card-content>
+                <div *ngIf="payments == undefined">
+                    <p md-line>Não há pagamentos registados</p>
+                </div>
+                <div *ngIf="payments">
+                    <p md-line> Último regista mês {{ months[payments[payments.length-1].month] }} do ano {{ payments[payments.length-1].year
+                        }} </p>
+                </div>
+                <button md-raised-button class="button" color="primary" (click)="goToPayments($key)">Detalhes</button>
+            </md-card-content>
+        </md-card>
+        <div class="buttons-container">
+            <div class="buttons-holder">
+                <button md-raised-button  type="submit" class="button" color="primary">{{ edit ? 'Editar' : 'Adicionar' }}</button>
             </div>
-            <div *ngIf="student.payments">
-                <p md-line > Último regista mês {{ months[student.payments[student.payments.length-1].month] }} do ano 
-                    {{ student.payments[student.payments.length-1].year }} </p>
-            </div>
-            <button md-raised-button class="button" color="primary" (click)="goToPayments(student.$key)">Detalhes</button>
-        </md-card-content>
-    </md-card>
-    <div class="buttons-container">
-        <div class="buttons-holder">
-            <button md-raised-button *ngIf="!edit" (click)="submit()" class="button" color="primary">Adicionar</button>
-            <button md-raised-button *ngIf="edit" (click)="submit()" class="button" color="primary">Editar</button>
         </div>
-    </div>
-</div>   
+    </form>
+</div>

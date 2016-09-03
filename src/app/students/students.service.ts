@@ -3,9 +3,12 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'an
 import { IStudent, Student } from './student';
 import { ResponsibleAdult } from './responsibleAdult';
 import { ClassT } from '../disciplines/classes/class';
-import {DatePipe} from '@angular/common';
-import {Observable} from 'rxjs/RX';
+import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs/RX';
 import 'rxjs/add/operator/count';
+
+import { Payment } from './payments/payment';
+
 
 @Injectable()
 export class StudentsService {
@@ -13,7 +16,6 @@ export class StudentsService {
   students: FirebaseListObservable<IStudent[]>;
   constructor(public af: AngularFire) {
     this.students = this.af.database.list('students');
-    console.log("initing service");
   }
 
   getStudents(): FirebaseListObservable<IStudent[]> {
@@ -28,8 +30,6 @@ export class StudentsService {
   }
 
   editStudent(studentObservable: FirebaseObjectObservable<IStudent>, student: Student) {
-    console.log('saving');
-    console.log(student);
     return studentObservable.update({
       address: student.address,
       city: student.city,
@@ -95,7 +95,7 @@ export class StudentsService {
     return this.students.map(students =>
        students.filter(student => {
          if (discipline === 'cc') {
-           if (student.classes.cc !== undefined) {
+           if (student.classes !== undefined && student.classes.cc !== undefined) {
              return true;
            } else {
              return false;
@@ -109,5 +109,11 @@ export class StudentsService {
        }
       )
     );
+  }
+
+  getStudentsPayments(id: string): FirebaseListObservable<Payment[]> {
+
+    return this.af.database.list('students/' + id + '/payments');
+
   }
 }

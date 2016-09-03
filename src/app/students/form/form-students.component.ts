@@ -1,6 +1,14 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
+import { IStudent, Student } from '../student';
+import { ResponsibleAdult } from '../responsibleAdult';
+import { StudentsService } from '../students.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FirebaseObjectObservable } from 'angularfire2';
 import { Subscription } from 'rxjs/Rx';
 
-let max = 5;
 
 @Component({
   selector: 'form-student',
@@ -14,48 +22,99 @@ export class FormStudentsComponent implements OnInit, OnDestroy {
   private studentSubscription: Subscription;
 
   public edit: boolean = false;
-  public student: Student;
-  public ra: ResponsibleAdult;
   public months = ['Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-  constructor(private as: StudentsService, private router: Router, private route: ActivatedRoute){
-  }
+  public studentForm: FormGroup;
 
-
-  submit() {
-
-    this.student.responsibleAdult = this.ra;
-    console.log(this.student);
-
-    if (!this.edit) {
-      this.as.addStudent(this.student);
-    } else {
-      this.as.editStudent(this.studentObservable, this.student);
-    }
-
-    this.router.navigate(['/students']);
-
+  constructor(
+    private as: StudentsService,
+    private router: Router,
+    private route: ActivatedRoute,
+    public fb: FormBuilder,
+  ) {
   }
 
   ngOnInit() {
-    this.student = new Student();
-    this.ra = new ResponsibleAdult();
+
+    this.studentForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      address: ['', Validators.required],
+      email: ['', Validators.required],
+      contact: ['', Validators.required],
+      city: ['', Validators.required],
+      socioNumber: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      birthdayDate: ['', Validators.required],
+      responsibleAdult: this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        address: ['', Validators.required],
+        email: ['', Validators.required],
+        contact: ['', Validators.required],
+        city: ['', Validators.required],
+        postalCode: ['', Validators.required],
+        socioNumber: ['', Validators.required],
+        birthdayDate: ['', Validators.required],
+      })
+    });
+
     this.routerSubscription = this.route.params.subscribe(params => {
       this._keyStudent = params['id'];
       if (this._keyStudent !== undefined) {
         this.edit = true;
         this.studentObservable = this.as.getStudent(this._keyStudent);
         this.studentSubscription = this.studentObservable.subscribe(student => {
-            this.student = student;
-            this.student.responsibleAdult === undefined ? this.ra = new ResponsibleAdult() : this.ra = this.student.responsibleAdult;
+
+          this.studentForm.patchValue({
+            firstName: student.firstName,
+            lastName: student.lastName,
+            address: student.address,
+            email: student.email,
+            contact: student.contact,
+            city: student.city,
+            postalCode: student.postalCode,
+            birthdayDate: student.birthdayDate,
+            responsibleAdult: {
+              firstName: student.responsibleAdult.firstName,
+              lastName: student.responsibleAdult.lastName,
+              address: student.responsibleAdult.address,
+              email: student.responsibleAdult.email,
+              contact: student.responsibleAdult.contact,
+              city: student.responsibleAdult.city,
+              postalCode: student.responsibleAdult.postalCode,
+              birthdayDate: student.responsibleAdult.birthdayDate,
+            }
           });
+
+        });
       }
     });
+
+
+  }
+
+  submit(student: IStudent, isValid: boolean) {
+    if (isValid) {
+
+      student.entryDate = new Date().toTimeString();
+
+      if (!this.edit) {
+        this.as.addStudent(student);
+      } else {
+        this.as.editStudent(this.studentObservable, student);
+      }
+
+      this.router.navigate(['/students']);
+    } else {
+    }
+
   }
 
   goToPayments(key: string) {
-      this.router.navigate(['/students/form/' + this._keyStudent + '/payments']);
+    this.router.navigate(['/students/form/' + this._keyStudent + '/payments']);
+    return false;
   }
 
   cancel() {
@@ -63,12 +122,13 @@ export class FormStudentsComponent implements OnInit, OnDestroy {
   }
 
   copyFromStudent(prop: string) {
-    this.ra[prop] = this.student[prop];
+    let ra: FormGroup = <FormGroup>this.studentForm.controls['responsibleAdult'];
+    (<FormControl>ra.controls[prop]).setValue((<FormControl>this.studentForm.controls[prop]).value);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
 
-    if(this.edit){
+    if (this.edit) {
       this.studentSubscription.unsubscribe();
     }
     this.routerSubscription.unsubscribe();

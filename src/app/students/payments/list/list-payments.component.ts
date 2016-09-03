@@ -24,7 +24,7 @@ export class ListPaymentsComponent implements OnInit {
   public toAdd: Payment;
   public tmpPayment: {date: Date, value: number};
   public auxNum: number;
-  public payments: Observable<Payment[]>;
+  public payments: FirebaseListObservable<Payment[]>;
   constructor(private as: StudentsService, private route: ActivatedRoute) {
     this.toAdd = new Payment();
   }
@@ -33,10 +33,11 @@ ngOnInit() {
     this.student = new Student();
     this.sub = this.route.params.subscribe(params => {
       let id = params['id'];
-      this.studentObservable = this.as.getStudent(id);
-      this.studentObservable.subscribe(student => this.student = student);
-      this.payments = this.studentObservable.map(student => student.payments);
-      //console.log(this.student);
+      this.as.getStudent(id).subscribe(student => {
+        this.student = student;
+      });
+      this.payments = this.as.getStudentsPayments(id);
+      
     });
 
     this.tmpPayment = {
@@ -44,31 +45,24 @@ ngOnInit() {
       'value' : 0
     };
   }
-  editPayment(pagamento: Payment) {
-    let date = new Date(Number(pagamento.year), this.months.indexOf(this.months[pagamento.month]), 1);
+  editPayment(payment: Payment) {
+    let date = new Date(Number(payment.year), this.months.indexOf(this.months[payment.month]), 1);
 
-    this.auxNum = this.student.payments.indexOf(pagamento);
+    this.auxNum = this.student.payments.indexOf(payment);
     this.tmpPayment['date'] =  date;
-    this.tmpPayment['value'] = pagamento.value;
+    this.tmpPayment['value'] = payment.value;
     this.edit = true;
   }
 
-  deletePayment(pagamento: Payment) {
-    this.student.payments.splice(this.student.payments.indexOf(pagamento), 1);
-    this.as.editStudent(this.studentObservable, this.student);
+  deletePayment(payment: string) {
+    this.payments.remove(payment);
   }
 
   addPayment() {
 
     let date = new Date(this.tmpPayment.date.toString());
 
-    if (this.student.payments === undefined) {
-      this.student.payments = [];
-    }
-
-    console.log(this.tmpPayment);
-    this.student.payments.push(new Payment(date.getMonth(), date.getFullYear(), this.tmpPayment.value));
-    this.as.editStudent(this.studentObservable, this.student);
+    this.payments.push(new Payment(date.getMonth(), date.getFullYear(), this.tmpPayment.value));
 
     this.tmpPayment = {
       'date' : new Date(2000, 1, 1),

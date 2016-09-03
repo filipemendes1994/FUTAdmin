@@ -27,15 +27,11 @@ export class ListStudentsComponent implements OnInit, OnDestroy {
     });
   }
 
-  editStudent(key: string) {
-    this.router.navigate(['/students/form', key]);
-  }
-
   deleteStudent(key: string) {
     this.as.deleteStudent(key);
   }
   search(term: string){
-    if (term != ''){
+    if (term !== ''){
       this.students = this.as.filter(term);
     }else{
        this.students = this.as.getStudents();

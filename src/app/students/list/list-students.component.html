@@ -13,7 +13,7 @@
                 <md-list-item *ngFor="let student of students | async">
                     <h4 md-line>{{student.firstName}} {{student.lastName}}</h4>
                     <p md-line > {{student.city}} </p>
-                    <button md-icon-button (click)="editStudent(student.$key)">
+                    <button md-icon-button [routerLink]="['/students/form/', { id: student.$key}]">
                         <md-icon class="md-32" >edit</md-icon>
                     </button>
                     <button md-icon-button (click)="deleteStudent(student.$key)">
